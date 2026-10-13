@@ -132,7 +132,7 @@ const CFG = {
   // Optional: a Formspree (or similar) endpoint that receives feedback as JSON. Leave "" to keep feedback on the device only.
   FEEDBACK_ENDPOINT: "",
   // Optional: paste the pre-filled link of your Google Form here. Reviews then arrive in your Google Form responses and Sheet. See README.
-  GOOGLE_FORM_LINK: "https://docs.google.com/forms/d/e/1FAIpQLScpeVjJrk2nQGWtFHVuMbm3KTr8U52q9H9wxmiav7jNINVimw/viewform?usp=publish-editor"
+  GOOGLE_FORM_LINK: ""
 };
 
 /* ================= helpers ================= */
@@ -232,7 +232,7 @@ let progress = LS.get('progress', {});
 let daily = LS.get('daily', null);
 let recent = LS.get('recent', []);
 let feedbackLog = LS.get('feedback', []);
-const S = { tab: 'home', cur: null, page: 0, loading: new Set(), miniError: {}, explore: { mode: '', q: '', topic: '', results: [], loading: false, error: '', start: 0 }, libTab: 'read', libQ: '' };
+const S = { tab: 'home', cur: null, page: 0, loading: new Set(), miniError: {}, miniDetail: {}, explore: { mode: '', q: '', topic: '', results: [], loading: false, error: '', start: 0 }, libTab: 'read', libQ: '' };
 const saveSettings = () => LS.set('settings', settings);
 const saveLib = () => LS.set('lib', lib);
 function saveMetas() { LS.set('metas', metas); }
@@ -355,33 +355,53 @@ async function getDaily() {
 }
 
 /* ================= Gemini ================= */
-async function gemini(prompt, { json = true, system } = {}) {
-  let r;
+let lastFinish = '';
+function errDetail(txt) {
   try {
-    if (CFG.PROXY_URL) {
-      r = await fetch(CFG.PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt, system, json }) });
-      if (!r.ok) throw new Error(r.status === 429 ? 'QUOTA' : 'API ' + r.status);
-      const j = await r.json(); return j.text || '';
+    const j = JSON.parse(txt);
+    let d = j.detail || (j.error && (j.error.message || j.error)) || '';
+    try { const k = JSON.parse(d); d = (k.error && k.error.message) || d; } catch (e) {}
+    return String(d).slice(0, 240);
+  } catch (e) { return String(txt).slice(0, 240); }
+}
+async function gemini(prompt, { json = true, system } = {}) {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    let r;
+    try {
+      if (CFG.PROXY_URL) {
+        r = await fetch(CFG.PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt, system, json }) });
+      } else {
+        if (!settings.apiKey) throw new Error('NO_KEY');
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(settings.model || 'gemini-flash-latest')}:generateContent`;
+        const body = { contents: [{ role: 'user', parts: [{ text: prompt }] }], generationConfig: Object.assign({ temperature: 0.6, maxOutputTokens: 16384 }, json ? { responseMimeType: 'application/json' } : {}) };
+        if (system) body.systemInstruction = { parts: [{ text: system }] };
+        r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': settings.apiKey }, body: JSON.stringify(body) });
+      }
+    } catch (e) {
+      if (e instanceof TypeError) throw new Error('NET');
+      throw e;
     }
-    if (!settings.apiKey) throw new Error('NO_KEY');
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(settings.model || 'gemini-flash-latest')}:generateContent`;
-    const body = { contents: [{ role: 'user', parts: [{ text: prompt }] }], generationConfig: Object.assign({ temperature: 0.6, maxOutputTokens: 8192 }, json ? { responseMimeType: 'application/json' } : {}) };
-    if (system) body.systemInstruction = { parts: [{ text: system }] };
-    r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': settings.apiKey }, body: JSON.stringify(body) });
-  } catch (e) {
-    if (e instanceof TypeError) throw new Error('NET');
-    throw e;
+    if (!r.ok) {
+      let detail = ''; try { detail = errDetail(await r.text()); } catch (e) {}
+      if (r.status >= 500 && attempt === 0) { await new Promise(res => setTimeout(res, 2000)); continue; }
+      const err = new Error(r.status === 429 ? 'QUOTA' : 'API ' + r.status); err.detail = detail; throw err;
+    }
+    const j = await r.json();
+    if (CFG.PROXY_URL) { lastFinish = j.finishReason || ''; return j.text || ''; }
+    const cand = j.candidates && j.candidates[0]; lastFinish = (cand && cand.finishReason) || '';
+    return ((cand && cand.content && cand.content.parts) || []).map(p => p.text || '').join('');
   }
-  if (!r.ok) throw new Error(r.status === 429 ? 'QUOTA' : (r.status === 400 || r.status === 403) ? 'KEY' : 'API ' + r.status);
-  const j = await r.json();
-  return ((j.candidates && j.candidates[0] && j.candidates[0].content && j.candidates[0].content.parts) || []).map(p => p.text || '').join('');
 }
 function errMsg(e) {
-  const m = e && e.message;
-  if (m === 'QUOTA') return 'The free AI limit is used up for now. Wait a while and try again, or pick another model in Profile.';
+  const m = (e && e.message) || '';
+  if (m === 'QUOTA') return 'The free AI limit is used up for now. Wait a while and try again.';
   if (m === 'NET') return 'No internet connection. Check your network and try again.';
   if (m === 'KEY') return 'Google did not accept the API key or model name. Check them in Profile.';
   if (m === 'NO_KEY') return 'Add your free Gemini key in Profile to create full mini books.';
+  if (/^API (400|401|403)$/.test(m)) return 'The AI service did not accept the request (' + m.slice(4) + '). The site owner needs to check the Gemini key in Cloudflare.';
+  if (m === 'API 404') return 'The AI model name was not found (404). The site owner needs to check the model name.';
+  if (/^API 5/.test(m)) return "Google's AI is busy right now (" + m.slice(4) + '). Wait a minute and tap Try again.';
+  if (m === 'BAD') return 'The AI sent back an incomplete answer. Tap Try again.';
   return 'Something went wrong. Please try again.';
 }
 function parseJSON(t) {
@@ -431,23 +451,24 @@ Return ONLY valid JSON with exactly this shape:
 }`;
 }
 async function generateMini(b) {
+  let lastText = '';
   for (let attempt = 0; attempt < 2; attempt++) {
-    const text = await gemini(buildPrompt(b));
+    const text = await gemini(buildPrompt(b)); lastText = text || '';
     try {
       const m = parseJSON(text);
       if (m && m.insufficient) return { insufficient: true };
       if (m && m.page1 && m.page3 && Array.isArray(m.page3.lessons) && m.page3.lessons.length) return m;
     } catch (e) {}
   }
-  throw new Error('BAD');
+  const bad = new Error('BAD'); bad.detail = 'Finish reason: ' + (lastFinish || 'unknown') + ', answer length: ' + lastText.length + ' characters.'; throw bad;
 }
 async function runMini(id) {
-  S.loading.add(id); delete S.miniError[id]; render();
+  S.loading.add(id); delete S.miniError[id]; delete S.miniDetail[id]; render();
   try {
     const b = metas[id];
     if (b.src === 'ol' && !b.desc) { await olHydrate(b); saveMetas(); }
     minis[id] = await generateMini(b); saveMinis();
-  } catch (e) { S.miniError[id] = errMsg(e); }
+  } catch (e) { S.miniError[id] = errMsg(e); S.miniDetail[id] = e && e.detail ? String(e.detail) : ''; }
   S.loading.delete(id); render();
 }
 async function openBook(b) {
@@ -486,7 +507,7 @@ function bookGrid(list) {
 function emptyState(icon, title, text, onClick, label) {
   return h('div', { class: 'empty' }, h('div', { class: 'big' }, icon), h('h2', { class: 'serif' }, title), h('p', { class: 'muted' }, text), onClick ? h('button', { class: 'btn', style: { marginTop: '14px' }, onClick }, label) : null);
 }
-function errorBox(msg, retry) { return h('div', { class: 'err' }, h('p', null, msg), retry ? h('button', { class: 'btn sm', style: { marginTop: '10px' }, onClick: retry }, 'Try again') : null); }
+function errorBox(msg, retry, detail) { return h('div', { class: 'err' }, h('p', null, msg), detail ? h('p', { class: 'muted small', style: { marginTop: '6px', wordBreak: 'break-word' } }, 'Details: ' + detail) : null, retry ? h('button', { class: 'btn sm', style: { marginTop: '10px' }, onClick: retry }, 'Try again') : null); }
 function loadingBox(text) { return h('div', { class: 'card' }, h('span', { class: 'spin' }), text); }
 function readBtn(b) { const e = inLib(b.id); const on = e && e.status === 'read'; return h('button', { class: 'btn sm' + (on ? ' on' : ''), onClick: () => { addMeta(b); setStatus(b.id, 'read'); toast(on ? 'Removed from your library' : '✓ Added to your library'); render(); } }, on ? '✓ Read' : 'Mark as Read'); }
 function wantBtn(b) { const e = inLib(b.id); const on = e && e.status === 'want'; return h('button', { class: 'btn sm ghost' + (on ? ' on' : ''), onClick: () => { addMeta(b); setStatus(b.id, 'want'); toast(on ? 'Removed from Want to read' : 'Saved to Want to read'); render(); } }, on ? '★ Saved' : '☆ Save'); }
@@ -746,7 +767,7 @@ function readerView() {
     h('button', { class: 'btn ghost sm', onClick: () => { settings.font = Math.max(14, (settings.font || 18) - 2); saveSettings(); render(); }, 'aria-label': 'Smaller text' }, 'A−'),
     h('button', { class: 'btn ghost sm', onClick: () => { settings.font = Math.min(28, (settings.font || 18) + 2); saveSettings(); render(); }, 'aria-label': 'Larger text' }, 'A+')));
   if (S.loading.has(id)) { v.append(loadingBox('Writing your mini book… this takes about 20-40 seconds.')); v.append(h('div', { class: 'page' }, pageCover(b, null))); return v; }
-  if (S.miniError[id]) v.append(errorBox(S.miniError[id], () => runMini(id)));
+  if (S.miniError[id]) v.append(errorBox(S.miniError[id], () => runMini(id), S.miniDetail[id]));
   const names = full ? PAGE_NAMES : ['Cover', 'Overview'];
   const last = names.length - 1;
   if (S.page > last) S.page = 0;
