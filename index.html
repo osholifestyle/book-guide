@@ -5,30 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Book Guide</title>
 <meta name="description" content="Understand a book before you buy the physical copy. Simple mini books on any topic.">
-<meta name="theme-color" content="#14100c">
+<meta name="theme-color" content="#f1f3ef">
 <style>
 *{box-sizing:border-box;margin:0}
-:root{--bg:#14100c;--surface:#1f1913;--surface2:#2a2219;--text:#f1e8da;--muted:#a99a85;--amber:#e8903a;--amber2:#f2b46b;--line:#3a2f23;--r:16px;--fs:18px}
-body.paper{--bg:#f6efe0;--surface:#fffaf0;--surface2:#efe4cc;--text:#2b2118;--muted:#6f5f4a;--amber:#a85a12;--amber2:#8a4a0d;--line:#dccfb4}
+:root{--bg:#f1f3ef;--surface:#ffffff;--surface2:#e6eae5;--text:#17202a;--muted:#5d6975;--accent:#4b3ba6;--accent2:#3a2c86;--line:#d3d9d3;--gold:#d99a00;--on-accent:#ffffff;--shadow:0 8px 20px rgba(23,32,42,.2);--r:8px;--fs:18px;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;color-scheme:light}
+:root[data-theme=dark]{--bg:#11151c;--surface:#1a202a;--surface2:#232b37;--text:#eceef2;--muted:#9aa5b1;--accent:#a99cff;--accent2:#c3b9ff;--line:#2d3644;--gold:#f0b429;--on-accent:#14102e;--shadow:0 8px 20px rgba(0,0,0,.55);color-scheme:dark}
 html{-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;padding-bottom:88px}
-h1,h2,h3,.serif{font-family:Georgia,"Iowan Old Style","Times New Roman",serif}
+h1,h2,h3,.serif{font-family:var(--serif)}
 button,input,textarea,select{font:inherit;color:inherit}
 button{cursor:pointer;background:none;border:0}
-:focus-visible{outline:2px solid var(--amber2);outline-offset:2px}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
 .muted{color:var(--muted)}.small{font-size:13px}
 .top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
 .top-in{max-width:760px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
-.brand{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:700;color:var(--amber2)}
-.icon-btn{padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--amber2);font-size:14px}
+.brand{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:700;color:var(--accent2)}
+.icon-btn{padding:6px 12px;border:1px solid var(--line);border-radius:8px;color:var(--accent2);font-size:14px}
 .view{max-width:760px;margin:auto;padding:16px}
 .greet h1{font-size:26px;line-height:1.2}
 .greet p{margin-top:4px}
-.sh{margin:22px 0 10px;font-size:18px;color:var(--amber2)}
+.sh{display:flex;align-items:center;gap:12px;margin:28px 0 10px;font-size:20px;font-weight:700;color:var(--text)}.sh::after{content:"";flex:1;height:1px;background:var(--line)}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px}
-.btn{background:var(--amber);color:#1a1209;font-weight:700;padding:10px 16px;border-radius:999px;font-size:15px}
+.btn{background:var(--accent);color:var(--on-accent);font-weight:700;padding:10px 16px;border-radius:8px;font-size:15px}
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text);font-weight:600}
-.btn.on{background:var(--surface2);color:var(--amber2);border:1px solid var(--amber)}
+.btn.on{background:var(--surface2);color:var(--accent2);border:1px solid var(--accent)}
 .btn.sm{padding:6px 12px;font-size:13px}
 .btn[disabled]{opacity:.5;cursor:not-allowed}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
@@ -38,58 +38,58 @@ button{cursor:pointer;background:none;border:0}
 .skel{border-radius:var(--r);background:linear-gradient(90deg,var(--surface) 25%,var(--surface2) 50%,var(--surface) 75%);background-size:200% 100%;animation:sh 1.3s infinite}
 @keyframes sh{to{background-position:-200% 0}}
 .bookcard{display:flex;gap:14px}
-.cover{flex:none;width:112px;height:168px;border-radius:8px 12px 12px 8px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.45);position:relative}
+.cover{flex:none;width:112px;height:168px;border-radius:2px 6px 6px 2px;overflow:hidden;box-shadow:var(--shadow);position:relative}
 .cover img{width:100%;height:100%;object-fit:cover;display:block}
-.cover.dz{display:flex;flex-direction:column;justify-content:space-between;padding:10px;color:#fff;font-family:Georgia,serif;border-left:5px solid rgba(255,255,255,.25)}
+.cover.dz{display:flex;flex-direction:column;justify-content:space-between;padding:10px;color:#fff;font-family:var(--serif);border-left:5px solid rgba(255,255,255,.25)}
 .cover.dz b{font-size:14px;line-height:1.2}.cover.dz i{font-size:11px;opacity:.85;font-style:normal}
-.tag{display:inline-block;font-size:11px;letter-spacing:.04em;text-transform:uppercase;background:var(--surface2);color:var(--amber2);border-radius:999px;padding:3px 9px;margin:0 6px 6px 0}
-.bc-title{font-family:Georgia,serif;font-size:21px;line-height:1.2;margin:4px 0}
+.tag{display:inline-block;font-size:12px;background:var(--surface2);color:var(--accent2);border-radius:4px;padding:2px 8px;margin:0 6px 6px 0}
+.bc-title{font-family:var(--serif);font-size:21px;line-height:1.2;margin:4px 0}
 .hook{margin:8px 0 12px;font-size:14px;color:var(--muted)}
 .moods{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px}
 .mood{flex:none;width:76px;text-align:center}
 .mood-i{display:flex;width:60px;height:60px;margin:0 auto 6px;border-radius:50%;background:var(--surface2);border:1px solid var(--line);align-items:center;justify-content:center;font-size:26px}
 .mood-l{font-size:12px;color:var(--muted);display:block;line-height:1.2}
 .stats{display:flex;gap:10px}.stat{flex:1;text-align:center;background:var(--surface2);border-radius:12px;padding:10px 4px}
-.stat b{display:block;font-size:22px;color:var(--amber2);font-family:Georgia,serif}.stat span{font-size:12px;color:var(--muted)}
+.stat b{display:block;font-size:22px;color:var(--accent2);font-family:var(--serif)}.stat span{font-size:12px;color:var(--muted)}
 .chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px}
 .chip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:14px}
-.chip.on{background:var(--amber);color:#1a1209;border-color:var(--amber);font-weight:600}
+.chip.on{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:600}
 .chips.wrap{flex-wrap:wrap;overflow:visible}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:16px;margin-top:14px}
 .gb{text-align:left}.gb .cover{width:100%;height:auto;aspect-ratio:2/3}
 .gb-t{margin-top:8px;font-size:14px;font-weight:600;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .gb-a{font-size:12px;color:var(--muted)}
-.banner{background:var(--surface2);border:1px solid var(--amber);border-radius:12px;padding:12px 14px;margin-top:14px;font-size:14px}
+.banner{background:var(--surface2);border:1px solid var(--accent);border-radius:12px;padding:12px 14px;margin-top:14px;font-size:14px}
 .empty{text-align:center;padding:48px 16px}.empty .big{font-size:44px}.empty h2{margin:8px 0 6px}
 .err{background:var(--surface);border:1px solid #a8452f;border-radius:12px;padding:14px;margin-top:14px}
 .nav{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);z-index:20}
 .nav-in{max-width:760px;margin:auto;display:flex}
 .nav-b{flex:1;padding:8px 2px 10px;font-size:11px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px}
 .nav-b .ni{font-size:20px;padding:2px 16px;border-radius:999px}
-.nav-b.on{color:var(--amber2)}.nav-b.on .ni{background:var(--surface2)}
+.nav-b.on{color:var(--accent2)}.nav-b.on .ni{background:var(--surface2)}
 .rh{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
 .rt{font-size:20px;line-height:1.2}
 .rbtns{display:flex;gap:6px;flex:none}
 .rctl{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
 .ptabs{display:flex;gap:6px;overflow-x:auto;margin-top:12px;border-bottom:1px solid var(--line)}
 .ptab{flex:none;padding:8px 12px;font-size:13px;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap}
-.ptab.on{color:var(--amber2);border-color:var(--amber2);font-weight:700}
-.pbar{height:3px;background:var(--surface2);border-radius:3px;margin-top:0}.pbar i{display:block;height:100%;background:var(--amber);border-radius:3px;transition:width .25s}
-.page{font-size:var(--fs);line-height:1.7;padding-top:6px;font-family:Georgia,"Iowan Old Style","Times New Roman",serif}
-.page h2{font-size:1.3em;color:var(--amber2);margin:14px 0 4px}
+.ptab.on{color:var(--accent2);border-color:var(--accent2);font-weight:700}
+.pbar{height:3px;background:var(--surface2);border-radius:3px;margin-top:0}.pbar i{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .25s}
+.page{font-size:var(--fs);line-height:1.7;padding-top:6px;font-family:var(--serif)}
+.page h2{font-size:1.3em;color:var(--accent2);margin:14px 0 4px}
 .page .sec{padding:14px 0;border-bottom:1px solid var(--line)}.page .sec:last-child{border:0}
-.page .sec h3{font-size:1.05em;color:var(--amber2);margin-bottom:6px}
+.page .sec h3{font-size:1.05em;color:var(--accent2);margin-bottom:6px}
 .page p{margin:0 0 .8em}
 .page ul,.page ol{padding-left:1.2em;margin:0 0 .6em}.page li{margin:.3em 0}
 .sub{font-weight:700;margin-top:.6em}
-.glance{display:grid;gap:8px}.glance div{background:var(--surface2);border-radius:12px;padding:10px 14px}.glance b{display:block;font-size:.72em;text-transform:uppercase;letter-spacing:.06em;color:var(--amber2)}
+.glance{display:grid;gap:8px}.glance div{background:var(--surface2);border-radius:12px;padding:10px 14px}.glance b{display:block;font-size:.82em;color:var(--accent2)}
 .lesson{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
-.num{flex:none;width:32px;height:32px;border-radius:50%;background:var(--amber);color:#1a1209;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px;margin-top:4px}
+.num{flex:none;width:32px;height:32px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px;margin-top:4px}
 .eg{font-size:.88em;color:var(--muted);font-style:italic}
-.hl{background:var(--surface2);border-left:4px solid var(--amber);border-radius:10px;padding:12px 14px;margin:8px 0}
+.hl{background:var(--surface2);border-left:4px solid var(--accent);border-radius:10px;padding:12px 14px;margin:8px 0}
 .facts{background:var(--surface2);border-radius:12px;padding:12px 16px;margin-top:10px}
 .toc button{display:block;width:100%;text-align:left;padding:10px 4px;border-bottom:1px solid var(--line);font-size:16px}
-.toc button span{color:var(--amber2);margin-right:8px}
+.toc button span{color:var(--accent2);margin-right:8px}
 .pfoot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:8px}
 .pfoot .pg{font-size:13px;color:var(--muted)}
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:50;display:flex;align-items:flex-end;justify-content:center}
@@ -97,15 +97,25 @@ button{cursor:pointer;background:none;border:0}
 @media(min-width:700px){.overlay{align-items:center}.sheet{border-radius:20px}}
 .sheet-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.sheet-h h2{font-size:20px}
 .x{font-size:18px;padding:4px 8px;color:var(--muted)}
-.steps{display:flex;gap:6px;margin:6px 0 10px}.steps i{flex:1;height:4px;border-radius:4px;background:var(--surface2)}.steps i.on{background:var(--amber)}
-.stars{display:flex;gap:6px}.stars button{font-size:28px;color:var(--line)}.stars button.on{color:var(--amber)}
-.toast{position:fixed;left:50%;bottom:100px;transform:translate(-50%,20px);background:var(--surface2);border:1px solid var(--amber);color:var(--text);padding:10px 16px;border-radius:999px;opacity:0;transition:.25s;z-index:60;font-size:14px;max-width:90vw}
+.steps{display:flex;gap:6px;margin:6px 0 10px}.steps i{flex:1;height:4px;border-radius:4px;background:var(--surface2)}.steps i.on{background:var(--accent)}
+.stars{display:flex;gap:4px}.stars button{font-size:32px;line-height:1;padding:2px;color:var(--line);-webkit-text-stroke:1px var(--muted)}.stars button.on{color:var(--gold);-webkit-text-stroke:1px var(--gold)}
+.toast{position:fixed;left:50%;bottom:100px;transform:translate(-50%,20px);background:var(--surface2);border:1px solid var(--accent);color:var(--text);padding:10px 16px;border-radius:999px;opacity:0;transition:.25s;z-index:60;font-size:14px;max-width:90vw}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .ans{white-space:pre-wrap;margin-top:12px;line-height:1.6}
 hr.d{border:0;border-top:1px solid var(--line);margin:18px 0}
-a{color:var(--amber2)}
-.spin{display:inline-block;width:18px;height:18px;border:3px solid var(--line);border-top-color:var(--amber);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-3px;margin-right:8px}
+a{color:var(--accent2)}
+.spin{display:inline-block;width:18px;height:18px;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-3px;margin-right:8px}
 @keyframes sp{to{transform:rotate(360deg)}}
+.card.feature{border-left:6px solid var(--accent)}
+.stamp{border:2px solid var(--accent);outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;padding:14px 18px;margin:24px 6px;transform:rotate(-.5deg)}
+.stamp-t{font-size:1.1em;font-weight:700;color:var(--accent2);margin-bottom:6px}
+.page .stamp p{margin:0 0 6px}
+.page .btn,.page .chip,.review{font-family:var(--sans)}
+.review{border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:18px;margin-top:24px}
+.review h3{font-size:1.15em;margin-bottom:2px}
+.review textarea{resize:vertical}
+.stars.ro span{font-size:24px;color:var(--line);-webkit-text-stroke:1px var(--muted)}
+.stars.ro span.on{color:var(--gold);-webkit-text-stroke:1px var(--gold)}
 </style>
 </head>
 <body>
@@ -149,6 +159,19 @@ function clean(s) {
   return String(s == null ? '' : s).replace(/\*\*|__|`/g, '').replace(/^\s*#+\s*/gm, '').replace(/#{2,}\s*/g, '').replace(/^\s*[*•-]\s+/gm, '').replace(/\*(?=\S)([^*\n]+)\*/g, '$1').trim();
 }
 function stripHtml(s) { try { return (new DOMParser().parseFromString(String(s), 'text/html').body.textContent || '').trim(); } catch (e) { return String(s); } }
+function cleanDesc(s) {
+  s = String(s == null ? '' : s).replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>/gi, '\n\n');
+  s = stripHtml(s);
+  s = s.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '$1').replace(/\(\s*https?:\/\/[^)\s]+\s*\)/g, '').replace(/https?:\/\/\S+/g, '');
+  s = s.split(/\r?\n\s*-{3,}/)[0];
+  return s.replace(/[*_`#]+/g, '').replace(/\s+/g, ' ').trim();
+}
+function hookText(b) {
+  const d = cleanDesc(b.desc || ''); if (!d) return '';
+  let t = d.split(/(?<=[.!?])\s/)[0];
+  if (t.length > 200) t = t.slice(0, 200).replace(/\s+\S*$/, '') + '…';
+  return t;
+}
 const tkey = s => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 function hashStr(s) { let x = 2166136261; for (let i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 16777619); } return x >>> 0; }
 function rngFrom(seed) { let a = hashStr(String(seed)); return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
@@ -198,7 +221,7 @@ const topicColor = t => `hsl(${hashStr(t || 'x') % 360} 42% 26%)`;
 
 /* ================= state ================= */
 let user = LS.get('user', null);
-let settings = Object.assign({ apiKey: '', gbKey: '', model: 'gemini-flash-latest', reminder: { on: false, time: '20:00' }, paper: false, font: 18 }, LS.get('settings', {}));
+let settings = Object.assign({ apiKey: '', gbKey: '', model: 'gemini-flash-latest', reminder: { on: false, time: '20:00' }, theme: 'light', font: 18 }, LS.get('settings', {}));
 settings.reminder = Object.assign({ on: false, time: '20:00' }, settings.reminder || {});
 let lib = LS.get('lib', []);
 let metas = LS.get('metas', {});
@@ -222,7 +245,7 @@ function saveMinis() {
 const hasAI = () => !!(settings.apiKey || CFG.PROXY_URL);
 const inLib = id => lib.find(x => x.id === id);
 const userTopics = () => (user && user.topics && user.topics.length ? user.topics : TOPICS.slice(0, 5));
-function addMeta(b) { metas[b.id] = Object.assign(metas[b.id] || {}, b); saveMetas(); }
+function addMeta(b) { if (b.desc) b.desc = cleanDesc(b.desc); metas[b.id] = Object.assign(metas[b.id] || {}, b); saveMetas(); }
 function setStatus(id, status) {
   const e = inLib(id);
   if (e && e.status === status) lib = lib.filter(x => x !== e);
@@ -243,7 +266,7 @@ function normGB(it) {
   if (!v.title || !(v.authors && v.authors.length)) return null;
   let cover = (v.imageLinks && (v.imageLinks.thumbnail || v.imageLinks.smallThumbnail)) || '';
   cover = cover.replace(/^http:/, 'https:').replace('&edge=curl', '');
-  return { id: it.id, src: 'gb', title: v.title, subtitle: v.subtitle || '', author: v.authors.join(', '), year: (v.publishedDate || '').slice(0, 4), desc: stripHtml(v.description || ''), cats: v.categories || [], pages: v.pageCount || 0, cover, ratings: v.ratingsCount || 0 };
+  return { id: it.id, src: 'gb', title: v.title, subtitle: v.subtitle || '', author: v.authors.join(', '), year: (v.publishedDate || '').slice(0, 4), desc: cleanDesc(v.description || ''), cats: v.categories || [], pages: v.pageCount || 0, cover, ratings: v.ratingsCount || 0 };
 }
 async function gbFetch(q, start, max = 40) {
   let u = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(q)}&maxResults=${max}&startIndex=${start}&printType=books&langRestrict=en`;
@@ -274,7 +297,7 @@ async function olHydrate(b) {
   if (b.src !== 'ol' || b.desc) return b;
   try {
     const r = await fetch('https://openlibrary.org' + b.olKey + '.json');
-    if (r.ok) { const j = await r.json(); let d = j.description; if (d && typeof d === 'object') d = d.value; b.desc = stripHtml(d || ''); }
+    if (r.ok) { const j = await r.json(); let d = j.description; if (d && typeof d === 'object') d = d.value; b.desc = cleanDesc(d || ''); }
   } catch (e) {}
   return b;
 }
@@ -484,17 +507,19 @@ function topicPicker(set, onChange) {
 }
 
 /* ================= views ================= */
+function toggleTheme() { settings.theme = settings.theme === 'dark' ? 'light' : 'dark'; saveSettings(); render(); }
 function topbar() {
   return h('header', { class: 'top' }, h('div', { class: 'top-in' },
     h('div', { class: 'brand' }, h('span', null, '📖'), h('span', { class: 'serif' }, 'The Book Guide')),
-    h('button', { class: 'icon-btn', onClick: openAsk, 'aria-label': 'Ask The Book Guide' }, '✦ Ask')));
+    h('div', { class: 'row', style: { gap: '8px', flexWrap: 'nowrap' } }, h('button', { class: 'icon-btn', onClick: toggleTheme, 'aria-label': settings.theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme' }, settings.theme === 'dark' ? '☀️' : '🌙'), h('button', { class: 'icon-btn', onClick: openAsk, 'aria-label': 'Ask The Book Guide' }, '✦ Ask'))));
 }
 function nav() {
   const items = [['home', '🏠', 'Home'], ['reader', '📖', 'Reader'], ['explore', '🧭', 'Explore'], ['library', '📚', 'Library'], ['profile', '👤', 'Profile']];
   return h('nav', { class: 'nav', 'aria-label': 'Main' }, h('div', { class: 'nav-in' }, items.map(([k, i, l]) => h('button', { class: 'nav-b' + (S.tab === k ? ' on' : ''), onClick: () => { S.tab = k; render(); scrollTop(); } }, h('span', { class: 'ni' }, i), h('span', null, l)))));
 }
 function render() {
-  document.body.classList.toggle('paper', S.tab === 'reader' && !!settings.paper);
+  document.documentElement.setAttribute('data-theme', settings.theme === 'dark' ? 'dark' : 'light');
+  const tc = document.querySelector('meta[name=theme-color]'); if (tc) tc.setAttribute('content', settings.theme === 'dark' ? '#11151c' : '#f1f3ef');
   document.documentElement.style.setProperty('--fs', (settings.font || 18) + 'px');
   const views = { home: homeView, reader: readerView, explore: exploreView, library: libraryView, profile: profileView };
   $('#app').replaceChildren(topbar(), views[S.tab](), nav());
@@ -503,12 +528,12 @@ function render() {
 /* ---- Home ---- */
 function dailyCard(b) {
   const e = inLib(b.id);
-  return h('div', { class: 'card bookcard' }, coverTile(b),
+  return h('div', { class: 'card bookcard feature' }, coverTile(b),
     h('div', { style: { minWidth: 0 } },
-      h('span', { class: 'tag' }, '★ Book of the Day'), daily && daily.comfort && daily.id === b.id ? h('span', { class: 'tag' }, 'Outside your comfort zone') : null,
+      h('span', { class: 'tag' }, 'Book of the Day'), daily && daily.comfort && daily.id === b.id ? h('span', { class: 'tag' }, 'Outside your comfort zone') : null,
       h('div', { class: 'bc-title' }, b.title),
-      h('div', { class: 'muted small' }, b.author + (b.year ? ' · ' + b.year : '') + (b.pages ? ' · ' + b.pages + ' pages' : '')),
-      h('p', { class: 'hook' }, (b.desc || '').split(/(?<=[.!?])\s/)[0].slice(0, 200)),
+      h('div', { class: 'muted small' }, 'by ' + b.author + (b.year ? ', ' + b.year : '') + (b.pages ? ', ' + b.pages + ' pages' : '')),
+      h('p', { class: 'hook' }, hookText(b)),
       h('div', { class: 'row' }, h('button', { class: 'btn sm', onClick: () => openBook(b) }, 'Start Reading'), readBtn(b))));
 }
 async function fillDaily(box) {
@@ -592,6 +617,51 @@ function exploreView() {
 const sec = (title, ...kids) => h('div', { class: 'sec' }, title ? h('h3', null, title) : null, kids);
 const paras = x => arr(x).flatMap(s => clean(s).split(/\n{2,}/)).filter(Boolean).map(s => h('p', null, s));
 const ul = items => h('ul', null, arr(items).map(i => h('li', null, clean(i))));
+let reviewDraft = { id: null, rating: 0, buy: '', text: '' };
+function reviewForm(book) {
+  const box = h('div', { class: 'review' });
+  const d = reviewDraft.id === book.id ? reviewDraft : (reviewDraft = { id: book.id, rating: 0, buy: '', text: '' });
+  const OPTS = ['Yes', 'Maybe', 'No'];
+  function draw() {
+    const saved = LS.get('reviews', {})[book.id];
+    if (saved) {
+      box.replaceChildren(
+        h('h3', { class: 'serif' }, 'Thanks for your review'),
+        h('div', { class: 'stars ro', role: 'img', 'aria-label': saved.rating + ' out of 5 stars' }, [1, 2, 3, 4, 5].map(n => h('span', { class: n <= saved.rating ? 'on' : '' }, '★'))),
+        saved.buy ? h('p', { class: 'muted small', style: { marginTop: '6px' } }, 'Would buy the physical book: ' + saved.buy) : null,
+        saved.text ? h('p', { style: { marginTop: '8px' } }, '“' + saved.text + '”') : null,
+        h('button', { class: 'btn ghost sm', style: { marginTop: '12px' }, onClick: () => { const r = LS.get('reviews', {}); delete r[book.id]; LS.set('reviews', r); draw(); } }, 'Edit review'));
+      return;
+    }
+    const starBtns = [1, 2, 3, 4, 5].map(n => h('button', { type: 'button', 'aria-label': n + (n === 1 ? ' star' : ' stars'), onClick: () => { d.rating = n; paint(); } }, '★'));
+    const buyBtns = OPTS.map(o => h('button', { type: 'button', class: 'chip', onClick: () => { d.buy = d.buy === o ? '' : o; paint(); } }, o));
+    const txt = h('textarea', { rows: 4, maxlength: 1000, placeholder: 'What did you like? What would you change?', 'aria-label': 'Your review' });
+    txt.value = d.text; txt.addEventListener('input', () => { d.text = txt.value; });
+    const send = h('button', { type: 'button', class: 'btn', style: { marginTop: '14px' }, onClick: async () => {
+      if (!d.rating) { toast('Tap a star rating first'); return; }
+      send.disabled = true;
+      const entry = { date: new Date().toISOString(), book: book.title, author: book.author, rating: d.rating, buy: d.buy, text: d.text.trim().slice(0, 1000) };
+      const all = LS.get('reviews', {}); all[book.id] = entry; LS.set('reviews', all);
+      feedbackLog.push(entry); LS.set('feedback', feedbackLog);
+      if (CFG.FEEDBACK_ENDPOINT) { try { await fetch(CFG.FEEDBACK_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(entry) }); } catch (e) {} }
+      reviewDraft = { id: null, rating: 0, buy: '', text: '' };
+      toast('Thanks for your review!'); draw();
+    } }, 'Send review');
+    function paint() {
+      starBtns.forEach((b, i) => { b.className = i < d.rating ? 'on' : ''; b.setAttribute('aria-pressed', i < d.rating ? 'true' : 'false'); });
+      buyBtns.forEach((b, i) => b.classList.toggle('on', d.buy === OPTS[i]));
+    }
+    box.replaceChildren(
+      h('h3', { class: 'serif' }, 'How was this mini book?'),
+      h('p', { class: 'muted small' }, 'Your review helps make The Book Guide better.'),
+      h('div', { class: 'stars', style: { marginTop: '8px' } }, starBtns),
+      h('div', { class: 'field' }, h('label', null, 'Would you buy the physical book after reading this?'), h('div', { class: 'row' }, buyBtns)),
+      h('div', { class: 'field' }, h('label', null, 'Your review (optional)'), txt),
+      send);
+    paint();
+  }
+  draw(); return box;
+}
 function pageCover(b, m) {
   const c = (m && m.cover) || {}, full = m && !m.insufficient;
   const topic = clean(c.topic) || b.topic || (b.cats && b.cats[0]) || '';
@@ -632,9 +702,9 @@ function pageNumbered(i, m) {
   }
   const buy = P.buy || {};
   return [h('h2', null, 'Closing'), sec('Who should read it', ...paras(P.whoShouldRead)), sec('Who might skip it', ...paras(P.whoMightSkip)),
-    h('div', { class: 'hl' }, h('b', null, '🛒 Should you buy the physical book?'), h('p', { style: { margin: '6px 0 4px' } }, h('b', null, 'It suits: '), clean(buy.suits)), h('p', { style: { margin: '0 0 4px' } }, h('b', null, 'You can skip it if: '), clean(buy.notSuits)), h('p', { style: { margin: 0 } }, h('b', null, 'What the real book gives you: '), clean(buy.physicalGives))),
-    arr(P.readNext).length ? sec('Read next', h('ul', null, arr(P.readNext).map(r => h('li', null, h('button', { style: { color: 'var(--amber2)', textAlign: 'left', textDecoration: 'underline' }, onClick: () => { S.tab = 'explore'; doSearch(clean(r.title) + ' ' + clean(r.author)); } }, clean(r.title)), r.author ? ' — ' + clean(r.author) : '')))) : null,
-    h('div', { class: 'row', style: { marginTop: '14px' } }, readBtn(metas[S.cur]), wantBtn(metas[S.cur]), h('button', { class: 'btn ghost sm', onClick: () => openFeedback(metas[S.cur]) }, '💬 Feedback'))];
+    h('div', { class: 'stamp' }, h('div', { class: 'stamp-t serif' }, 'Should you buy the physical book?'), h('p', { style: { margin: '6px 0 4px' } }, h('b', null, 'It suits: '), clean(buy.suits)), h('p', { style: { margin: '0 0 4px' } }, h('b', null, 'You can skip it if: '), clean(buy.notSuits)), h('p', { style: { margin: 0 } }, h('b', null, 'What the real book gives you: '), clean(buy.physicalGives))),
+    arr(P.readNext).length ? sec('Read next', h('ul', null, arr(P.readNext).map(r => h('li', null, h('button', { style: { color: 'var(--accent2)', textAlign: 'left', textDecoration: 'underline' }, onClick: () => { S.tab = 'explore'; doSearch(clean(r.title) + ' ' + clean(r.author)); } }, clean(r.title)), r.author ? ' — ' + clean(r.author) : '')))) : null,
+    reviewForm(metas[S.cur]), h('div', { class: 'row', style: { marginTop: '14px' } }, readBtn(metas[S.cur]), wantBtn(metas[S.cur]))];
 }
 function setPage(p) {
   S.page = p; if (S.cur) { progress[S.cur] = { page: p, t: Date.now() }; LS.set('progress', progress); }
@@ -648,8 +718,7 @@ function readerView() {
   v.append(h('div', { class: 'rh' }, h('div', { style: { minWidth: 0 } }, h('div', { class: 'rt serif' }, b.title), h('div', { class: 'muted small' }, b.author)), h('div', { class: 'rbtns' }, readBtn(b), wantBtn(b))));
   v.append(h('div', { class: 'rctl' },
     h('button', { class: 'btn ghost sm', onClick: () => { settings.font = Math.max(14, (settings.font || 18) - 2); saveSettings(); render(); }, 'aria-label': 'Smaller text' }, 'A−'),
-    h('button', { class: 'btn ghost sm', onClick: () => { settings.font = Math.min(28, (settings.font || 18) + 2); saveSettings(); render(); }, 'aria-label': 'Larger text' }, 'A+'),
-    h('button', { class: 'btn ghost sm', onClick: () => { settings.paper = !settings.paper; saveSettings(); render(); } }, settings.paper ? '🌙 Dark' : '📄 Paper')));
+    h('button', { class: 'btn ghost sm', onClick: () => { settings.font = Math.min(28, (settings.font || 18) + 2); saveSettings(); render(); }, 'aria-label': 'Larger text' }, 'A+')));
   if (S.loading.has(id)) { v.append(loadingBox('Writing your mini book… this takes about 20-40 seconds.')); v.append(h('div', { class: 'page' }, pageCover(b, null))); return v; }
   if (S.miniError[id]) v.append(errorBox(S.miniError[id], () => runMini(id)));
   const names = full ? PAGE_NAMES : ['Cover', 'Overview'];
