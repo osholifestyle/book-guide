@@ -130,7 +130,9 @@ const CFG = {
   // Optional: URL of your own small proxy that holds your Gemini key (see README). Leave "" to let each reader add their own free key.
   PROXY_URL: "https://bookguide-ai.yadav270803h.workers.dev",
   // Optional: a Formspree (or similar) endpoint that receives feedback as JSON. Leave "" to keep feedback on the device only.
-  FEEDBACK_ENDPOINT: ""
+  FEEDBACK_ENDPOINT: "",
+  // Optional: paste the pre-filled link of your Google Form here. Reviews then arrive in your Google Form responses and Sheet. See README.
+  GOOGLE_FORM_LINK: ""
 };
 
 /* ================= helpers ================= */
@@ -617,6 +619,30 @@ function exploreView() {
 const sec = (title, ...kids) => h('div', { class: 'sec' }, title ? h('h3', null, title) : null, kids);
 const paras = x => arr(x).flatMap(s => clean(s).split(/\n{2,}/)).filter(Boolean).map(s => h('p', null, s));
 const ul = items => h('ul', null, arr(items).map(i => h('li', null, clean(i))));
+function googleFormTarget() {
+  if (!CFG.GOOGLE_FORM_LINK) return null;
+  try {
+    const u = new URL(CFG.GOOGLE_FORM_LINK), map = {};
+    u.searchParams.forEach((v, k) => { if (/^entry\.\d+$/.test(k)) map[v.trim().toUpperCase()] = k; });
+    if (!Object.keys(map).length) return null;
+    return { url: u.origin + u.pathname.replace(/\/(viewform|prefill|formResponse)\/?$/, '') + '/formResponse', map };
+  } catch (e) { return null; }
+}
+async function sendFeedback(entry) {
+  const vals = { BOOK: entry.book || 'General feedback', AUTHOR: entry.author || '', RATING: String(entry.rating), BUY: entry.buy || '', TEXT: entry.text || '' };
+  const jobs = [];
+  if (CFG.FEEDBACK_ENDPOINT) jobs.push(fetch(CFG.FEEDBACK_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(entry) }).catch(() => {}));
+  const g = googleFormTarget();
+  if (g) {
+    const body = new URLSearchParams();
+    Object.entries(g.map).forEach(([name, key]) => { if (name in vals) body.append(key, vals[name]); });
+    jobs.push(fetch(g.url, { method: 'POST', mode: 'no-cors', body }).catch(() => {}));
+  }
+  await Promise.all(jobs);
+}
+function feedbackNote() {
+  return (CFG.FEEDBACK_ENDPOINT || CFG.GOOGLE_FORM_LINK) ? h('p', { class: 'muted small', style: { marginTop: '8px' } }, 'Your rating and comment are sent to the site owner with the book title. Please leave out personal details.') : null;
+}
 let reviewDraft = { id: null, rating: 0, buy: '', text: '' };
 function reviewForm(book) {
   const box = h('div', { class: 'review' });
@@ -643,7 +669,7 @@ function reviewForm(book) {
       const entry = { date: new Date().toISOString(), book: book.title, author: book.author, rating: d.rating, buy: d.buy, text: d.text.trim().slice(0, 1000) };
       const all = LS.get('reviews', {}); all[book.id] = entry; LS.set('reviews', all);
       feedbackLog.push(entry); LS.set('feedback', feedbackLog);
-      if (CFG.FEEDBACK_ENDPOINT) { try { await fetch(CFG.FEEDBACK_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(entry) }); } catch (e) {} }
+      await sendFeedback(entry);
       reviewDraft = { id: null, rating: 0, buy: '', text: '' };
       toast('Thanks for your review!'); draw();
     } }, 'Send review');
@@ -656,7 +682,7 @@ function reviewForm(book) {
       h('p', { class: 'muted small' }, 'Your review helps make The Book Guide better.'),
       h('div', { class: 'stars', style: { marginTop: '8px' } }, starBtns),
       h('div', { class: 'field' }, h('label', null, 'Would you buy the physical book after reading this?'), h('div', { class: 'row' }, buyBtns)),
-      h('div', { class: 'field' }, h('label', null, 'Your review (optional)'), txt),
+      h('div', { class: 'field' }, h('label', null, 'Your review (optional)'), txt, feedbackNote()),
       send);
     paint();
   }
@@ -850,12 +876,12 @@ function openFeedback(book) {
   drawS(); drawB();
   const m = modal('Quick feedback', h('div', null, book ? h('p', { class: 'muted small' }, 'About: ' + book.title) : null,
     h('div', { class: 'field' }, h('label', null, 'How good was the summary?'), starBox), h('div', { class: 'field' }, h('label', null, 'Would you buy the physical book after reading this?'), buyBox),
-    h('div', { class: 'field' }, h('label', null, 'Anything you would change? (optional)'), txt),
+    h('div', { class: 'field' }, h('label', null, 'Anything you would change? (optional)'), txt, feedbackNote()),
     h('button', { class: 'btn', style: { marginTop: '14px' }, onClick: async () => {
       if (!rating) { toast('Please give a star rating'); return; }
-      const entry = { date: new Date().toISOString(), book: book ? book.title : null, rating, buy, text: txt.value.trim().slice(0, 1000) };
+      const entry = { date: new Date().toISOString(), book: book ? book.title : null, author: book ? book.author : '', rating, buy, text: txt.value.trim().slice(0, 1000) };
       feedbackLog.push(entry); LS.set('feedback', feedbackLog);
-      if (CFG.FEEDBACK_ENDPOINT) { try { await fetch(CFG.FEEDBACK_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(entry) }); } catch (e) {} }
+      await sendFeedback(entry);
       m.close(); toast('Thank you for your feedback!');
     } }, 'Send')));
 }
