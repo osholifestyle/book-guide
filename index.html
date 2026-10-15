@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Book Guide</title>
-<meta name="description" content="Understand a book before you buy the physical copy. Simple mini books on any topic.">
+<meta name="description" content="Understand a book before you buy the physical copy. Simple mini books on any non-fiction topic.">
 <meta name="theme-color" content="#f1f3ef">
 <style>
 *{box-sizing:border-box;margin:0}
 :root{--bg:#f1f3ef;--surface:#ffffff;--surface2:#e6eae5;--text:#17202a;--muted:#5d6975;--accent:#4b3ba6;--accent2:#3a2c86;--line:#d3d9d3;--gold:#d99a00;--on-accent:#ffffff;--shadow:0 8px 20px rgba(23,32,42,.2);--r:8px;--fs:18px;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;color-scheme:light}
 :root[data-theme=dark]{--bg:#11151c;--surface:#1a202a;--surface2:#232b37;--text:#eceef2;--muted:#9aa5b1;--accent:#a99cff;--accent2:#c3b9ff;--line:#2d3644;--gold:#f0b429;--on-accent:#14102e;--shadow:0 8px 20px rgba(0,0,0,.55);color-scheme:dark}
 html{-webkit-text-size-adjust:100%}
-body{background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;padding-bottom:88px}
+body{background:var(--bg);color:var(--text);font:16px/1.5 var(--sans);min-height:100vh;padding-bottom:88px}
 h1,h2,h3,.serif{font-family:var(--serif)}
 button,input,textarea,select{font:inherit;color:inherit}
 button{cursor:pointer;background:none;border:0}
@@ -24,98 +24,106 @@ button{cursor:pointer;background:none;border:0}
 .view{max-width:760px;margin:auto;padding:16px}
 .greet h1{font-size:26px;line-height:1.2}
 .greet p{margin-top:4px}
-.sh{display:flex;align-items:center;gap:12px;margin:28px 0 10px;font-size:20px;font-weight:700;color:var(--text)}.sh::after{content:"";flex:1;height:1px;background:var(--line)}
+.sh{display:flex;align-items:center;gap:12px;margin:28px 0 10px;font-size:20px;font-weight:700}.sh::after{content:"";flex:1;height:1px;background:var(--line)}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px}
 .btn{background:var(--accent);color:var(--on-accent);font-weight:700;padding:10px 16px;border-radius:8px;font-size:15px}
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--text);font-weight:600}
-.btn.on{background:var(--surface2);color:var(--accent2);border:1px solid var(--accent)}
 .btn.sm{padding:6px 12px;font-size:13px}
 .btn[disabled]{opacity:.5;cursor:not-allowed}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.search{display:flex;gap:8px;margin-top:14px}
-.search input,.field input,.field select,.field textarea{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 14px}
 .field{margin-top:12px}.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:4px}
-.skel{border-radius:var(--r);background:linear-gradient(90deg,var(--surface) 25%,var(--surface2) 50%,var(--surface) 75%);background-size:200% 100%;animation:sh 1.3s infinite}
-@keyframes sh{to{background-position:-200% 0}}
-.bookcard{display:flex;gap:14px}
-.cover{flex:none;width:112px;height:168px;border-radius:2px 6px 6px 2px;overflow:hidden;box-shadow:var(--shadow);position:relative}
-.cover img{width:100%;height:100%;object-fit:cover;display:block}
-.cover.dz{display:flex;flex-direction:column;justify-content:space-between;padding:10px;color:#fff;font-family:var(--serif);border-left:5px solid rgba(255,255,255,.25)}
-.cover.dz b{font-size:14px;line-height:1.2}.cover.dz i{font-size:11px;opacity:.85;font-style:normal}
-.tag{display:inline-block;font-size:12px;background:var(--surface2);color:var(--accent2);border-radius:4px;padding:2px 8px;margin:0 6px 6px 0}
-.bc-title{font-family:var(--serif);font-size:21px;line-height:1.2;margin:4px 0}
-.hook{margin:8px 0 12px;font-size:14px;color:var(--muted)}
+.field input,.field select,.field textarea{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 14px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px}
+.chips.wrap{flex-wrap:wrap;overflow:visible}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:14px}
+.chip.on{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:600}
 .moods{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px}
 .mood{flex:none;width:76px;text-align:center}
 .mood-i{display:flex;width:60px;height:60px;margin:0 auto 6px;border-radius:50%;background:var(--surface2);border:1px solid var(--line);align-items:center;justify-content:center;font-size:26px}
 .mood-l{font-size:12px;color:var(--muted);display:block;line-height:1.2}
-.stats{display:flex;gap:10px}.stat{flex:1;text-align:center;background:var(--surface2);border-radius:12px;padding:10px 4px}
-.stat b{display:block;font-size:22px;color:var(--accent2);font-family:var(--serif)}.stat span{font-size:12px;color:var(--muted)}
-.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px}
-.chip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-size:14px}
-.chip.on{background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:600}
-.chips.wrap{flex-wrap:wrap;overflow:visible}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:16px;margin-top:14px}
-.gb{text-align:left}.gb .cover{width:100%;height:auto;aspect-ratio:2/3}
-.gb-t{margin-top:8px;font-size:14px;font-weight:600;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.gb-a{font-size:12px;color:var(--muted)}
 .banner{background:var(--surface2);border:1px solid var(--accent);border-radius:12px;padding:12px 14px;margin-top:14px;font-size:14px}
-.empty{text-align:center;padding:48px 16px}.empty .big{font-size:44px}.empty h2{margin:8px 0 6px}
-.err{background:var(--surface);border:1px solid #a8452f;border-radius:12px;padding:14px;margin-top:14px}
+.empty{text-align:center;padding:36px 16px}.empty .big{font-size:48px}.empty h1,.empty h2{margin:8px 0 6px}
 .nav{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);z-index:20}
 .nav-in{max-width:760px;margin:auto;display:flex}
 .nav-b{flex:1;padding:8px 2px 10px;font-size:11px;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px}
 .nav-b .ni{font-size:20px;padding:2px 16px;border-radius:999px}
 .nav-b.on{color:var(--accent2)}.nav-b.on .ni{background:var(--surface2)}
-.rh{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
-.rt{font-size:20px;line-height:1.2}
-.rbtns{display:flex;gap:6px;flex:none}
-.rctl{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
-.ptabs{display:flex;gap:6px;overflow-x:auto;margin-top:12px;border-bottom:1px solid var(--line)}
-.ptab{flex:none;padding:8px 12px;font-size:13px;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap}
-.ptab.on{color:var(--accent2);border-color:var(--accent2);font-weight:700}
-.pbar{height:3px;background:var(--surface2);border-radius:3px;margin-top:0}.pbar i{display:block;height:100%;background:var(--accent);border-radius:3px;transition:width .25s}
-.page{font-size:var(--fs);line-height:1.7;padding-top:6px;font-family:var(--serif)}
-.page h2{font-size:1.3em;color:var(--accent2);margin:14px 0 4px}
-.page .sec{padding:14px 0;border-bottom:1px solid var(--line)}.page .sec:last-child{border:0}
-.page .sec h3{font-size:1.05em;color:var(--accent2);margin-bottom:6px}
-.page p{margin:0 0 .8em}
-.page ul,.page ol{padding-left:1.2em;margin:0 0 .6em}.page li{margin:.3em 0}
-.sub{font-weight:700;margin-top:.6em}
-.glance{display:grid;gap:8px}.glance div{background:var(--surface2);border-radius:12px;padding:10px 14px}.glance b{display:block;font-size:.82em;color:var(--accent2)}
-.lesson{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
-.num{flex:none;width:32px;height:32px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px;margin-top:4px}
-.eg{font-size:.88em;color:var(--muted);font-style:italic}
-.hl{background:var(--surface2);border-left:4px solid var(--accent);border-radius:10px;padding:12px 14px;margin:8px 0}
-.facts{background:var(--surface2);border-radius:12px;padding:12px 16px;margin-top:10px}
-.toc button{display:block;width:100%;text-align:left;padding:10px 4px;border-bottom:1px solid var(--line);font-size:16px}
-.toc button span{color:var(--accent2);margin-right:8px}
-.pfoot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:8px}
-.pfoot .pg{font-size:13px;color:var(--muted)}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:50;display:flex;align-items:flex-end;justify-content:center}
-.sheet{background:var(--bg);border:1px solid var(--line);border-radius:20px 20px 0 0;width:100%;max-width:640px;max-height:90vh;overflow:auto;padding:16px 18px 24px}
-@media(min-width:700px){.overlay{align-items:center}.sheet{border-radius:20px}}
-.sheet-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.sheet-h h2{font-size:20px}
-.x{font-size:18px;padding:4px 8px;color:var(--muted)}
-.steps{display:flex;gap:6px;margin:6px 0 10px}.steps i{flex:1;height:4px;border-radius:4px;background:var(--surface2)}.steps i.on{background:var(--accent)}
-.stars{display:flex;gap:4px}.stars button{font-size:32px;line-height:1;padding:2px;color:var(--line);-webkit-text-stroke:1px var(--muted)}.stars button.on{color:var(--gold);-webkit-text-stroke:1px var(--gold)}
+.steps{display:flex;gap:6px;margin:6px 0 16px}.steps i{flex:1;height:4px;border-radius:4px;background:var(--surface2)}.steps i.on{background:var(--accent)}
 .toast{position:fixed;left:50%;bottom:100px;transform:translate(-50%,20px);background:var(--surface2);border:1px solid var(--accent);color:var(--text);padding:10px 16px;border-radius:999px;opacity:0;transition:.25s;z-index:60;font-size:14px;max-width:90vw}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-.ans{white-space:pre-wrap;margin-top:12px;line-height:1.6}
-hr.d{border:0;border-top:1px solid var(--line);margin:18px 0}
 a{color:var(--accent2)}
-.spin{display:inline-block;width:18px;height:18px;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-3px;margin-right:8px}
-@keyframes sp{to{transform:rotate(360deg)}}
-.card.feature{border-left:6px solid var(--accent)}
-.stamp{border:2px solid var(--accent);outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;padding:14px 18px;margin:24px 6px;transform:rotate(-.5deg)}
-.stamp-t{font-size:1.1em;font-weight:700;color:var(--accent2);margin-bottom:6px}
-.page .stamp p{margin:0 0 6px}
-.page .btn,.page .chip,.review{font-family:var(--sans)}
-.review{border:1px solid var(--line);background:var(--surface);border-radius:var(--r);padding:18px;margin-top:24px}
-.review h3{font-size:1.15em;margin-bottom:2px}
-.review textarea{resize:vertical}
-.stars.ro span{font-size:24px;color:var(--line);-webkit-text-stroke:1px var(--muted)}
-.stars.ro span.on{color:var(--gold);-webkit-text-stroke:1px var(--gold)}
+.link{color:var(--accent2);text-decoration:underline;font-size:14px}
+/* sign-up */
+.auth{max-width:520px;margin:auto;padding:22px 16px 48px}
+.auth .brand{margin-bottom:18px}
+.auth h1{font-size:28px;line-height:1.2;margin-bottom:6px}
+.auth .consent{display:flex;gap:8px;align-items:flex-start;margin-top:14px;font-size:14px}
+.auth .consent input{margin-top:4px;width:auto}
+.tgroup{margin-top:14px}.tg-h{font-size:13px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+.count{font-size:14px;margin-top:12px}
+.sticky-act{position:sticky;bottom:0;background:var(--bg);padding:12px 0;margin-top:12px;border-top:1px solid var(--line)}
+/* daily book + covers */
+.skel{height:200px;border-radius:12px;background:linear-gradient(90deg,var(--surface2),var(--surface),var(--surface2));background-size:200% 100%;animation:sk 1.2s linear infinite}
+@keyframes sk{to{background-position:-200% 0}}
+.dcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;margin-top:4px}
+.dtop{display:flex;gap:16px;align-items:flex-start}
+.cover{flex:none;width:112px;aspect-ratio:2/3;border-radius:6px;overflow:hidden;box-shadow:var(--shadow);background:var(--surface2);position:relative}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.cover.sm{width:72px}
+.cover .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8px;gap:6px;background:linear-gradient(160deg,var(--accent),var(--accent2));color:var(--on-accent)}
+.cover .ph b{font:700 13px/1.25 var(--serif)}.cover .ph span{font-size:11px;opacity:.85}
+.dinfo{min-width:0;flex:1}
+.tag{display:inline-block;background:var(--surface2);color:var(--accent2);border-radius:6px;padding:2px 9px;font:13px var(--serif);margin:0 6px 6px 0}
+.dinfo h2{font-size:22px;line-height:1.2;margin:2px 0}
+.dby{color:var(--muted);font-size:15px}
+.dmeta{color:var(--muted);font-size:13px;margin-top:6px}
+.ddesc{margin-top:14px;font:16px/1.6 var(--serif)}
+.why{margin-top:10px;font-size:13px;color:var(--muted)}
+.dacts{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.libr{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 10px}
+.lib-i{flex:none;width:72px;text-align:center;font-size:11px;color:var(--muted)}
+.lib-i .cover{margin-bottom:4px}
+.badge{position:absolute;top:4px;right:4px;background:var(--accent);color:var(--on-accent);border-radius:999px;font-size:10px;padding:1px 6px;z-index:2}
+@media(max-width:420px){.cover{width:92px}.dinfo h2{font-size:19px}}
+/* reader */
+.rd-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.rd-t{font-size:24px;line-height:1.2}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 0 8px;margin-top:6px}
+.sec{margin-top:22px}.sec h3{font-size:19px;margin-bottom:8px;color:var(--accent2)}.sec h4{font:700 16px var(--serif);margin:12px 0 4px}
+.rd .para{font-size:var(--fs);line-height:1.7;font-family:var(--serif);margin:0 0 10px}
+.bl{padding-left:22px;font-size:var(--fs);line-height:1.6;font-family:var(--serif)}.bl li{margin:0 0 8px}
+.glance{display:grid;gap:10px}
+.gcard,.lesson,.callout{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.gcard b,.callout b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent2);margin-bottom:3px}
+.gcard span,.callout span{font:var(--fs)/1.55 var(--serif)}
+.lesson{margin-top:12px}.lesson b{font:700 17px var(--serif)}.lesson p{font:var(--fs)/1.6 var(--serif);margin:6px 0 0}
+.lesson .eg{color:var(--muted);font-size:.9em}
+.callout{border-color:var(--accent);background:var(--surface2);margin-top:14px}
+.pager{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:26px}
+.cover.lg{width:150px;margin:6px auto 14px}
+.cvr{text-align:center;padding:8px 0 16px}
+.err{border:1px solid #a8452f;border-radius:12px;padding:14px;margin-top:16px}
+.err p{margin-bottom:10px}
+.nextrow{display:flex;gap:12px;align-items:center;margin-top:10px}.nextrow .grow{flex:1;min-width:0}
+a.btn{display:inline-block;text-decoration:none;text-align:center}
+.buy{margin-top:26px;padding:16px;border:1px solid var(--accent);border-radius:12px;background:var(--surface)}
+.buy h3{font-size:19px;color:var(--accent2);margin-bottom:6px}
+button.mood{background:none;border:0;padding:0}
+.sform{display:flex;gap:10px;margin-top:12px}
+.sform input{flex:1;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:12px 16px}
+.res{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
+.res .grow{flex:1;min-width:0}.res b{font:700 16px/1.3 var(--serif)}
+.clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.45}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;display:flex;align-items:flex-end;justify-content:center}
+.modal{background:var(--bg);border-radius:16px 16px 0 0;padding:18px 16px 24px;width:100%;max-width:520px;max-height:92vh;overflow:auto}
+@media(min-width:600px){.modal-bg{align-items:center}.modal{border-radius:16px}}
+.modal h2{font-size:22px;margin-bottom:2px}
+.modal textarea{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 14px;resize:vertical;min-height:96px;margin-top:6px}
+.stars{display:flex;gap:2px;margin:6px 0 2px}
+.star{font-size:36px;line-height:1;color:var(--muted);opacity:.45;padding:2px 4px}.star.on{color:var(--gold);opacity:1}
+.fb-l{display:block;font-size:13px;color:var(--muted);margin-top:14px}
+.fb-ok{text-align:center;padding:18px 0}
+/*__CSS__*/
 </style>
 </head>
 <body>
@@ -125,14 +133,36 @@ a{color:var(--accent2)}
 (() => {
 'use strict';
 
-/* ================= CONFIG (edit these after you deploy) ================= */
+/* ================= CONFIG (edit after you deploy) ================= */
 const CFG = {
-  // Optional: URL of your own small proxy that holds your Gemini key (see README). Leave "" to let each reader add their own free key.
+  // Your Cloudflare worker that holds the Gemini key (already working).
   PROXY_URL: "https://bookguide-ai.yadav270803h.workers.dev",
-  // Optional: a Formspree (or similar) endpoint that receives feedback as JSON. Leave "" to keep feedback on the device only.
+  // Google Books API key (free). Restrict it to your website address in Google Cloud. Used in Step 2.
+  GB_KEY: "",
+  // Your Amazon Associates tracking ID, e.g. "yourname-21". Paste it between the quotes.
+  // It must be the ID from the SAME Amazon store as AMAZON_DOMAIN below (an amazon.in ID for amazon.in).
+  // While it is empty, the link still works but earns you nothing, and the Associate disclosure is hidden.
+  AFFILIATE_TAG: "",
+  // Use "www.amazon.in" for India, "www.amazon.com" for the US.
+  AMAZON_DOMAIN: "www.amazon.in",
+  // Optional: a Formspree (or similar) URL that receives each new sign-up as JSON. Leave "" to keep sign-ups on the device only.
+  SIGNUP_ENDPOINT: "",
+  // WHERE FEEDBACK GOES. Fill in ONE of these:
+  // 1) FEEDBACK_ENDPOINT: your free Formspree form address, e.g. "https://formspree.io/f/abcdwxyz". Feedback arrives in your inbox.
+  //    (If you use Web3Forms instead, put "https://api.web3forms.com/submit" here and your access key in FEEDBACK_KEY.)
   FEEDBACK_ENDPOINT: "",
-  // Optional: paste the pre-filled link of your Google Form here. Reviews then arrive in your Google Form responses and Sheet. See README.
-  GOOGLE_FORM_LINK: ""
+  FEEDBACK_KEY: "",
+  // 2) FEEDBACK_EMAIL: a public email address. The reader's email app opens with the feedback already written.
+  //    Anyone can see this address in the page, so use one you are happy to make public.
+  FEEDBACK_EMAIL: "",
+  // YOUR GOOGLE FORM ("Book Guide reviews"). It is used first when set.
+  // VIEW_URL alone: the Feedback button opens your form in a new tab.
+  // VIEW_URL + FIELDS filled in: readers send feedback without leaving the page, straight into your form's Responses tab.
+  // FIELDS are the "entry.NNNNNNNN" names of your questions (get them with "Get pre-filled link" in Google Forms).
+  GOOGLE_FORM: {
+    VIEW_URL: "https://docs.google.com/forms/d/e/1FAIpQLScpeVjJrk2nQGWtFHVuMbm3KTr8U52q9H9wxmiav7jNINVimw/viewform",
+    FIELDS: { book: "entry.839211931", author: "entry.1375036599", rating: "entry.264986191", wouldBuy: "entry.153324006", review: "entry.956281672" }
+  }
 };
 
 /* ================= helpers ================= */
@@ -152,799 +182,867 @@ function h(tag, attrs, ...kids) {
   }
   return el;
 }
+function rc(el, ...kids) { el.replaceChildren(...kids.flat(Infinity).filter(k => k != null && k !== false)); }
 const LS = {
   get(k, d) { try { const v = localStorage.getItem('bg_' + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem('bg_' + k, JSON.stringify(v)); return true; } catch (e) { return false; } }
 };
 const arr = x => Array.isArray(x) ? x : (x ? [x] : []);
-function clean(s) {
-  return String(s == null ? '' : s).replace(/\*\*|__|`/g, '').replace(/^\s*#+\s*/gm, '').replace(/#{2,}\s*/g, '').replace(/^\s*[*•-]\s+/gm, '').replace(/\*(?=\S)([^*\n]+)\*/g, '$1').trim();
-}
-function stripHtml(s) { try { return (new DOMParser().parseFromString(String(s), 'text/html').body.textContent || '').trim(); } catch (e) { return String(s); } }
-function cleanDesc(s) {
-  s = String(s == null ? '' : s).replace(/<br\s*\/?>/gi, '\n').replace(/<\/p>/gi, '\n\n');
-  s = stripHtml(s);
-  s = s.replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g, '$1').replace(/\(\s*https?:\/\/[^)\s]+\s*\)/g, '').replace(/https?:\/\/\S+/g, '');
-  s = s.split(/\r?\n\s*-{3,}/)[0];
-  return s.replace(/[*_`#]+/g, '').replace(/\s+/g, ' ').trim();
-}
-function hookText(b) {
-  const d = cleanDesc(b.desc || ''); if (!d) return '';
-  let t = d.split(/(?<=[.!?])\s/)[0];
-  if (t.length > 200) t = t.slice(0, 200).replace(/\s+\S*$/, '') + '…';
-  return t;
-}
 const tkey = s => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 function hashStr(s) { let x = 2166136261; for (let i = 0; i < s.length; i++) { x ^= s.charCodeAt(i); x = Math.imul(x, 16777619); } return x >>> 0; }
-function rngFrom(seed) { let a = hashStr(String(seed)); return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 function dateKey(d = new Date()) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
 function scrollTop() { try { window.scrollTo(0, 0); } catch (e) {} }
 function toast(msg) { const t = h('div', { class: 'toast' }, msg); document.body.append(t); setTimeout(() => t.classList.add('show'), 10); setTimeout(() => t.remove(), 3000); }
-function download(name, text, type) {
-  const url = URL.createObjectURL(new Blob([text], { type }));
-  const a = h('a', { href: url, download: name }); document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1500);
-}
-function modal(title, content, onClose) {
-  const ov = h('div', { class: 'overlay', onClick: e => { if (e.target === ov) close(); } });
-  const sheet = h('div', { class: 'sheet', role: 'dialog', 'aria-modal': 'true' },
-    h('div', { class: 'sheet-h' }, h('h2', { class: 'serif' }, title), h('button', { class: 'x', onClick: close, 'aria-label': 'Close' }, '✕')), content);
-  ov.append(sheet); document.body.append(ov);
-  function close() { ov.remove(); if (onClose) onClose(); }
-  return { close };
-}
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/* ================= data ================= */
-const TOPICS = ["Self-Improvement", "Spiritual", "Mind", "Finance", "Rich Mindset", "Psychology", "Business", "Productivity", "Relationships", "Health", "History", "Philosophy", "Biography", "Science", "Fiction", "Parenting", "Leadership", "Habits", "Economics", "Technology", "Creativity", "Education", "Travel", "Nature", "Mythology", "Poetry", "Mystery", "Fantasy", "Romance", "Sports"];
-const EMOJI = { "Self-Improvement": "🚀", "Spiritual": "🧘", "Mind": "🧠", "Finance": "💰", "Rich Mindset": "💎", "Psychology": "🔍", "Business": "💼", "Productivity": "⏱️", "Relationships": "🤝", "Health": "🌿", "History": "🏛️", "Philosophy": "🦉", "Biography": "👤", "Science": "🔬", "Fiction": "📖", "Parenting": "👪", "Leadership": "🧭", "Habits": "🔁", "Economics": "📈", "Technology": "💻", "Creativity": "🎨", "Education": "🎓", "Travel": "✈️", "Nature": "🌲", "Mythology": "⚡", "Poetry": "🪶", "Mystery": "🕵️", "Fantasy": "🐉", "Romance": "💌", "Sports": "🏅" };
-// Several search terms per topic, so every refresh can show different books.
-const Q = {
-  "Self-Improvement": ["self-help", "personal development", "self improvement", "motivation", "confidence", "success"],
-  "Spiritual": ["spirituality", "meditation", "mindfulness", "religion", "inspiration", "eastern philosophy"],
-  "Mind": ["psychology", "cognitive psychology", "neuroscience", "mind and body", "thinking", "emotional intelligence"],
-  "Finance": ["personal finance", "investing", "money management", "financial planning", "saving money", "stock market"],
-  "Rich Mindset": ["wealth", "entrepreneurship", "business success", "millionaires", "financial independence", "money psychology"],
-  "Psychology": ["psychology", "behavioral psychology", "social psychology", "human behavior", "personality"],
-  "Business": ["business", "management", "marketing", "startups", "sales", "strategy"],
-  "Productivity": ["productivity", "time management", "focus", "work habits", "organization"],
-  "Relationships": ["relationships", "communication", "marriage", "friendship", "dating", "family"],
-  "Health": ["health", "nutrition", "fitness", "sleep", "mental health", "wellness"],
-  "History": ["history", "world history", "ancient history", "military history", "modern history"],
-  "Philosophy": ["philosophy", "stoicism", "ethics", "existentialism", "ancient philosophy"],
-  "Biography": ["biography", "autobiography", "memoir", "biography business", "biography leaders"],
-  "Science": ["science", "physics", "biology", "astronomy", "popular science", "evolution"],
-  "Fiction": ["fiction", "literary fiction", "classics", "short stories", "novels"],
-  "Parenting": ["parenting", "child development", "teenagers", "family life"],
-  "Leadership": ["leadership", "management leadership", "teamwork", "decision making"],
-  "Habits": ["habits", "behavior change", "discipline", "willpower", "routine"]
-};
-const termsFor = t => Q[t] || [t.toLowerCase()];
-const PAGE_NAMES = ["Cover", "What's Inside", "Meet the Author", "Key Learnings", "Things to Remember", "Practical Exercises", "Closing"];
-const topicColor = t => `hsl(${hashStr(t || 'x') % 360} 42% 26%)`;
+/* ================= topic list (non-fiction) =================
+   Format: Name | emoji | Group | search terms ; ... | Title~Author ; Title~Author ; ...
+   The seed books are well-known titles. Steps 2 and 3 use them so the daily book is always a real, verified book. */
+const RAW = [
+'Self-Improvement|🚀|Mind & Self|self-help;personal development;motivation|Awaken the Giant Within~Tony Robbins;The Power of Your Subconscious Mind~Joseph Murphy;12 Rules for Life~Jordan B. Peterson;Grit~Angela Duckworth;The 7 Habits of Highly Effective People~Stephen R. Covey;Make Your Bed~William H. McRaven',
+'Habits|🔁|Mind & Self|habits;behavior change;discipline|Atomic Habits~James Clear;The Power of Habit~Charles Duhigg;Tiny Habits~BJ Fogg;Can\'t Hurt Me~David Goggins;Mini Habits~Stephen Guise;The Compound Effect~Darren Hardy',
+'Productivity|⏱️|Mind & Self|productivity;time management;focus|Deep Work~Cal Newport;Getting Things Done~David Allen;Essentialism~Greg McKeown;The 4-Hour Workweek~Timothy Ferriss;Eat That Frog!~Brian Tracy;Indistractable~Nir Eyal',
+'Psychology|🔍|Mind & Self|psychology;social psychology;human behavior|Thinking, Fast and Slow~Daniel Kahneman;Mindset~Carol S. Dweck;Influence~Robert B. Cialdini;Emotional Intelligence~Daniel Goleman;Predictably Irrational~Dan Ariely;Man\'s Search for Meaning~Viktor E. Frankl',
+'Mind & Brain|🧠|Mind & Self|neuroscience;brain;cognitive psychology|Why We Sleep~Matthew Walker;The Brain That Changes Itself~Norman Doidge;Behave~Robert M. Sapolsky;The Organized Mind~Daniel J. Levitin;How Emotions Are Made~Lisa Feldman Barrett;Incognito~David Eagleman',
+'Mental Health|💚|Mind & Self|mental health;anxiety;healing|The Body Keeps the Score~Bessel van der Kolk;Feeling Good~David D. Burns;The Gifts of Imperfection~Brené Brown;Maybe You Should Talk to Someone~Lori Gottlieb;Lost Connections~Johann Hari;Daring Greatly~Brené Brown',
+'Spirituality|🧘|Mind & Self|spirituality;meditation;mindfulness;eastern philosophy|The Power of Now~Eckhart Tolle;Autobiography of a Yogi~Paramahansa Yogananda;The Untethered Soul~Michael A. Singer;Wherever You Go, There You Are~Jon Kabat-Zinn;Courage~Osho;The Road Less Traveled~M. Scott Peck;Be Here Now~Ram Dass',
+'Philosophy|🦉|Mind & Self|philosophy;stoicism;ethics|Meditations~Marcus Aurelius;Letters from a Stoic~Seneca;The Obstacle Is the Way~Ryan Holiday;The Daily Stoic~Ryan Holiday;Beyond Good and Evil~Friedrich Nietzsche;The Republic~Plato',
+'Decision-Making|🎯|Mind & Self|decision making;critical thinking|Thinking in Bets~Annie Duke;Superforecasting~Philip E. Tetlock;Algorithms to Live By~Brian Christian;The Art of Thinking Clearly~Rolf Dobelli;Think Again~Adam Grant;Noise~Daniel Kahneman',
+'Minimalism|🍃|Mind & Self|minimalism;simple living;declutter|The Life-Changing Magic of Tidying Up~Marie Kondo;Digital Minimalism~Cal Newport;Goodbye, Things~Fumio Sasaki;The Joy of Less~Francine Jay;Walden~Henry David Thoreau',
+'Personal Finance|💰|Money & Business|personal finance;money management;saving money|The Psychology of Money~Morgan Housel;I Will Teach You to Be Rich~Ramit Sethi;The Total Money Makeover~Dave Ramsey;Your Money or Your Life~Vicki Robin;The Richest Man in Babylon~George S. Clason;Rich Dad Poor Dad~Robert T. Kiyosaki',
+'Investing|📈|Money & Business|investing;stock market;value investing|The Intelligent Investor~Benjamin Graham;A Random Walk Down Wall Street~Burton G. Malkiel;The Little Book of Common Sense Investing~John C. Bogle;One Up on Wall Street~Peter Lynch;Common Stocks and Uncommon Profits~Philip A. Fisher;The Little Book That Beats the Market~Joel Greenblatt',
+'Rich Mindset|💎|Money & Business|wealth;financial independence;millionaires|Think and Grow Rich~Napoleon Hill;The Millionaire Next Door~Thomas J. Stanley;The Almanack of Naval Ravikant~Eric Jorgenson;The Science of Getting Rich~Wallace D. Wattles;Secrets of the Millionaire Mind~T. Harv Eker;The Millionaire Fastlane~MJ DeMarco',
+'Entrepreneurship|🛠️|Money & Business|entrepreneurship;startups;small business|The Lean Startup~Eric Ries;Zero to One~Peter Thiel;The E-Myth Revisited~Michael E. Gerber;Start with Why~Simon Sinek;The Hard Thing About Hard Things~Ben Horowitz;Rework~Jason Fried',
+'Business & Management|💼|Money & Business|business;management;strategy|Good to Great~Jim Collins;The Innovator\'s Dilemma~Clayton M. Christensen;High Output Management~Andrew S. Grove;Built to Last~Jim Collins;Blue Ocean Strategy~W. Chan Kim;The Effective Executive~Peter F. Drucker',
+'Leadership|🧭|Money & Business|leadership;teamwork|Leaders Eat Last~Simon Sinek;The 21 Irrefutable Laws of Leadership~John C. Maxwell;Extreme Ownership~Jocko Willink;Dare to Lead~Brené Brown;The Five Dysfunctions of a Team~Patrick Lencioni;Turn the Ship Around!~L. David Marquet',
+'Marketing & Copywriting|📣|Money & Business|marketing;advertising;copywriting;sales|Ogilvy on Advertising~David Ogilvy;Scientific Advertising~Claude C. Hopkins;Contagious~Jonah Berger;This Is Marketing~Seth Godin;Building a StoryBrand~Donald Miller;$100M Offers~Alex Hormozi',
+'Economics|🏦|Money & Business|economics;behavioral economics;global economy|Freakonomics~Steven D. Levitt;The Wealth of Nations~Adam Smith;Capital in the Twenty-First Century~Thomas Piketty;Basic Economics~Thomas Sowell;Poor Economics~Abhijit V. Banerjee;Nudge~Richard H. Thaler',
+'Career & Work|🧳|Money & Business|career;work life;job search|So Good They Can\'t Ignore You~Cal Newport;Designing Your Life~Bill Burnett;Drive~Daniel H. Pink;The Defining Decade~Meg Jay;Range~David Epstein;What Color Is Your Parachute?~Richard N. Bolles',
+'History|🏛️|Society & World|history;world history;ancient history|Sapiens~Yuval Noah Harari;Guns, Germs, and Steel~Jared Diamond;The Silk Roads~Peter Frankopan;A People\'s History of the United States~Howard Zinn;The Discovery of India~Jawaharlal Nehru;India After Gandhi~Ramachandra Guha',
+'Politics & Society|🗳️|Society & World|politics;sociology;society|The Prince~Niccolò Machiavelli;Why Nations Fail~Daron Acemoglu;The Righteous Mind~Jonathan Haidt;Bowling Alone~Robert D. Putnam;Utopia for Realists~Rutger Bregman;Factfulness~Hans Rosling',
+'Biography & Memoir|👤|Society & World|biography;autobiography;memoir|Long Walk to Freedom~Nelson Mandela;Steve Jobs~Walter Isaacson;Wings of Fire~A. P. J. Abdul Kalam;The Story of My Experiments with Truth~M. K. Gandhi;Educated~Tara Westover;Shoe Dog~Phil Knight',
+'Religion & Mythology|🕉️|Society & World|religion;mythology;world religions|The Hero with a Thousand Faces~Joseph Campbell;A History of God~Karen Armstrong;The World\'s Religions~Huston Smith;Mythology~Edith Hamilton;Bhagavad Gita As It Is~A. C. Bhaktivedanta Swami Prabhupada',
+'True Crime|🕵️|Society & World|true crime;investigation|In Cold Blood~Truman Capote;Mindhunter~John E. Douglas;Bad Blood~John Carreyrou;Helter Skelter~Vincent Bugliosi;Say Nothing~Patrick Radden Keefe;The Stranger Beside Me~Ann Rule',
+'Education & Learning|🎓|Society & World|learning;education;study skills|Make It Stick~Peter C. Brown;Peak~Anders Ericsson;Ultralearning~Scott H. Young;A Mind for Numbers~Barbara Oakley;The Talent Code~Daniel Coyle;Pedagogy of the Oppressed~Paulo Freire',
+'Science|🔬|Science & Tech|popular science;biology;evolution|The Selfish Gene~Richard Dawkins;Surely You\'re Joking, Mr. Feynman!~Richard P. Feynman;The Gene~Siddhartha Mukherjee;A Short History of Nearly Everything~Bill Bryson;The Immortal Life of Henrietta Lacks~Rebecca Skloot;The Emperor of All Maladies~Siddhartha Mukherjee',
+'Space & Physics|🪐|Science & Tech|astronomy;physics;cosmology|Cosmos~Carl Sagan;Astrophysics for People in a Hurry~Neil deGrasse Tyson;A Brief History of Time~Stephen Hawking;Pale Blue Dot~Carl Sagan;The Order of Time~Carlo Rovelli;Seven Brief Lessons on Physics~Carlo Rovelli',
+'Technology & AI|💻|Science & Tech|technology;artificial intelligence;programming|The Innovators~Walter Isaacson;Life 3.0~Max Tegmark;Superintelligence~Nick Bostrom;Co-Intelligence~Ethan Mollick;The Pragmatic Programmer~Andrew Hunt;Clean Code~Robert C. Martin',
+'Mathematics|🧮|Science & Tech|mathematics;statistics;logic|How Not to Be Wrong~Jordan Ellenberg;The Joy of x~Steven Strogatz;Fermat\'s Enigma~Simon Singh;Naked Statistics~Charles Wheelan;The Art of Statistics~David Spiegelhalter',
+'Nature & Environment|🌲|Science & Tech|nature;environment;climate;ecology|Silent Spring~Rachel Carson;The Hidden Life of Trees~Peter Wohlleben;Braiding Sweetgrass~Robin Wall Kimmerer;The Sixth Extinction~Elizabeth Kolbert;Walden~Henry David Thoreau;Lab Girl~Hope Jahren',
+'Health & Nutrition|🥗|Health & Life|health;nutrition;wellness;longevity|Outlive~Peter Attia;How Not to Die~Michael Greger;The Obesity Code~Jason Fung;Being Mortal~Atul Gawande;In Defense of Food~Michael Pollan;Breath~James Nestor',
+'Fitness & Sports|🏅|Health & Life|fitness;sports;exercise|Born to Run~Christopher McDougall;Spark~John J. Ratey;Endure~Alex Hutchinson;The Inner Game of Tennis~W. Timothy Gallwey;Moneyball~Michael Lewis;Open~Andre Agassi',
+'Relationships|🤝|Health & Life|relationships;marriage;love|The 5 Love Languages~Gary Chapman;Attached~Amir Levine;Hold Me Tight~Sue Johnson;The Seven Principles for Making Marriage Work~John M. Gottman;Men Are from Mars, Women Are from Venus~John Gray;Mating in Captivity~Esther Perel',
+'Communication|💬|Health & Life|communication;persuasion;public speaking|How to Win Friends and Influence People~Dale Carnegie;Crucial Conversations~Kerry Patterson;Never Split the Difference~Chris Voss;Nonviolent Communication~Marshall B. Rosenberg;Talk Like TED~Carmine Gallo;Just Listen~Mark Goulston',
+'Parenting|👪|Health & Life|parenting;child development;teenagers|How to Talk So Kids Will Listen~Adele Faber;The Whole-Brain Child~Daniel J. Siegel;Positive Discipline~Jane Nelsen;Hold On to Your Kids~Gordon Neufeld;Siblings Without Rivalry~Adele Faber;No-Drama Discipline~Daniel J. Siegel',
+'Food & Cooking|🍳|Health & Life|cooking;food;cookbook|Salt, Fat, Acid, Heat~Samin Nosrat;The Omnivore\'s Dilemma~Michael Pollan;Kitchen Confidential~Anthony Bourdain;Cooked~Michael Pollan;The Food Lab~J. Kenji López-Alt',
+'Travel|✈️|Health & Life|travel;adventure;travel writing|Vagabonding~Rolf Potts;The Great Railway Bazaar~Paul Theroux;Into the Wild~Jon Krakauer;A Walk in the Woods~Bill Bryson;Wild~Cheryl Strayed;Eat, Pray, Love~Elizabeth Gilbert',
+'Creativity & Arts|🎨|Creative & Culture|creativity;art;music|The War of Art~Steven Pressfield;Steal Like an Artist~Austin Kleon;Big Magic~Elizabeth Gilbert;The Creative Act~Rick Rubin;The Artist\'s Way~Julia Cameron;Show Your Work!~Austin Kleon',
+'Writing|✍️|Creative & Culture|writing;authorship;storytelling|On Writing~Stephen King;Bird by Bird~Anne Lamott;The Elements of Style~William Strunk;On Writing Well~William Zinsser;Writing Down the Bones~Natalie Goldberg;Made to Stick~Chip Heath',
+'Design|📐|Creative & Culture|design;ux;architecture|The Design of Everyday Things~Don Norman;Don\'t Make Me Think~Steve Krug;Thinking with Type~Ellen Lupton;Ways of Seeing~John Berger;A Pattern Language~Christopher Alexander;Creative Selection~Ken Kocienda'
+];
+const TOPICS = RAW.map(r => {
+  const [k, e, g, q, s] = r.split('|');
+  return { k, e, g, q: q.split(';'), s: s.split(';').map(x => { const [t, a] = x.split('~'); return { t, a }; }) };
+});
+const TOPIC_BY = Object.fromEntries(TOPICS.map(t => [t.k, t]));
+const GROUPS = [...new Set(TOPICS.map(t => t.g))];
+// Custom topics the reader types in have no seed books; they use a normal search.
+const topicInfo = k => TOPIC_BY[k] || { k, e: '📚', g: 'Your topics', q: [String(k).toLowerCase()], s: [] };
 
 /* ================= state ================= */
-let user = LS.get('user', null);
-let settings = Object.assign({ apiKey: '', gbKey: '', model: 'gemini-flash-latest', reminder: { on: false, time: '20:00' }, theme: 'light', font: 18 }, LS.get('settings', {}));
-settings.reminder = Object.assign({ on: false, time: '20:00' }, settings.reminder || {});
-let lib = LS.get('lib', []);
-let metas = LS.get('metas', {});
-let minis = LS.get('minis', {});
-let progress = LS.get('progress', {});
-let daily = LS.get('daily', null);
-let recent = LS.get('recent', []);
-let feedbackLog = LS.get('feedback', []);
-const S = { tab: 'home', cur: null, page: 0, loading: new Set(), miniError: {}, miniDetail: {}, explore: { mode: '', q: '', topic: '', results: [], loading: false, error: '', start: 0 }, libTab: 'read', libQ: '' };
+let settings = Object.assign({ theme: 'light', font: 18 }, LS.get('settings', {}));
 const saveSettings = () => LS.set('settings', settings);
-const saveLib = () => LS.set('lib', lib);
-function saveMetas() { LS.set('metas', metas); }
-function saveMinis() {
-  let ok = LS.set('minis', minis);
-  while (!ok && Object.keys(minis).length > 1) {
-    const keep = new Set(lib.map(x => x.id));
-    const k = Object.keys(minis).find(id => !keep.has(id)) || Object.keys(minis)[0];
-    delete minis[k]; ok = LS.set('minis', minis);
-  }
-}
-const hasAI = () => !!(settings.apiKey || CFG.PROXY_URL);
-const inLib = id => lib.find(x => x.id === id);
-const userTopics = () => (user && user.topics && user.topics.length ? user.topics : TOPICS.slice(0, 5));
-function addMeta(b) { if (b.desc) b.desc = cleanDesc(b.desc); metas[b.id] = Object.assign(metas[b.id] || {}, b); saveMetas(); }
-function setStatus(id, status) {
-  const e = inLib(id);
-  if (e && e.status === status) lib = lib.filter(x => x !== e);
-  else if (e) { e.status = status; e.date = new Date().toISOString(); }
-  else lib.push({ id, status, date: new Date().toISOString() });
-  saveLib();
-}
-function excludeSet() {
-  const s = new Set();
-  const add = id => { s.add(id); const m = metas[id]; if (m) s.add(tkey(m.title)); };
-  lib.forEach(e => add(e.id)); recent.forEach(add);
-  return s;
-}
+let accounts = LS.get('accounts', {});       // email -> profile, stored in this browser
+let session = LS.get('session', null);       // email of the signed-in reader
+let user = session && accounts[session] ? accounts[session] : null;
+const accId = () => user ? hashStr(user.email).toString(36) : 'anon';
+const U = { // per-reader storage, so two readers on one device never mix
+  get: (k, d) => LS.get(accId() + '_' + k, d),
+  set: (k, v) => LS.set(accId() + '_' + k, v)
+};
+let lib = [], progress = {}, daily = null, recent = [];
+function loadUserState() { lib = U.get('lib', []); progress = U.get('progress', {}); daily = U.get('daily', null); recent = U.get('recent', []); }
+if (user) loadUserState();
+const S = { tab: 'home' };
+const userTopics = () => (user && user.topics && user.topics.length ? user.topics : TOPICS.slice(0, 5).map(t => t.k));
 
-/* ================= book sources (Google Books + Open Library) ================= */
-function normGB(it) {
-  const v = it.volumeInfo || {};
-  if (!v.title || !(v.authors && v.authors.length)) return null;
-  let cover = (v.imageLinks && (v.imageLinks.thumbnail || v.imageLinks.smallThumbnail)) || '';
-  cover = cover.replace(/^http:/, 'https:').replace('&edge=curl', '');
-  return { id: it.id, src: 'gb', title: v.title, subtitle: v.subtitle || '', author: v.authors.join(', '), year: (v.publishedDate || '').slice(0, 4), desc: cleanDesc(v.description || ''), cats: v.categories || [], pages: v.pageCount || 0, cover, ratings: v.ratingsCount || 0 };
-}
-async function gbFetch(q, start, max = 40) {
-  let u = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(q)}&maxResults=${max}&startIndex=${start}&printType=books&langRestrict=en`;
-  if (settings.gbKey) u += '&key=' + encodeURIComponent(settings.gbKey);
-  const r = await fetch(u);
-  if (!r.ok) throw new Error('GB ' + r.status);
-  const j = await r.json();
-  return (j.items || []).map(normGB).filter(Boolean);
-}
-function normOL(w, topic) {
-  const key = w.key || '';
-  return { id: 'ol:' + key.replace('/works/', ''), src: 'ol', olKey: key, title: w.title, subtitle: '', author: (w.authors || w.author_name || []).map(a => a.name || a).join(', '), year: String(w.first_publish_year || ''), desc: '', cats: topic ? [topic] : [], pages: 0, cover: (w.cover_id || w.cover_i) ? `https://covers.openlibrary.org/b/id/${w.cover_id || w.cover_i}-M.jpg` : '', ratings: 0 };
-}
-async function olSubject(term, offset) {
-  const slug = term.toLowerCase().trim().replace(/[^a-z0-9]+/g, '_');
-  const r = await fetch(`https://openlibrary.org/subjects/${slug}.json?limit=40&offset=${offset}`);
-  if (!r.ok) throw new Error('OL ' + r.status);
-  const j = await r.json();
-  return (j.works || []).map(w => normOL(w, term)).filter(b => b.title && b.author);
-}
-async function olSearch(q) {
-  const r = await fetch(`https://openlibrary.org/search.json?q=${encodeURIComponent(q)}&limit=30&fields=key,title,author_name,first_publish_year,cover_i`);
-  if (!r.ok) throw new Error('OL ' + r.status);
-  const j = await r.json();
-  return (j.docs || []).map(d => normOL(d)).filter(b => b.title && b.author);
-}
-async function olHydrate(b) {
-  if (b.src !== 'ol' || b.desc) return b;
-  try {
-    const r = await fetch('https://openlibrary.org' + b.olKey + '.json');
-    if (r.ok) { const j = await r.json(); let d = j.description; if (d && typeof d === 'object') d = d.value; b.desc = cleanDesc(d || ''); }
-  } catch (e) {}
-  return b;
-}
-function pickQuality(list, opts) {
-  const rng = opts.rng || Math.random, ex = opts.exclude || new Set(), seen = new Set(), out = [];
-  for (const b of list) {
-    const k = tkey(b.title);
-    if (!k || seen.has(k) || ex.has(b.id) || ex.has(k)) continue;
-    if (b.src === 'gb' && b.desc.length < 100) continue;
-    seen.add(k); out.push(b);
-  }
-  for (let i = out.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); [out[i], out[j]] = [out[j], out[i]]; }
-  out.sort((a, b) => (!!b.cover) - (!!a.cover));
-  return out;
-}
-async function discover(topic, opts = {}) {
-  const rng = opts.rng || Math.random, terms = termsFor(topic);
-  const term = terms[Math.floor(rng() * terms.length)];
-  let list = [];
-  try {
-    list = await gbFetch(`subject:"${term}"`, Math.floor(rng() * 150));
-    if (list.length < 5) list = await gbFetch(`subject:"${term}"`, 0);
-    if (list.length < 5) list = list.concat(await gbFetch(term, Math.floor(rng() * 60)));
-  } catch (e) {
-    list = await olSubject(term, Math.floor(rng() * 200));
-  }
-  list.forEach(b => { b.topic = topic; });
-  return pickQuality(list, opts);
-}
-async function searchBooks(q) {
-  let list = [];
-  try { list = await gbFetch(q, 0, 30); } catch (e) { list = []; }
-  if (list.length < 3) { try { list = list.concat(await olSearch(q)); } catch (e) { if (!list.length) throw e; } }
-  const seen = new Set();
-  return list.filter(b => { const k = tkey(b.title + b.author); if (seen.has(k)) return false; seen.add(k); return true; });
-}
-let dailyP = null;
-async function getDaily() {
-  const today = dateKey();
-  if (daily && daily.date === today && metas[daily.id]) return metas[daily.id];
-  const topics = userTopics();
-  const rng = rngFrom(today + topics.join(','));
-  let topic, comfort = false;
-  if (new Date().getDay() === 0) { // once a week: outside the comfort zone
-    const others = TOPICS.filter(t => !topics.includes(t));
-    topic = others[Math.floor(rng() * others.length)]; comfort = true;
-  } else topic = topics[Math.floor(rng() * topics.length)];
-  const list = await discover(topic, { rng, exclude: excludeSet() });
-  if (!list.length) throw new Error('EMPTY');
-  const b = list[0]; addMeta(b);
-  daily = { date: today, id: b.id, topic, comfort }; LS.set('daily', daily);
-  return b;
-}
-
-/* ================= Gemini ================= */
-let lastFinish = '';
-function errDetail(txt) {
-  try {
-    const j = JSON.parse(txt);
-    let d = j.detail || (j.error && (j.error.message || j.error)) || '';
-    try { const k = JSON.parse(d); d = (k.error && k.error.message) || d; } catch (e) {}
-    return String(d).slice(0, 240);
-  } catch (e) { return String(txt).slice(0, 240); }
-}
-async function gemini(prompt, { json = true, system } = {}) {
-  for (let attempt = 0; attempt < 2; attempt++) {
-    let r;
-    try {
-      if (CFG.PROXY_URL) {
-        r = await fetch(CFG.PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt, system, json }) });
-      } else {
-        if (!settings.apiKey) throw new Error('NO_KEY');
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(settings.model || 'gemini-flash-latest')}:generateContent`;
-        const body = { contents: [{ role: 'user', parts: [{ text: prompt }] }], generationConfig: Object.assign({ temperature: 0.6, maxOutputTokens: 16384 }, json ? { responseMimeType: 'application/json' } : {}) };
-        if (system) body.systemInstruction = { parts: [{ text: system }] };
-        r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': settings.apiKey }, body: JSON.stringify(body) });
-      }
-    } catch (e) {
-      if (e instanceof TypeError) throw new Error('NET');
-      throw e;
-    }
-    if (!r.ok) {
-      let detail = ''; try { detail = errDetail(await r.text()); } catch (e) {}
-      if (r.status >= 500 && attempt === 0) { await new Promise(res => setTimeout(res, 2000)); continue; }
-      const err = new Error(r.status === 429 ? 'QUOTA' : 'API ' + r.status); err.detail = detail; throw err;
-    }
-    const j = await r.json();
-    if (CFG.PROXY_URL) { lastFinish = j.finishReason || ''; return j.text || ''; }
-    const cand = j.candidates && j.candidates[0]; lastFinish = (cand && cand.finishReason) || '';
-    return ((cand && cand.content && cand.content.parts) || []).map(p => p.text || '').join('');
-  }
-}
-function errMsg(e) {
-  const m = (e && e.message) || '';
-  if (m === 'QUOTA') return 'The free AI limit is used up for now. Wait a while and try again.';
-  if (m === 'NET') return 'No internet connection. Check your network and try again.';
-  if (m === 'KEY') return 'Google did not accept the API key or model name. Check them in Profile.';
-  if (m === 'NO_KEY') return 'Add your free Gemini key in Profile to create full mini books.';
-  if (/^API (400|401|403)$/.test(m)) return 'The AI service did not accept the request (' + m.slice(4) + '). The site owner needs to check the Gemini key in Cloudflare.';
-  if (m === 'API 404') return 'The AI model name was not found (404). The site owner needs to check the model name.';
-  if (/^API 5/.test(m)) return "Google's AI is busy right now (" + m.slice(4) + '). Wait a minute and tap Try again.';
-  if (m === 'BAD') return 'The AI sent back an incomplete answer. Tap Try again.';
-  return 'Something went wrong. Please try again.';
-}
-function parseJSON(t) {
-  t = t.trim().replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
-  try { return JSON.parse(t); } catch (e) {
-    const a = t.indexOf('{'), z = t.lastIndexOf('}');
-    if (a >= 0 && z > a) return JSON.parse(t.slice(a, z + 1));
-    throw e;
-  }
-}
-function buildPrompt(b) {
-  return `You are writing a "mini book" so a reader can understand a real, published book BEFORE deciding whether to buy the physical copy.
-
-BOOK DATA (from Google Books / Open Library):
-Title: ${b.title}${b.subtitle ? ' - ' + b.subtitle : ''}
-Author: ${b.author}
-Year: ${b.year || 'unknown'}
-Categories: ${(b.cats || []).join(', ') || 'unknown'}
-Page count: ${b.pages || 'unknown'}
-Publisher description: ${(b.desc || 'none').slice(0, 3000)}
-
-RULES
-- Use only facts from the data above and what you reliably know about this real book. Never invent facts, quotes, statistics, chapter titles or author details. If unsure, leave it out.
-- If you do not reliably know this book and the data is too thin to summarise it accurately, return exactly {"insufficient":true}.
-- Paraphrase in your own words. Never copy long passages from the book.
-- Plain text only. Do not use markdown symbols such as *, # or backticks.
-- Simple English at about Grade 7 level. Sentences under 20 words. Everyday words. Explain any technical word right away. Warm, friendly tone, like explaining to a smart friend. Paragraphs of 2-3 sentences.
-- "inside": list the real parts or chapters only if you are sure. Otherwise describe the main themes and set "isThemes" to true.
-
-Return ONLY valid JSON with exactly this shape:
-{
- "cover": {"subtitle": "", "topic": "", "readingTime": "e.g. 15 min", "hook": "one line on why this book matters"},
- "page1": {
-  "inOneMinute": "3-4 sentences summarising the whole book",
-  "youWillGet": ["4-5 short benefits for the reader"],
-  "whoFor": "2 sentences",
-  "glance": {"mainIdea": "", "problem": "", "promise": ""},
-  "isThemes": false,
-  "inside": [{"part": "", "line": "one plain line"}],
-  "storyDetail": [{"heading": "", "text": "short paragraph"}]   // 400-500 words in total, walking through the book from start to end
- },
- "page2": {"author": ["2-3 short paragraphs, 250-350 words in total"], "quickFacts": ["3 quick facts"]},
- "page3": {"lessons": [{"title": "", "text": "2-3 simple sentences", "example": "one-line real-life example"}]},   // exactly 8 lessons
- "page4": {"remember": ["6-7 one-liners"], "bigIdea": "one sentence", "mistakes": ["2 common mistakes when applying the book"]},
- "page5": {"exercises": [{"title": "", "steps": ["simple steps"], "time": "e.g. 10 minutes"}], "reflectionQuestions": []},   // 3-4 exercises. If the book is purely theoretical, leave exercises empty and give 4 reflectionQuestions
- "page6": {"whoShouldRead": "", "whoMightSkip": "", "buy": {"suits": "who should buy the physical book", "notSuits": "who can skip it", "physicalGives": "one line on what the physical book gives that a summary cannot"}, "readNext": [{"title": "", "author": ""}]}   // 2 real related books
-}`;
-}
-async function generateMini(b) {
-  let lastText = '';
-  for (let attempt = 0; attempt < 2; attempt++) {
-    const text = await gemini(buildPrompt(b)); lastText = text || '';
-    try {
-      const m = parseJSON(text);
-      if (m && m.insufficient) return { insufficient: true };
-      if (m && m.page1 && m.page3 && Array.isArray(m.page3.lessons) && m.page3.lessons.length) return m;
-    } catch (e) {}
-  }
-  const bad = new Error('BAD'); bad.detail = 'Finish reason: ' + (lastFinish || 'unknown') + ', answer length: ' + lastText.length + ' characters.'; throw bad;
-}
-async function runMini(id) {
-  S.loading.add(id); delete S.miniError[id]; delete S.miniDetail[id]; render();
-  try {
-    const b = metas[id];
-    if (b.src === 'ol' && !b.desc) { await olHydrate(b); saveMetas(); }
-    minis[id] = await generateMini(b); saveMinis();
-  } catch (e) { S.miniError[id] = errMsg(e); S.miniDetail[id] = e && e.detail ? String(e.detail) : ''; }
-  S.loading.delete(id); render();
-}
-async function openBook(b) {
-  addMeta(b);
-  recent = [b.id].concat(recent.filter(x => x !== b.id)).slice(0, 80); LS.set('recent', recent);
-  S.cur = b.id; S.page = (progress[b.id] && progress[b.id].page) || 0; S.tab = 'reader';
-  const needAI = hasAI() && !minis[b.id] && !S.loading.has(b.id);
-  if (needAI) runMini(b.id); else render();
-  scrollTop();
-  if (b.src === 'ol' && !metas[b.id].desc) { await olHydrate(metas[b.id]); saveMetas(); if (S.cur === b.id) render(); }
-}
-async function askBook(question) {
-  const b = S.cur && metas[S.cur];
-  const ctx = b ? `The reader is currently looking at "${b.title}" by ${b.author}.\n` : '';
-  const t = await gemini(`${ctx}Question: ${question}`, { json: false, system: 'You are The Book Guide, a friendly reading coach. Answer in simple English with short paragraphs and plain text, no markdown symbols. Only discuss real, published books. Never invent facts, quotes or chapter titles; if you are unsure, say so. Never copy long passages from books.' });
-  return clean(t);
-}
-
-/* ================= UI building blocks ================= */
-function designedCover(b) {
-  return h('div', { class: 'cover dz', style: { background: `linear-gradient(160deg, ${topicColor(b.topic || (b.cats && b.cats[0]))}, #120d09)` } }, h('b', null, b.title), h('i', null, b.author));
-}
-function coverTile(b, extra) {
-  const wrap = h('div', { class: 'cover' + (extra ? ' ' + extra : '') });
-  if (b.cover) {
-    const img = h('img', { src: b.cover, alt: 'Cover of ' + b.title, loading: 'lazy', referrerpolicy: 'no-referrer' });
-    img.addEventListener('error', () => wrap.replaceWith(designedCover(b)));
-    wrap.append(img); return wrap;
-  }
-  return designedCover(b);
-}
-function bookGrid(list) {
-  return h('div', { class: 'grid' }, list.map(b => h('button', { class: 'gb', onClick: () => openBook(b), 'aria-label': 'Open ' + b.title },
-    coverTile(b), h('div', { class: 'gb-t' }, b.title), h('div', { class: 'gb-a' }, b.author + (b.year ? ' · ' + b.year : '')))));
-}
-function emptyState(icon, title, text, onClick, label) {
-  return h('div', { class: 'empty' }, h('div', { class: 'big' }, icon), h('h2', { class: 'serif' }, title), h('p', { class: 'muted' }, text), onClick ? h('button', { class: 'btn', style: { marginTop: '14px' }, onClick }, label) : null);
-}
-function errorBox(msg, retry, detail) { return h('div', { class: 'err' }, h('p', null, msg), detail ? h('p', { class: 'muted small', style: { marginTop: '6px', wordBreak: 'break-word' } }, 'Details: ' + detail) : null, retry ? h('button', { class: 'btn sm', style: { marginTop: '10px' }, onClick: retry }, 'Try again') : null); }
-function loadingBox(text) { return h('div', { class: 'card' }, h('span', { class: 'spin' }), text); }
-function readBtn(b) { const e = inLib(b.id); const on = e && e.status === 'read'; return h('button', { class: 'btn sm' + (on ? ' on' : ''), onClick: () => { addMeta(b); setStatus(b.id, 'read'); toast(on ? 'Removed from your library' : '✓ Added to your library'); render(); } }, on ? '✓ Read' : 'Mark as Read'); }
-function wantBtn(b) { const e = inLib(b.id); const on = e && e.status === 'want'; return h('button', { class: 'btn sm ghost' + (on ? ' on' : ''), onClick: () => { addMeta(b); setStatus(b.id, 'want'); toast(on ? 'Removed from Want to read' : 'Saved to Want to read'); render(); } }, on ? '★ Saved' : '☆ Save'); }
-function searchBar(value) {
-  const input = h('input', { type: 'search', placeholder: 'Search any book or author…', value: value || '', 'aria-label': 'Search books' });
-  return h('form', { class: 'search', onSubmit: e => { e.preventDefault(); const q = input.value.trim(); if (q) { S.tab = 'explore'; doSearch(q); } } }, input, h('button', { class: 'btn', type: 'submit' }, 'Search'));
-}
+/* ================= topic picker (grouped) ================= */
 function topicPicker(set, onChange) {
   const wrap = h('div');
   function draw() {
-    const all = TOPICS.concat([...set].filter(t => !TOPICS.includes(t)));
-    const custom = h('input', { type: 'text', placeholder: 'Add your own topic…', maxlength: 40 });
-    const add = () => { const v = custom.value.trim(); if (v) { set.add(v); custom.value = ''; draw(); onChange(); } };
+    const customs = [...set].filter(t => !TOPIC_BY[t]);
+    const custom = h('input', { type: 'text', placeholder: 'Add your own topic…', maxlength: 40, 'aria-label': 'Add your own topic' });
+    const add = () => { const v = custom.value.trim(); if (v) { set.add(v); draw(); onChange(); } };
     custom.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); add(); } });
-    wrap.replaceChildren(
-      h('div', { class: 'chips wrap' }, all.map(t => h('button', { type: 'button', class: 'chip' + (set.has(t) ? ' on' : ''), onClick: () => { set.has(t) ? set.delete(t) : set.add(t); draw(); onChange(); } }, (EMOJI[t] || '📚') + ' ' + t))),
-      h('div', { class: 'row', style: { marginTop: '8px' } }, h('div', { class: 'field', style: { flex: 1, margin: 0 } }, custom), h('button', { type: 'button', class: 'btn ghost sm', onClick: add }, 'Add')));
+    const chip = t => { const k = t.k || t; return h('button', { type: 'button', class: 'chip' + (set.has(k) ? ' on' : ''), 'aria-pressed': set.has(k) ? 'true' : 'false', onClick: () => { set.has(k) ? set.delete(k) : set.add(k); draw(); onChange(); } }, (t.e || '📚') + ' ' + k); };
+    rc(wrap,
+      GROUPS.map(g => h('div', { class: 'tgroup' }, h('div', { class: 'tg-h' }, g), h('div', { class: 'chips wrap' }, TOPICS.filter(t => t.g === g).map(chip)))),
+      customs.length ? h('div', { class: 'tgroup' }, h('div', { class: 'tg-h' }, 'Your own topics'), h('div', { class: 'chips wrap' }, customs.map(chip))) : null,
+      h('div', { class: 'row', style: { marginTop: '10px' } }, h('div', { class: 'field', style: { flex: 1, margin: 0 } }, custom), h('button', { type: 'button', class: 'btn ghost sm', onClick: add }, 'Add')));
   }
   draw(); return wrap;
 }
 
-/* ================= views ================= */
-function toggleTheme() { settings.theme = settings.theme === 'dark' ? 'light' : 'dark'; saveSettings(); render(); }
+/* ================= sign-up / sign-in ================= */
+const AGES = ['', 'Under 18', '18-24', '25-34', '35-44', '45-54', '55+'];
+const FREQS = [['', 'Prefer not to say'], ['rarely', 'Rarely'], ['sometimes', 'Sometimes'], ['often', 'Often']];
+const A = { mode: 'signup', step: 1, done: false, d: { email: '', name: '', age: '', country: '', freq: '', topics: new Set(), consent: false } };
+
+function signIn(email) {
+  user = accounts[email]; session = email; LS.set('session', email);
+  loadUserState(); A.done = false; S.tab = 'home'; render(); scrollTop();
+}
+function signOut() {
+  LS.set('session', null); session = null; user = null; lib = []; progress = {}; daily = null; recent = [];
+  A.mode = 'signin'; A.step = 1; A.done = false; render(); scrollTop();
+}
+async function sendSignup(u) {
+  if (!CFG.SIGNUP_ENDPOINT) return;
+  try { await fetch(CFG.SIGNUP_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(u) }); } catch (e) {}
+}
+function createAccount() {
+  const d = A.d;
+  user = { email: d.email, name: d.name, age: d.age, country: d.country, freq: d.freq, topics: [...d.topics], joined: new Date().toISOString() };
+  accounts[user.email] = user; LS.set('accounts', accounts); session = user.email; LS.set('session', session);
+  loadUserState(); sendSignup(user);
+  A.done = true; render(); scrollTop();
+}
+function authView() {
+  const wrap = h('div', { class: 'auth' }, h('div', { class: 'brand' }, h('span', null, '📖'), h('span', { class: 'serif' }, 'The Book Guide')));
+  const body = h('div'); wrap.append(body);
+  const d = A.d;
+  const bar = n => h('div', { class: 'steps', role: 'img', 'aria-label': 'Step ' + n + ' of 3' }, [1, 2, 3].map(i => h('i', { class: i <= n ? 'on' : '' })));
+  const input = (label, key, attrs) => { const el = h('input', Object.assign({ value: d[key] }, attrs)); el.addEventListener('input', () => { d[key] = el.value; }); return h('div', { class: 'field' }, h('label', null, label), el); };
+  const select = (label, key, opts) => { const el = h('select', null, opts.map(([v, l]) => h('option', { value: v, selected: v === d[key] }, l))); el.addEventListener('change', () => { d[key] = el.value; }); return h('div', { class: 'field' }, h('label', null, label), el); };
+
+  if (A.done && user) {
+    rc(body, h('div', { class: 'empty' }, h('div', { class: 'big' }, '✅'), h('h1', { class: 'serif' }, "You're signed in, " + user.name + '!'),
+      h('p', { class: 'muted' }, 'Your account is ready. Your book of the day will be picked from the topics you chose.')),
+      h('div', { class: 'chips wrap', style: { justifyContent: 'center' } }, user.topics.map(t => h('span', { class: 'chip' }, topicInfo(t).e + ' ' + t))),
+      h('div', { style: { textAlign: 'center', marginTop: '18px' } }, h('button', { class: 'btn', onClick: () => { A.done = false; S.tab = 'home'; render(); scrollTop(); } }, 'Go to my home page')));
+    return wrap;
+  }
+  if (A.mode === 'signin') {
+    const em = h('input', { type: 'email', placeholder: 'you@example.com', autocomplete: 'email', 'aria-label': 'Email address' });
+    const msg = h('p', { class: 'small', style: { marginTop: '8px', color: '#a8452f' } });
+    const go = () => {
+      const e = em.value.trim().toLowerCase();
+      if (!EMAIL_RE.test(e)) { msg.textContent = 'Enter a valid email address.'; return; }
+      if (!accounts[e]) { msg.textContent = 'No account for this email on this device. Please sign up first.'; return; }
+      signIn(e);
+    };
+    em.addEventListener('keydown', ev => { if (ev.key === 'Enter') go(); });
+    rc(body, h('h1', { class: 'serif' }, 'Welcome back'), h('p', { class: 'muted' }, 'Sign in with the email you used to sign up.'),
+      h('div', { class: 'field' }, h('label', null, 'Email'), em), msg,
+      h('div', { class: 'row', style: { marginTop: '16px' } }, h('button', { class: 'btn', onClick: go }, 'Sign in'), h('button', { class: 'link', onClick: () => { A.mode = 'signup'; A.step = 1; render(); } }, 'New here? Create an account')));
+    return wrap;
+  }
+  if (A.step === 1) {
+    const ck = h('input', { type: 'checkbox', checked: d.consent, id: 'consent' });
+    ck.addEventListener('change', () => { d.consent = ck.checked; });
+    rc(body, bar(1), h('h1', { class: 'serif' }, 'Create your free account'), h('p', { class: 'muted' }, 'Understand a book first, then decide if the physical copy is worth buying.'),
+      input('Email address', 'email', { type: 'email', placeholder: 'you@example.com', autocomplete: 'email' }),
+      h('label', { class: 'consent', for: 'consent' }, ck, CFG.SIGNUP_ENDPOINT ? 'I agree that my email and the details I enter next are saved in this browser and shared with The Book Guide to improve book suggestions.' : 'I understand my email and details are saved only in this browser, and I can delete them any time in Profile.'),
+      h('div', { class: 'row', style: { marginTop: '18px' } },
+        h('button', { class: 'btn', onClick: () => {
+          const e = d.email.trim().toLowerCase();
+          if (!EMAIL_RE.test(e)) { toast('Enter a valid email address'); return; }
+          if (!d.consent) { toast('Please tick the box to continue'); return; }
+          if (accounts[e]) { toast('You already have an account. Signing you in.'); signIn(e); return; }
+          d.email = e; A.step = 2; render(); scrollTop();
+        } }, 'Continue'),
+        h('button', { class: 'link', onClick: () => { A.mode = 'signin'; render(); } }, 'Already have an account? Sign in')));
+  } else if (A.step === 2) {
+    rc(body, bar(2), h('h1', { class: 'serif' }, 'Tell us about you'), h('p', { class: 'muted' }, 'Only your first name is required.'),
+      input('First name', 'name', { type: 'text', maxlength: 40, autocomplete: 'given-name' }),
+      select('Age range (optional)', 'age', AGES.map(a => [a, a || 'Prefer not to say'])),
+      input('Country (optional)', 'country', { type: 'text', maxlength: 40, autocomplete: 'country-name' }),
+      select('How often do you read? (optional)', 'freq', FREQS),
+      h('div', { class: 'row', style: { marginTop: '18px' } },
+        h('button', { class: 'btn ghost', onClick: () => { A.step = 1; render(); } }, 'Back'),
+        h('button', { class: 'btn', onClick: () => { d.name = d.name.trim(); if (!d.name) { toast('Please enter your first name'); return; } A.step = 3; render(); scrollTop(); } }, 'Next')));
+  } else {
+    const cnt = h('p', { class: 'count muted' });
+    const go = h('button', { class: 'btn', onClick: () => createAccount() }, 'Create my account');
+    const upd = () => { const n = d.topics.size; cnt.textContent = n + ' selected' + (n < 3 ? ' (pick at least 3)' : ''); go.disabled = n < 3; };
+    rc(body, bar(3), h('h1', { class: 'serif' }, 'What do you like to read?'), h('p', { class: 'muted' }, 'Pick at least 3 non-fiction topics. Your book of the day comes from these. You can change them later.'),
+      topicPicker(d.topics, upd), cnt,
+      h('div', { class: 'sticky-act row' }, h('button', { class: 'btn ghost', onClick: () => { A.step = 2; render(); scrollTop(); } }, 'Back'), go));
+    upd();
+  }
+  return wrap;
+}
+
+/* ================= app shell ================= */
 function topbar() {
   return h('header', { class: 'top' }, h('div', { class: 'top-in' },
     h('div', { class: 'brand' }, h('span', null, '📖'), h('span', { class: 'serif' }, 'The Book Guide')),
-    h('div', { class: 'row', style: { gap: '8px', flexWrap: 'nowrap' } }, h('button', { class: 'icon-btn', onClick: toggleTheme, 'aria-label': settings.theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme' }, settings.theme === 'dark' ? '☀️' : '🌙'), h('button', { class: 'icon-btn', onClick: openAsk, 'aria-label': 'Ask The Book Guide' }, '✦ Ask'))));
+    h('div', { class: 'row', style: { gap: '8px', flexWrap: 'nowrap' } }, h('button', { class: 'icon-btn', 'aria-label': 'Send feedback', onClick: () => openFeedback() }, '💬 Feedback'), h('button', { class: 'icon-btn', onClick: () => { settings.theme = settings.theme === 'dark' ? 'light' : 'dark'; saveSettings(); render(); }, 'aria-label': 'Switch theme' }, settings.theme === 'dark' ? '☀️' : '🌙'))));
 }
+const NAV = [['home', '🏠', 'Home'], ['explore', '🔍', 'Explore'], ['profile', '👤', 'Profile']];
 function nav() {
-  const items = [['home', '🏠', 'Home'], ['reader', '📖', 'Reader'], ['explore', '🧭', 'Explore'], ['library', '📚', 'Library'], ['profile', '👤', 'Profile']];
-  return h('nav', { class: 'nav', 'aria-label': 'Main' }, h('div', { class: 'nav-in' }, items.map(([k, i, l]) => h('button', { class: 'nav-b' + (S.tab === k ? ' on' : ''), onClick: () => { S.tab = k; render(); scrollTop(); } }, h('span', { class: 'ni' }, i), h('span', null, l)))));
+  return h('nav', { class: 'nav', 'aria-label': 'Main' }, h('div', { class: 'nav-in' }, NAV.map(([k, i, l]) => h('button', { class: 'nav-b' + (S.tab === k ? ' on' : ''), onClick: () => { S.tab = k; render(); scrollTop(); } }, h('span', { class: 'ni' }, i), h('span', null, l)))));
 }
 function render() {
   document.documentElement.setAttribute('data-theme', settings.theme === 'dark' ? 'dark' : 'light');
   const tc = document.querySelector('meta[name=theme-color]'); if (tc) tc.setAttribute('content', settings.theme === 'dark' ? '#11151c' : '#f1f3ef');
   document.documentElement.style.setProperty('--fs', (settings.font || 18) + 'px');
-  const views = { home: homeView, reader: readerView, explore: exploreView, library: libraryView, profile: profileView };
-  $('#app').replaceChildren(topbar(), views[S.tab](), nav());
+  if (!user || A.done) { $('#app').replaceChildren(authView()); return; }
+  const views = { home: homeView, explore: exploreView, profile: profileView, reader: readerView, topic: topicView };
+  $('#app').replaceChildren(topbar(), (views[S.tab] || homeView)(), nav());
 }
 
-/* ---- Home ---- */
-function dailyCard(b) {
-  const e = inLib(b.id);
-  return h('div', { class: 'card bookcard feature' }, coverTile(b),
-    h('div', { style: { minWidth: 0 } },
-      h('span', { class: 'tag' }, 'Book of the Day'), daily && daily.comfort && daily.id === b.id ? h('span', { class: 'tag' }, 'Outside your comfort zone') : null,
-      h('div', { class: 'bc-title' }, b.title),
-      h('div', { class: 'muted small' }, 'by ' + b.author + (b.year ? ', ' + b.year : '') + (b.pages ? ', ' + b.pages + ' pages' : '')),
-      h('p', { class: 'hook' }, hookText(b)),
-      h('div', { class: 'row' }, h('button', { class: 'btn sm', onClick: () => openBook(b) }, 'Start Reading'), readBtn(b))));
-}
-async function fillDaily(box) {
-  try { if (!dailyP) dailyP = getDaily(); const b = await dailyP; box.replaceChildren(dailyCard(b)); }
-  catch (e) { dailyP = null; box.replaceChildren(errorBox("Could not load today's book. Check your internet connection and try again.", () => { box.replaceChildren(h('div', { class: 'skel', style: { height: '200px' } })); fillDaily(box); })); }
-}
-function streakCard() {
-  const week = Date.now() - 7 * 864e5;
-  const reads = lib.filter(x => x.status === 'read');
-  const wk = reads.filter(x => new Date(x.date).getTime() >= week).length;
-  const counts = {}; reads.forEach(x => { const m = metas[x.id] || {}; const t = m.topic || (m.cats && m.cats[0]) || 'Other'; counts[t] = (counts[t] || 0) + 1; });
-  const least = userTopics().slice().sort((a, b) => (counts[a] || 0) - (counts[b] || 0))[0];
-  return h('div', { class: 'card' }, h('div', { class: 'stats' }, h('div', { class: 'stat' }, h('b', null, wk), h('span', null, 'this week')), h('div', { class: 'stat' }, h('b', null, reads.length), h('span', null, 'books read')), h('div', { class: 'stat' }, h('b', null, lib.filter(x => x.status === 'want').length), h('span', null, 'want to read'))),
-    least ? h('p', { class: 'muted small', style: { marginTop: '10px' } }, `Try something from ${least} next. `, h('button', { class: 'btn ghost sm', onClick: () => exploreTopic(least) }, 'Explore ' + least)) : null);
-}
-function continueCard() {
-  const items = Object.entries(progress).filter(([id, p]) => metas[id] && p.page > 0 && p.page < 6 && !(inLib(id) && inLib(id).status === 'read')).sort((a, b) => b[1].t - a[1].t);
-  if (!items.length) return null;
-  const [id, p] = items[0], b = metas[id];
-  return h('div', null, h('h3', { class: 'sh' }, 'Continue reading'), h('div', { class: 'card bookcard' }, coverTile(b), h('div', null, h('div', { class: 'bc-title' }, b.title), h('div', { class: 'muted small' }, `${b.author} · stopped on page ${p.page} of 6`), h('button', { class: 'btn sm', style: { marginTop: '12px' }, onClick: () => openBook(b) }, 'Continue'))));
-}
-function reminderBanner() {
-  if (!settings.reminder.on) return null;
-  const dId = daily && daily.date === dateKey() ? daily.id : null;
-  if (dId && progress[dId]) return null;
-  return h('div', { class: 'banner' }, `🔔 Daily reminder: your new book for today is ready (reminder set for ${settings.reminder.time}).`);
-}
+/* ================= views ================= */
 function homeView() {
   const hr = new Date().getHours(), g = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
-  const box = h('div', null, h('div', { class: 'skel', style: { height: '200px', marginTop: '14px' } }));
-  fillDaily(box);
   return h('div', { class: 'view' },
-    h('div', { class: 'greet' }, h('h1', null, g + (user && user.name ? ', ' + user.name : '') + '.'), h('p', { class: 'muted' }, new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }) + ' · Here is your book for today.')),
-    reminderBanner(), searchBar(), box,
-    h('h3', { class: 'sh' }, 'Pick your mood'),
-    h('div', { class: 'moods' }, userTopics().map(t => h('button', { class: 'mood', onClick: () => exploreTopic(t) }, h('span', { class: 'mood-i' }, EMOJI[t] || '📚'), h('span', { class: 'mood-l' }, t)))),
-    h('h3', { class: 'sh' }, 'Your reading streak'), streakCard(), continueCard(),
-    h('div', { class: 'card muted small', style: { marginTop: '22px' } }, 'The Book Guide helps you understand a book before you spend money on it. Reading the physical book feels different, so use this to choose well, then enjoy the real thing.'));
-}
-
-/* ---- Explore ---- */
-async function doSearch(q) {
-  Object.assign(S.explore, { mode: 'search', q, topic: '', results: [], loading: true, error: '' }); render();
-  try { S.explore.results = await searchBooks(q); } catch (e) { S.explore.error = 'Search failed. Check your internet connection and try again.'; }
-  S.explore.loading = false; if (S.tab === 'explore') render();
-}
-async function exploreTopic(topic, more) {
-  S.tab = 'explore';
-  if (!more) Object.assign(S.explore, { mode: 'topic', q: '', topic, results: [], error: '' });
-  S.explore.loading = true; render(); scrollTop();
-  try {
-    const ex = excludeSet(); S.explore.results.forEach(b => { ex.add(b.id); ex.add(tkey(b.title)); });
-    const list = await discover(topic, { exclude: ex });
-    S.explore.results = S.explore.results.concat(list.slice(0, 12));
-    if (!S.explore.results.length) S.explore.error = 'No new books found for this topic right now. Try again for a different set.';
-  } catch (e) { S.explore.error = 'Could not load books. Check your internet connection and try again.'; }
-  S.explore.loading = false; if (S.tab === 'explore') render();
-}
-function surprise() {
-  const t = TOPICS.concat(userTopics().filter(x => !TOPICS.includes(x)));
-  exploreTopic(t[Math.floor(Math.random() * t.length)]);
-}
-function exploreView() {
-  const X = S.explore;
-  const all = userTopics().concat(TOPICS.filter(t => !userTopics().includes(t)));
-  const v = h('div', { class: 'view' }, h('h1', { class: 'serif', style: { fontSize: '24px' } }, 'Explore'),
-    h('p', { class: 'muted small' }, 'Search any book in the world, or browse a topic. Every tap shows different books.'),
-    searchBar(X.mode === 'search' ? X.q : ''),
-    h('div', { class: 'chips', style: { marginTop: '10px' } }, h('button', { class: 'chip', onClick: surprise }, '🎲 Surprise me'), all.map(t => h('button', { class: 'chip' + (X.topic === t ? ' on' : ''), onClick: () => exploreTopic(t) }, (EMOJI[t] || '📚') + ' ' + t))));
-  if (X.error) v.append(errorBox(X.error, () => X.mode === 'search' ? doSearch(X.q) : exploreTopic(X.topic)));
-  if (X.results.length) {
-    v.append(h('h3', { class: 'sh' }, X.mode === 'search' ? `Results for "${X.q}"` : `${X.topic} books for you`), bookGrid(X.results));
-    if (X.mode === 'topic' && !X.loading) v.append(h('div', { style: { textAlign: 'center', marginTop: '18px' } }, h('button', { class: 'btn ghost', onClick: () => exploreTopic(X.topic, true) }, 'Show more books')));
-  }
-  if (X.loading) v.append(loadingBox(X.mode === 'search' ? 'Searching…' : 'Finding books…'));
-  else if (!X.results.length && !X.error) v.append(X.mode === 'search' ? emptyState('🔎', 'No books found', 'Try a different spelling, or search by author.') : emptyState('🧭', 'Find your next book', 'Pick a topic above, search by name, or tap Surprise me.'));
-  return v;
-}
-
-/* ---- Reader ---- */
-const sec = (title, ...kids) => h('div', { class: 'sec' }, title ? h('h3', null, title) : null, kids);
-const paras = x => arr(x).flatMap(s => clean(s).split(/\n{2,}/)).filter(Boolean).map(s => h('p', null, s));
-const ul = items => h('ul', null, arr(items).map(i => h('li', null, clean(i))));
-function googleFormTarget() {
-  if (!CFG.GOOGLE_FORM_LINK) return null;
-  try {
-    const u = new URL(CFG.GOOGLE_FORM_LINK), map = {};
-    u.searchParams.forEach((v, k) => { if (/^entry\.\d+$/.test(k)) map[v.trim().toUpperCase()] = k; });
-    if (!Object.keys(map).length) return null;
-    return { url: u.origin + u.pathname.replace(/\/(viewform|prefill|formResponse)\/?$/, '') + '/formResponse', map };
-  } catch (e) { return null; }
-}
-async function sendFeedback(entry) {
-  const vals = { BOOK: entry.book || 'General feedback', AUTHOR: entry.author || '', RATING: String(entry.rating), BUY: entry.buy || '', TEXT: entry.text || '' };
-  const jobs = [];
-  if (CFG.FEEDBACK_ENDPOINT) jobs.push(fetch(CFG.FEEDBACK_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(entry) }).catch(() => {}));
-  const g = googleFormTarget();
-  if (g) {
-    const body = new URLSearchParams();
-    Object.entries(g.map).forEach(([name, key]) => { if (name in vals) body.append(key, vals[name]); });
-    jobs.push(fetch(g.url, { method: 'POST', mode: 'no-cors', body }).catch(() => {}));
-  }
-  await Promise.all(jobs);
-}
-function feedbackNote() {
-  return (CFG.FEEDBACK_ENDPOINT || CFG.GOOGLE_FORM_LINK) ? h('p', { class: 'muted small', style: { marginTop: '8px' } }, 'Your rating and comment are sent to the site owner with the book title. Please leave out personal details.') : null;
-}
-let reviewDraft = { id: null, rating: 0, buy: '', text: '' };
-function reviewForm(book) {
-  const box = h('div', { class: 'review' });
-  const d = reviewDraft.id === book.id ? reviewDraft : (reviewDraft = { id: book.id, rating: 0, buy: '', text: '' });
-  const OPTS = ['Yes', 'Maybe', 'No'];
-  function draw() {
-    const saved = LS.get('reviews', {})[book.id];
-    if (saved) {
-      box.replaceChildren(
-        h('h3', { class: 'serif' }, 'Thanks for your review'),
-        h('div', { class: 'stars ro', role: 'img', 'aria-label': saved.rating + ' out of 5 stars' }, [1, 2, 3, 4, 5].map(n => h('span', { class: n <= saved.rating ? 'on' : '' }, '★'))),
-        saved.buy ? h('p', { class: 'muted small', style: { marginTop: '6px' } }, 'Would buy the physical book: ' + saved.buy) : null,
-        saved.text ? h('p', { style: { marginTop: '8px' } }, '“' + saved.text + '”') : null,
-        h('button', { class: 'btn ghost sm', style: { marginTop: '12px' }, onClick: () => { const r = LS.get('reviews', {}); delete r[book.id]; LS.set('reviews', r); draw(); } }, 'Edit review'));
-      return;
-    }
-    const starBtns = [1, 2, 3, 4, 5].map(n => h('button', { type: 'button', 'aria-label': n + (n === 1 ? ' star' : ' stars'), onClick: () => { d.rating = n; paint(); } }, '★'));
-    const buyBtns = OPTS.map(o => h('button', { type: 'button', class: 'chip', onClick: () => { d.buy = d.buy === o ? '' : o; paint(); } }, o));
-    const txt = h('textarea', { rows: 4, maxlength: 1000, placeholder: 'What did you like? What would you change?', 'aria-label': 'Your review' });
-    txt.value = d.text; txt.addEventListener('input', () => { d.text = txt.value; });
-    const send = h('button', { type: 'button', class: 'btn', style: { marginTop: '14px' }, onClick: async () => {
-      if (!d.rating) { toast('Tap a star rating first'); return; }
-      send.disabled = true;
-      const entry = { date: new Date().toISOString(), book: book.title, author: book.author, rating: d.rating, buy: d.buy, text: d.text.trim().slice(0, 1000) };
-      const all = LS.get('reviews', {}); all[book.id] = entry; LS.set('reviews', all);
-      feedbackLog.push(entry); LS.set('feedback', feedbackLog);
-      await sendFeedback(entry);
-      reviewDraft = { id: null, rating: 0, buy: '', text: '' };
-      toast('Thanks for your review!'); draw();
-    } }, 'Send review');
-    function paint() {
-      starBtns.forEach((b, i) => { b.className = i < d.rating ? 'on' : ''; b.setAttribute('aria-pressed', i < d.rating ? 'true' : 'false'); });
-      buyBtns.forEach((b, i) => b.classList.toggle('on', d.buy === OPTS[i]));
-    }
-    box.replaceChildren(
-      h('h3', { class: 'serif' }, 'How was this mini book?'),
-      h('p', { class: 'muted small' }, 'Your review helps make The Book Guide better.'),
-      h('div', { class: 'stars', style: { marginTop: '8px' } }, starBtns),
-      h('div', { class: 'field' }, h('label', null, 'Would you buy the physical book after reading this?'), h('div', { class: 'row' }, buyBtns)),
-      h('div', { class: 'field' }, h('label', null, 'Your review (optional)'), txt, feedbackNote()),
-      send);
-    paint();
-  }
-  draw(); return box;
-}
-function pageCover(b, m) {
-  const c = (m && m.cover) || {}, full = m && !m.insufficient;
-  const topic = clean(c.topic) || b.topic || (b.cats && b.cats[0]) || '';
-  const n = [h('div', { class: 'bookcard', style: { marginTop: '10px' } }, coverTile(b),
-    h('div', { style: { minWidth: 0 } }, topic ? h('span', { class: 'tag' }, topic) : null, b.year ? h('span', { class: 'tag' }, b.year) : null, c.readingTime ? h('span', { class: 'tag' }, '⏱ ' + clean(c.readingTime)) : null,
-      h('div', { class: 'bc-title' }, b.title), (clean(c.subtitle) || b.subtitle) ? h('div', { class: 'muted', style: { fontSize: '.85em' } }, clean(c.subtitle) || b.subtitle) : null,
-      h('div', { style: { marginTop: '6px', fontSize: '.9em' } }, 'by ' + b.author)))];
-  if (clean(c.hook)) n.push(h('div', { class: 'hl' }, clean(c.hook)));
-  if (full) n.push(sec('Table of Contents', h('div', { class: 'toc' }, PAGE_NAMES.slice(1).map((nm, i) => h('button', { onClick: () => setPage(i + 1) }, h('span', null, 'Page ' + (i + 1)), nm)))));
-  return n;
-}
-function pageOverview(b) {
-  const n = [h('h2', null, 'About this book')];
-  if (b.desc) n.push(...paras(b.desc.slice(0, 2500))); else n.push(h('p', { class: 'muted' }, 'No description is available for this book yet.'));
-  const facts = [b.author && 'Author: ' + b.author, b.year && 'Year: ' + b.year, b.pages && 'Pages: ' + b.pages, (b.cats || []).length && 'Categories: ' + b.cats.join(', ')].filter(Boolean);
-  if (facts.length) n.push(sec('At a glance', ul(facts)));
-  return n;
-}
-function pageNumbered(i, m) {
-  const P = m['page' + i] || {};
-  if (i === 1) {
-    const g = P.glance || {};
-    return [h('h2', null, "What's Inside This Book"),
-      sec('In One Minute', ...paras(P.inOneMinute)),
-      sec('What You Will Get From This Book', ul(P.youWillGet)),
-      sec('Who This Book Is For', ...paras(P.whoFor)),
-      sec('The Book at a Glance', h('div', { class: 'glance' }, h('div', null, h('b', null, 'Main idea'), clean(g.mainIdea)), h('div', null, h('b', null, 'Problem it solves'), clean(g.problem)), h('div', null, h('b', null, "The author's big promise"), clean(g.promise)))),
-      arr(P.inside).length ? sec(P.isThemes ? 'Inside the Book (main themes)' : 'Inside the Book', h('ul', null, arr(P.inside).map(x => h('li', null, h('b', null, clean(x.part)), x.line ? ' — ' + clean(x.line) : '')))) : null,
-      sec('The Story in Detail', arr(P.storyDetail).map(s => [s.heading ? h('div', { class: 'sub' }, clean(s.heading)) : null, ...paras(s.text)]))];
-  }
-  if (i === 2) return [h('h2', null, 'Meet the Author'), ...paras(P.author), arr(P.quickFacts).length ? h('div', { class: 'facts' }, h('b', null, 'Quick facts'), ul(P.quickFacts)) : null];
-  if (i === 3) return [h('h2', null, 'Key Learnings'), arr(P.lessons).map((l, k) => h('div', { class: 'lesson' }, h('div', { class: 'num' }, k + 1), h('div', null, h('b', null, clean(l.title)), h('div', null, clean(l.text)), l.example ? h('div', { class: 'eg' }, 'Real-life example: ' + clean(l.example)) : null)))];
-  if (i === 4) return [h('h2', null, 'Things to Remember'), ul(P.remember), P.bigIdea ? h('div', { class: 'hl' }, h('b', null, 'Big idea in a sentence: '), clean(P.bigIdea)) : null, arr(P.mistakes).length ? sec('Common mistakes', ul(P.mistakes)) : null];
-  if (i === 5) {
-    const ex = arr(P.exercises);
-    return [h('h2', null, ex.length ? 'Practical Exercises' : 'Reflection Questions'),
-      ex.length ? ex.map(e => sec(clean(e.title) + (e.time ? '  ·  ⏱ ' + clean(e.time) : ''), h('ol', null, arr(e.steps).map(s => h('li', null, clean(s)))))) : sec('', ul(P.reflectionQuestions))];
-  }
-  const buy = P.buy || {};
-  return [h('h2', null, 'Closing'), sec('Who should read it', ...paras(P.whoShouldRead)), sec('Who might skip it', ...paras(P.whoMightSkip)),
-    h('div', { class: 'stamp' }, h('div', { class: 'stamp-t serif' }, 'Should you buy the physical book?'), h('p', { style: { margin: '6px 0 4px' } }, h('b', null, 'It suits: '), clean(buy.suits)), h('p', { style: { margin: '0 0 4px' } }, h('b', null, 'You can skip it if: '), clean(buy.notSuits)), h('p', { style: { margin: 0 } }, h('b', null, 'What the real book gives you: '), clean(buy.physicalGives))),
-    arr(P.readNext).length ? sec('Read next', h('ul', null, arr(P.readNext).map(r => h('li', null, h('button', { style: { color: 'var(--accent2)', textAlign: 'left', textDecoration: 'underline' }, onClick: () => { S.tab = 'explore'; doSearch(clean(r.title) + ' ' + clean(r.author)); } }, clean(r.title)), r.author ? ' — ' + clean(r.author) : '')))) : null,
-    reviewForm(metas[S.cur]), h('div', { class: 'row', style: { marginTop: '14px' } }, readBtn(metas[S.cur]), wantBtn(metas[S.cur]))];
-}
-function setPage(p) {
-  S.page = p; if (S.cur) { progress[S.cur] = { page: p, t: Date.now() }; LS.set('progress', progress); }
-  render(); scrollTop();
-}
-function readerView() {
-  const id = S.cur, b = id && metas[id];
-  if (!b) return h('div', { class: 'view' }, emptyState('📖', 'No book open yet', 'Pick a book from Home or Explore and it opens here as a mini book.', () => { S.tab = 'explore'; render(); }, 'Explore books'));
-  const m = minis[id], full = m && !m.insufficient && hasAI() ? true : (m && !m.insufficient);
-  const v = h('div', { class: 'view' });
-  v.append(h('div', { class: 'rh' }, h('div', { style: { minWidth: 0 } }, h('div', { class: 'rt serif' }, b.title), h('div', { class: 'muted small' }, b.author)), h('div', { class: 'rbtns' }, readBtn(b), wantBtn(b))));
-  v.append(h('div', { class: 'rctl' },
-    h('button', { class: 'btn ghost sm', onClick: () => { settings.font = Math.max(14, (settings.font || 18) - 2); saveSettings(); render(); }, 'aria-label': 'Smaller text' }, 'A−'),
-    h('button', { class: 'btn ghost sm', onClick: () => { settings.font = Math.min(28, (settings.font || 18) + 2); saveSettings(); render(); }, 'aria-label': 'Larger text' }, 'A+')));
-  if (S.loading.has(id)) { v.append(loadingBox('Writing your mini book… this takes about 20-40 seconds.')); v.append(h('div', { class: 'page' }, pageCover(b, null))); return v; }
-  if (S.miniError[id]) v.append(errorBox(S.miniError[id], () => runMini(id), S.miniDetail[id]));
-  const names = full ? PAGE_NAMES : ['Cover', 'Overview'];
-  const last = names.length - 1;
-  if (S.page > last) S.page = 0;
-  v.append(h('div', { class: 'ptabs', role: 'tablist' }, names.map((nm, i) => h('button', { class: 'ptab' + (S.page === i ? ' on' : ''), role: 'tab', onClick: () => setPage(i) }, i === 0 ? 'Cover' : full ? `${i}. ${nm}` : nm))),
-    h('div', { class: 'pbar' }, h('i', { style: { width: (full ? S.page / 6 : S.page / 1) * 100 + '%' } })));
-  if (!full && !hasAI()) v.append(h('div', { class: 'banner' }, 'Want the full 6-page mini book (summary, lessons, exercises and a buy-or-skip guide)? Add your free Gemini key in Profile. ', h('button', { class: 'btn sm', style: { marginTop: '8px' }, onClick: () => { S.tab = 'profile'; render(); } }, 'Add key')));
-  if (m && m.insufficient) v.append(h('div', { class: 'banner' }, 'Not enough information to summarise this book accurately. Here is what the book data says.'));
-  const body = h('div', { class: 'page' }, S.page === 0 ? pageCover(b, full ? m : null) : full ? pageNumbered(S.page, m) : pageOverview(b));
-  let sx = 0, sy = 0;
-  body.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
-  body.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; if (Math.abs(dx) > 70 && Math.abs(dy) < 45) { if (dx < 0 && S.page < last) setPage(S.page + 1); if (dx > 0 && S.page > 0) setPage(S.page - 1); } }, { passive: true });
-  v.append(body, h('div', { class: 'pfoot' }, h('button', { class: 'btn ghost sm', disabled: S.page === 0, onClick: () => setPage(S.page - 1) }, '← Previous'), h('span', { class: 'pg' }, S.page === 0 ? 'Cover' : full ? `Page ${S.page} of 6` : 'Overview'), h('button', { class: 'btn sm', disabled: S.page === last, onClick: () => setPage(S.page + 1) }, 'Next →')));
-  return v;
-}
-
-/* ---- Library ---- */
-function libraryView() {
-  const v = h('div', { class: 'view' }, h('h1', { class: 'serif', style: { fontSize: '24px' } }, 'My Library'));
-  const reads = lib.filter(x => x.status === 'read'), wants = lib.filter(x => x.status === 'want');
-  v.append(h('div', { class: 'row', style: { marginTop: '10px' } }, h('button', { class: 'chip' + (S.libTab === 'read' ? ' on' : ''), onClick: () => { S.libTab = 'read'; render(); } }, `✓ Read (${reads.length})`), h('button', { class: 'chip' + (S.libTab === 'want' ? ' on' : ''), onClick: () => { S.libTab = 'want'; render(); } }, `☆ Want to read (${wants.length})`)));
-  const qin = h('input', { type: 'search', placeholder: 'Search your library…', value: S.libQ, 'aria-label': 'Search library' });
-  qin.addEventListener('input', () => { S.libQ = qin.value; drawList(); });
-  v.append(h('div', { class: 'field' }, qin));
-  const listBox = h('div'); v.append(listBox);
-  function drawList() {
-    const items = (S.libTab === 'read' ? reads : wants).filter(x => metas[x.id]).filter(x => { const m = metas[x.id], q = S.libQ.toLowerCase(); return !q || (m.title + ' ' + m.author).toLowerCase().includes(q); }).sort((a, b) => new Date(b.date) - new Date(a.date));
-    if (!items.length) { listBox.replaceChildren(emptyState('📚', S.libTab === 'read' ? 'No books read yet' : 'Nothing saved yet', 'Open a book and tap ' + (S.libTab === 'read' ? '"Mark as Read"' : '"Save"') + ' to add it here.', () => { S.tab = 'explore'; render(); }, 'Explore books')); return; }
-    listBox.replaceChildren(h('div', { class: 'grid' }, items.map(x => { const m = metas[x.id]; return h('div', null, h('button', { class: 'gb', onClick: () => openBook(m) }, coverTile(m), h('div', { class: 'gb-t' }, m.title), h('div', { class: 'gb-a' }, m.author), h('div', { class: 'gb-a' }, (m.topic || (m.cats && m.cats[0]) || '') + ' · ' + new Date(x.date).toLocaleDateString())), h('button', { class: 'btn ghost sm', style: { marginTop: '6px' }, onClick: () => { setStatus(x.id, x.status); render(); } }, 'Remove')); })));
-  }
-  drawList();
-  if (reads.length) {
-    const counts = {}; reads.forEach(x => { const m = metas[x.id] || {}; const t = m.topic || (m.cats && m.cats[0]) || 'Other'; counts[t] = (counts[t] || 0) + 1; });
-    v.append(h('h3', { class: 'sh' }, 'Your progress by topic'), h('div', { class: 'card' }, h('div', { class: 'chips wrap' }, Object.entries(counts).sort((a, b) => b[1] - a[1]).map(([t, n]) => h('span', { class: 'chip' }, `${t}: ${n}`)))));
-  }
-  v.append(h('hr', { class: 'd' }), h('div', { class: 'row' }, h('button', { class: 'btn ghost sm', onClick: exportData }, '⬇ Export library'), h('button', { class: 'btn ghost sm', onClick: importData }, '⬆ Import library')), h('p', { class: 'muted small', style: { marginTop: '8px' } }, 'Your library is saved in this browser. Export it now and then as a backup, or to move it to another device.'));
-  return v;
-}
-function exportData() {
-  const ids = new Set(lib.map(x => x.id)), m = {}; ids.forEach(id => { if (metas[id]) m[id] = metas[id]; });
-  download('book-guide-library.json', JSON.stringify({ app: 'the-book-guide', version: 1, user, lib, metas: m, progress }, null, 2), 'application/json');
-}
-function importData() {
-  const f = h('input', { type: 'file', accept: 'application/json,.json' });
-  f.addEventListener('change', () => {
-    const file = f.files && f.files[0]; if (!file) return;
-    const rd = new FileReader();
-    rd.onload = () => {
-      try {
-        const d = JSON.parse(rd.result);
-        if (!d || d.app !== 'the-book-guide' || !Array.isArray(d.lib)) throw new Error('bad');
-        d.lib.forEach(x => { if (x && typeof x.id === 'string' && (x.status === 'read' || x.status === 'want') && !inLib(x.id)) lib.push({ id: x.id, status: x.status, date: x.date || new Date().toISOString() }); });
-        Object.entries(d.metas || {}).forEach(([id, mm]) => { if (mm && typeof mm.title === 'string' && !metas[id]) metas[id] = mm; });
-        if (!user && d.user && Array.isArray(d.user.topics)) { user = d.user; LS.set('user', user); }
-        saveLib(); saveMetas(); toast('Library imported'); render();
-      } catch (e) { toast('That file is not a Book Guide backup'); }
-    };
-    rd.readAsText(file);
-  });
-  f.click();
-}
-
-/* ---- Profile ---- */
-function icsFile() {
-  const [hh, mm] = settings.reminder.time.split(':'), d = new Date();
-  const stamp = d.toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
-  const start = dateKey(d).replace(/-/g, '') + 'T' + hh + mm + '00';
-  return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//The Book Guide//EN', 'BEGIN:VEVENT', 'UID:bookguide-daily-' + hashStr(location.href) + '@bookguide', 'DTSTAMP:' + stamp, 'DTSTART:' + start, 'DURATION:PT15M', 'RRULE:FREQ=DAILY', "SUMMARY:Read today's book (The Book Guide)", 'DESCRIPTION:Open ' + location.href.split('#')[0] + ' for your new book of the day.', 'BEGIN:VALARM', 'ACTION:DISPLAY', 'DESCRIPTION:Your book for today is ready', 'TRIGGER:PT0M', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+    h('div', { class: 'greet' }, h('h1', null, g + ', ' + user.name + '.'), h('p', { class: 'muted' }, new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }))),
+    h('h3', { class: 'sh' }, 'Your book for today'),
+    dailyBox(),
+    libSection(),
+    h('h3', { class: 'sh' }, 'Your topics'),
+    h('div', { class: 'moods' }, userTopics().map(t => {
+      const inner = [h('span', { class: 'mood-i' }, topicInfo(t).e), h('span', { class: 'mood-l' }, t)];
+      return topicInfo(t).s.length ? h('button', { class: 'mood', onClick: () => { S.topic = t; S.topicFrom = 'home'; S.tab = 'topic'; render(); scrollTop(); } }, inner) : h('div', { class: 'mood' }, inner);
+    })));
 }
 function profileView() {
   const v = h('div', { class: 'view' }, h('h1', { class: 'serif', style: { fontSize: '24px' } }, 'Profile'));
-  if (!user) v.append(h('div', { class: 'banner' }, 'Set up your topics to get better book suggestions. ', h('button', { class: 'btn sm', style: { marginTop: '8px' }, onClick: () => onboarding() }, 'Set up now')));
-  const u = user || { name: '', topics: [], age: '', country: '', freq: '' };
-  const topics = new Set(u.topics);
-  const nameIn = h('input', { type: 'text', value: u.name || '', maxlength: 40 });
-  const ageIn = h('select', null, ['', 'Under 18', '18-24', '25-34', '35-44', '45-54', '55+'].map(o => h('option', { value: o, selected: o === (u.age || '') }, o || 'Prefer not to say')));
-  const countryIn = h('input', { type: 'text', value: u.country || '', maxlength: 40 });
-  const freqIn = h('select', null, [['', 'Prefer not to say'], ['rarely', 'Rarely'], ['sometimes', 'Sometimes'], ['often', 'Often']].map(([val, l]) => h('option', { value: val, selected: val === (u.freq || '') }, l)));
-  const saveBtn = h('button', { class: 'btn', style: { marginTop: '14px' }, onClick: () => {
-    if (topics.size < 3) { toast('Pick at least 3 topics'); return; }
-    user = { name: nameIn.value.trim(), topics: [...topics], age: ageIn.value, country: countryIn.value.trim(), freq: freqIn.value, joined: (user && user.joined) || new Date().toISOString() };
-    LS.set('user', user); dailyP = null; toast('Profile saved'); render();
-  } }, 'Save profile');
-  v.append(h('div', { class: 'card' }, h('h3', { class: 'serif' }, 'About you'), h('div', { class: 'field' }, h('label', null, 'First name (optional)'), nameIn),
-    h('div', { class: 'field' }, h('label', null, 'Your favourite topics (pick at least 3, or add your own)'), topicPicker(topics, () => {})),
-    h('div', { class: 'field' }, h('label', null, 'Age range (optional)'), ageIn), h('div', { class: 'field' }, h('label', null, 'Country (optional)'), countryIn), h('div', { class: 'field' }, h('label', null, 'How often do you read? (optional)'), freqIn), saveBtn,
-    h('p', { class: 'muted small', style: { marginTop: '10px' } }, 'Privacy: these details stay in this browser only. Nothing is sent to a server.')));
-  // reminder
-  const on = h('input', { type: 'checkbox', checked: settings.reminder.on }), tm = h('input', { type: 'time', value: settings.reminder.time });
-  on.addEventListener('change', async () => { settings.reminder.on = on.checked; saveSettings(); if (on.checked && 'Notification' in window && Notification.permission === 'default') { try { await Notification.requestPermission(); } catch (e) {} } toast(on.checked ? 'Daily reminder on' : 'Daily reminder off'); });
-  tm.addEventListener('change', () => { if (tm.value) { settings.reminder.time = tm.value; saveSettings(); } });
-  v.append(h('div', { class: 'card' }, h('h3', { class: 'serif' }, 'Daily reminder'),
-    h('div', { class: 'field' }, h('label', { style: { display: 'flex', gap: '8px', alignItems: 'center', fontSize: '15px', color: 'var(--text)' } }, on, 'Remind me about my daily book')),
-    h('div', { class: 'field' }, h('label', null, 'Time'), tm),
-    h('div', { class: 'row', style: { marginTop: '12px' } }, h('button', { class: 'btn ghost sm', onClick: () => download('book-guide-daily.ics', icsFile(), 'text/calendar') }, '📅 Add daily reminder to calendar')),
-    h('p', { class: 'muted small', style: { marginTop: '8px' } }, 'Browser reminders only work while this page is open. The calendar button is the reliable option: it adds a repeating event to your phone or computer calendar.')));
-  // AI
-  const keyIn = h('input', { type: 'password', value: settings.apiKey, placeholder: 'Paste your Gemini API key', autocomplete: 'off' }), modelIn = h('input', { type: 'text', value: settings.model });
-  v.append(h('div', { class: 'card' }, h('h3', { class: 'serif' }, 'AI mini books'),
-    CFG.PROXY_URL ? h('p', { class: 'muted small' }, 'AI mini books are already enabled on this site. You do not need a key.') : h('p', { class: 'muted small' }, 'Full 6-page mini books are written by Google Gemini. Get a free key at ', h('a', { href: 'https://aistudio.google.com/apikey', target: '_blank', rel: 'noopener' }, 'aistudio.google.com/apikey'), ' and paste it here. It is saved only in this browser.'),
-    CFG.PROXY_URL ? null : h('div', { class: 'field' }, h('label', null, 'Gemini API key'), keyIn),
-    h('div', { class: 'field' }, h('label', null, 'Model name (change it if you hit a limit)'), modelIn),
-    h('button', { class: 'btn sm', style: { marginTop: '12px' }, onClick: () => { settings.apiKey = keyIn.value.trim(); settings.model = modelIn.value.trim() || 'gemini-flash-latest'; saveSettings(); toast('Saved'); } }, 'Save')));
-  // feedback + data
-  v.append(h('div', { class: 'card' }, h('h3', { class: 'serif' }, 'Feedback and data'),
-    h('div', { class: 'row' }, h('button', { class: 'btn sm', onClick: () => openFeedback(null) }, '💬 Send feedback'), h('button', { class: 'btn ghost sm', onClick: exportData }, '⬇ Export my data'), h('button', { class: 'btn ghost sm', onClick: () => { if (confirm('Delete your profile, library, saved books and settings from this browser? This cannot be undone.')) { Object.keys(localStorage).filter(k => k.startsWith('bg_')).forEach(k => localStorage.removeItem(k)); location.reload(); } } }, '🗑 Delete all my data'))));
+  const f = { name: user.name || '', age: user.age || '', country: user.country || '', freq: user.freq || '' };
+  const topics = new Set(user.topics);
+  const text = (label, key, attrs) => { const el = h('input', Object.assign({ type: 'text', value: f[key] }, attrs)); el.addEventListener('input', () => { f[key] = el.value; }); return h('div', { class: 'field' }, h('label', null, label), el); };
+  const sel = (label, key, opts) => { const el = h('select', null, opts.map(([val, l]) => h('option', { value: val, selected: val === f[key] }, l))); el.addEventListener('change', () => { f[key] = el.value; }); return h('div', { class: 'field' }, h('label', null, label), el); };
+  v.append(h('div', { class: 'card' }, h('h3', { class: 'serif' }, 'About you'),
+    h('p', { class: 'muted small' }, 'Signed in as ' + user.email),
+    text('First name', 'name', { maxlength: 40 }),
+    sel('Age range (optional)', 'age', AGES.map(a => [a, a || 'Prefer not to say'])),
+    text('Country (optional)', 'country', { maxlength: 40 }),
+    sel('How often do you read? (optional)', 'freq', FREQS),
+    h('div', { class: 'field' }, h('label', null, 'Your topics (pick at least 3)'), topicPicker(topics, () => {})),
+    h('button', { class: 'btn', style: { marginTop: '14px' }, onClick: () => {
+      if (!f.name.trim()) { toast('Please enter your first name'); return; }
+      if (topics.size < 3) { toast('Pick at least 3 topics'); return; }
+      user = Object.assign({}, user, { name: f.name.trim(), age: f.age, country: f.country.trim(), freq: f.freq, topics: [...topics] });
+      accounts[user.email] = user; LS.set('accounts', accounts);
+      daily = null; U.set('daily', null); toast('Profile saved'); render();
+    } }, 'Save profile'),
+    h('p', { class: 'muted small', style: { marginTop: '10px' } }, 'Privacy: your details stay in this browser' + (CFG.SIGNUP_ENDPOINT ? ' and the sign-up form you agreed to.' : '. Nothing is sent to a server.'))));
+  v.append(h('div', { class: 'card' }, h('h3', { class: 'serif' }, 'Feedback'),
+    h('p', { class: 'muted small' }, 'Tell us how many stars you give The Book Guide and what you would like changed or added.'),
+    h('button', { class: 'btn', style: { marginTop: '10px' }, onClick: () => openFeedback() }, '💬 Send feedback')));
+  v.append(h('div', { class: 'card' }, h('h3', { class: 'serif' }, 'Account'),
+    h('div', { class: 'row', style: { marginTop: '10px' } },
+      h('button', { class: 'btn ghost sm', onClick: signOut }, 'Sign out'),
+      h('button', { class: 'btn ghost sm', onClick: () => {
+        if (!confirm('Delete your account, library and saved data from this browser? This cannot be undone.')) return;
+        const pre = 'bg_' + accId() + '_';
+        Object.keys(localStorage).filter(k => k.startsWith(pre)).forEach(k => localStorage.removeItem(k));
+        delete accounts[user.email]; LS.set('accounts', accounts); signOut();
+      } }, '🗑 Delete my account'))));
   return v;
 }
+/* ================= book data: real covers and details ================= */
+let metaCache = LS.get('meta', {});                 // book id -> details, shared on this device
+const saveMeta = () => { const ks = Object.keys(metaCache); if (ks.length > 300) ks.slice(0, ks.length - 300).forEach(k => delete metaCache[k]); LS.set('meta', metaCache); };
+const bookId = (t, a) => tkey(t).slice(0, 30) + '-' + tkey(a).slice(0, 14);
+const cleanDesc = s => String(s || '').replace(/<[^>]+>/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ').replace(/\s+/g, ' ').trim();
+const lastName = a => tkey(String(a || '').split(/[ ,]+/).filter(Boolean).pop());
+const titleMatch = (x, y) => { x = tkey(String(x).split(':')[0]); y = tkey(String(y).split(':')[0]); return !!x && !!y && (x === y || x.startsWith(y) || y.startsWith(x)); };
+const authorMatch = (list, a) => { const ln = lastName(a); return !ln || arr(list).some(n => tkey(n).includes(ln)); };
 
-/* ================= sheets ================= */
-function openAsk() {
-  const q = h('textarea', { rows: 3, placeholder: 'Ask about a book or topic. For example: "Which book should I read to build better money habits?"' });
-  const out = h('div', { class: 'ans' });
-  const send = h('button', { class: 'btn', style: { marginTop: '10px' }, onClick: async () => {
-    const text = q.value.trim(); if (!text) return;
-    if (!hasAI()) { out.textContent = errMsg(new Error('NO_KEY')); return; }
-    send.disabled = true; out.replaceChildren(h('span', { class: 'spin' }), 'Thinking…');
-    try { out.textContent = await askBook(text); } catch (e) { out.textContent = errMsg(e); }
-    send.disabled = false;
-  } }, 'Ask');
-  modal('Ask The Book Guide', h('div', null, h('div', { class: 'field' }, q), send, out));
+// Fallback for restricted windows that block fetch(): Google Books also answers through a script tag (JSONP).
+function jsonp(url, ms = 8000) {
+  return new Promise((res, rej) => {
+    const cb = 'bgcb' + Math.random().toString(36).slice(2), s = document.createElement('script');
+    const done = (fn, v) => { clearTimeout(t); delete window[cb]; s.remove(); fn(v); };
+    const t = setTimeout(() => done(rej, new Error('timeout')), ms);
+    window[cb] = d => done(res, d); s.onerror = () => done(rej, new Error('script blocked'));
+    s.src = url + '&callback=' + cb; document.head.append(s);
+  });
 }
-function openFeedback(book) {
-  let rating = 0, buy = '';
-  const starBox = h('div', { class: 'stars' }), buyBox = h('div', { class: 'row' }), txt = h('textarea', { rows: 3, placeholder: 'What would you change?' });
-  const drawS = () => starBox.replaceChildren(...[1, 2, 3, 4, 5].map(n => h('button', { class: n <= rating ? 'on' : '', 'aria-label': n + ' stars', onClick: () => { rating = n; drawS(); } }, '★')));
-  const drawB = () => buyBox.replaceChildren(...['Yes', 'Maybe', 'No'].map(o => h('button', { class: 'chip' + (buy === o ? ' on' : ''), onClick: () => { buy = o; drawB(); } }, o)));
-  drawS(); drawB();
-  const m = modal('Quick feedback', h('div', null, book ? h('p', { class: 'muted small' }, 'About: ' + book.title) : null,
-    h('div', { class: 'field' }, h('label', null, 'How good was the summary?'), starBox), h('div', { class: 'field' }, h('label', null, 'Would you buy the physical book after reading this?'), buyBox),
-    h('div', { class: 'field' }, h('label', null, 'Anything you would change? (optional)'), txt, feedbackNote()),
-    h('button', { class: 'btn', style: { marginTop: '14px' }, onClick: async () => {
-      if (!rating) { toast('Please give a star rating'); return; }
-      const entry = { date: new Date().toISOString(), book: book ? book.title : null, author: book ? book.author : '', rating, buy, text: txt.value.trim().slice(0, 1000) };
-      feedbackLog.push(entry); LS.set('feedback', feedbackLog);
-      await sendFeedback(entry);
-      m.close(); toast('Thank you for your feedback!');
-    } }, 'Send')));
+async function getJSON(url, ms = 8000) {
+  try { return await fetchJSON(url, ms); }
+  catch (e) { if (url.includes('googleapis.com/books')) return await jsonp(url, ms); throw e; }
 }
-function onboarding() {
-  let step = 1; const d = { name: user ? user.name : '', topics: new Set(user ? user.topics : []), age: '', country: '', freq: '', ok: false };
-  const box = h('div'); const m = modal('Welcome to The Book Guide', box);
-  function draw() {
-    const bar = h('div', { class: 'steps' }, [1, 2, 3].map(n => h('i', { class: n <= step ? 'on' : '' })));
-    if (step === 1) {
-      const nm = h('input', { type: 'text', value: d.name, maxlength: 40, placeholder: 'Your first name (optional)' });
-      const ck = h('input', { type: 'checkbox', checked: d.ok });
-      box.replaceChildren(bar, h('p', { class: 'muted' }, 'Understand a book first, then decide if the physical copy is worth buying.'), h('div', { class: 'field' }, nm),
-        h('label', { style: { display: 'flex', gap: '8px', marginTop: '14px', fontSize: '14px', alignItems: 'flex-start' } }, ck, 'I understand my name, topics and library are saved only in this browser, and I can delete them any time in Profile.'),
-        h('div', { class: 'row', style: { marginTop: '16px' } }, h('button', { class: 'btn', onClick: () => { d.name = nm.value.trim(); d.ok = ck.checked; if (!d.ok) { toast('Please tick the box to continue'); return; } step = 2; draw(); } }, 'Next'), h('button', { class: 'btn ghost', onClick: () => m.close() }, 'Skip for now')));
-    } else if (step === 2) {
-      const nextBtn = h('button', { class: 'btn', onClick: () => { if (d.topics.size < 3) { toast('Pick at least 3 topics'); return; } step = 3; draw(); } }, 'Next');
-      box.replaceChildren(bar, h('p', { class: 'muted' }, 'Pick at least 3 topics you enjoy. You can add your own too.'), topicPicker(d.topics, () => {}), h('div', { class: 'row', style: { marginTop: '16px' } }, h('button', { class: 'btn ghost', onClick: () => { step = 1; draw(); } }, 'Back'), nextBtn));
-    } else {
-      const age = h('select', null, ['', 'Under 18', '18-24', '25-34', '35-44', '45-54', '55+'].map(o => h('option', { value: o }, o || 'Prefer not to say')));
-      const country = h('input', { type: 'text', maxlength: 40 });
-      const freq = h('select', null, [['', 'Prefer not to say'], ['rarely', 'Rarely'], ['sometimes', 'Sometimes'], ['often', 'Often']].map(([val, l]) => h('option', { value: val }, l)));
-      box.replaceChildren(bar, h('p', { class: 'muted' }, 'Optional. You can skip all of these.'), h('div', { class: 'field' }, h('label', null, 'Age range'), age), h('div', { class: 'field' }, h('label', null, 'Country'), country), h('div', { class: 'field' }, h('label', null, 'How often do you read?'), freq),
-        h('div', { class: 'row', style: { marginTop: '16px' } }, h('button', { class: 'btn ghost', onClick: () => { step = 2; draw(); } }, 'Back'), h('button', { class: 'btn', onClick: () => {
-          user = { name: d.name, topics: [...d.topics], age: age.value, country: country.value.trim(), freq: freq.value, joined: new Date().toISOString() };
-          LS.set('user', user); dailyP = null; m.close(); toast('You are all set!'); render();
-        } }, 'Finish')));
+async function fetchJSON(url, ms = 8000) {
+  for (let i = 0; i < 2; i++) {
+    // No AbortController here: some preview windows cannot pass an AbortSignal and the request never leaves. A timer race does the same job.
+    let to;
+    try {
+      const r = await Promise.race([fetch(url), new Promise((_, rej) => { to = setTimeout(() => rej(new Error('timeout')), ms); })]);
+      clearTimeout(to);
+      if (r.status === 429 || r.status >= 500) { await new Promise(s => setTimeout(s, 1200)); continue; }
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return await r.json();
+    } catch (e) { clearTimeout(to); if (i) throw e; }
+  }
+  throw new Error('busy');
+}
+const gbUrl = (q, max = 10) => 'https://www.googleapis.com/books/v1/volumes?q=' + encodeURIComponent(q) + '&maxResults=' + max + '&printType=books&langRestrict=en' + (CFG.GB_KEY ? '&key=' + encodeURIComponent(CFG.GB_KEY) : '');
+
+function fromGB(it, topic, seed) {
+  const v = it.volumeInfo || {}, ids = arr(v.industryIdentifiers);
+  const isbn = (ids.find(i => i.type === 'ISBN_13') || ids.find(i => i.type === 'ISBN_10') || {}).identifier || '';
+  const im = v.imageLinks || {};
+  const cover = (im.thumbnail || im.smallThumbnail || '').replace(/^http:/, 'https:').replace('&edge=curl', '').replace(/zoom=\d/, 'zoom=2');
+  const title = seed ? seed.t : v.title, author = seed ? seed.a : arr(v.authors).join(', ');
+  return { id: bookId(title, author), title, author, topic: topic || arr(v.categories)[0] || '', isbn, pages: v.pageCount || 0, rating: v.ratingsCount >= 10 ? v.averageRating || 0 : 0, ratings: v.ratingsCount || 0,
+    desc: cleanDesc(v.description), cover, cover2: isbn ? 'https://covers.openlibrary.org/b/isbn/' + isbn + '-L.jpg?default=false' : '', src: 'gb' };
+}
+async function fromOL(seed, topic) {
+  const j = await getJSON('https://openlibrary.org/search.json?title=' + encodeURIComponent(seed.t) + '&author=' + encodeURIComponent(seed.a) + '&limit=5&fields=title,author_name,cover_i,isbn,number_of_pages_median');
+  const d = arr(j.docs).find(x => titleMatch(x.title, seed.t) && authorMatch(x.author_name, seed.a) && x.cover_i);
+  if (!d) return null;
+  return { id: bookId(seed.t, seed.a), title: seed.t, author: seed.a, topic, isbn: arr(d.isbn)[0] || '', pages: d.number_of_pages_median || 0, rating: 0, ratings: 0, desc: '', cover: 'https://covers.openlibrary.org/b/id/' + d.cover_i + '-L.jpg', cover2: '', src: 'ol' };
+}
+// Details for a known book. Cached. If every source fails we still return the book (partial) so the page never shows an error.
+async function getMeta(seed, topic) {
+  const id = bookId(seed.t, seed.a);
+  if (metaCache[id]) return metaCache[id];
+  let best = null;
+  try {
+    const j = await getJSON(gbUrl('intitle:"' + seed.t + '" inauthor:"' + seed.a + '"'));
+    const ok = arr(j.items).filter(it => it.volumeInfo && titleMatch(it.volumeInfo.title, seed.t) && authorMatch(it.volumeInfo.authors, seed.a));
+    const score = it => { const v = it.volumeInfo, im = v.imageLinks || {}; return (im.thumbnail ? 4 : 0) + (cleanDesc(v.description).length > 150 ? 2 : 0) + (v.pageCount > 100 ? 1 : 0) + (arr(v.industryIdentifiers).length ? 1 : 0); };
+    ok.sort((a, b) => score(b) - score(a));
+    if (ok.length) {
+      best = fromGB(ok[0], topic, seed);
+      const longest = ok.map(it => cleanDesc(it.volumeInfo.description)).sort((a, b) => b.length - a.length)[0];
+      if (longest.length > best.desc.length) best.desc = longest;
     }
+  } catch (e) { console.warn('Google Books:', e.message); }
+  if (!best || !best.cover) {
+    try { const ol = await fromOL(seed, topic); if (ol) best = best ? Object.assign(best, { cover: ol.cover, pages: best.pages || ol.pages, isbn: best.isbn || ol.isbn }) : ol; } catch (e) { console.warn('Open Library:', e.message); }
   }
-  draw();
+  if (!best) return { id, title: seed.t, author: seed.a, topic, isbn: '', pages: 0, rating: 0, ratings: 0, desc: '', cover: '', cover2: '', src: 'none', partial: true };
+  metaCache[id] = best; saveMeta(); return best;
+}
+// A reader's own topic has no seed books, so search for a good one.
+async function customPick(topic, n) {
+  const j = await getJSON(gbUrl('subject:' + topic, 30));
+  const seen = new Set(U.get('seen', []));
+  const ok = arr(j.items).filter(it => { const v = it.volumeInfo || {}; return v.title && arr(v.authors).length && (v.imageLinks || {}).thumbnail && cleanDesc(v.description).length >= 250 && v.pageCount >= 80 && !seen.has(bookId(v.title, arr(v.authors).join(', '))); });
+  if (!ok.length) return null;
+  const m = fromGB(ok[hashStr(dateKey() + topic + n) % ok.length], topic, null);
+  metaCache[m.id] = m; saveMeta(); return m;
 }
 
-/* ================= reminders + start ================= */
-setInterval(() => {
-  const r = settings.reminder; if (!r.on) return;
-  const n = new Date(), hm = String(n.getHours()).padStart(2, '0') + ':' + String(n.getMinutes()).padStart(2, '0');
-  if (hm === r.time && LS.get('lastRemind', '') !== dateKey()) {
-    LS.set('lastRemind', dateKey()); toast('📖 Your book for today is ready');
-    if ('Notification' in window && Notification.permission === 'granted') { try { new Notification('The Book Guide', { body: 'Your book for today is ready.' }); } catch (e) {} }
+/* ================= cover image with fallbacks ================= */
+function coverEl(m, cls) {
+  const box = h('div', { class: 'cover' + (cls ? ' ' + cls : '') });
+  const ph = () => { box.replaceChildren(h('div', { class: 'ph' }, h('b', null, m.title), h('span', null, m.author))); };
+  const urls = [m.cover, m.cover2].filter(Boolean);
+  const load = i => {
+    if (i >= urls.length) return ph();
+    const img = h('img', { alt: 'Cover of ' + m.title, loading: 'lazy', referrerpolicy: 'no-referrer' });
+    img.onerror = () => load(i + 1);
+    img.onload = () => { if (img.naturalWidth < 60) load(i + 1); };   // Google returns a tiny blank image when it has no cover
+    img.src = urls[i]; box.replaceChildren(img);
+  };
+  load(0); return box;
+}
+
+/* ================= picking the book of the day ================= */
+const dayNum = () => { const d = new Date(); return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5); };
+// Rotates through the reader's topics day by day, so every chosen topic gets its turn. n = "show me another".
+function candidate(n, onlySeeded) {
+  let pool = userTopics().filter(t => !onlySeeded || topicInfo(t).s.length);
+  if (!pool.length) pool = ['Self-Improvement', 'Habits', 'Personal Finance'];
+  const topic = pool[(hashStr(user.email) + dayNum() + n) % pool.length], info = topicInfo(topic);
+  if (!info.s.length) return { topic, custom: true };
+  const seen = new Set(U.get('seen', []));
+  let list = info.s.filter(b => !seen.has(bookId(b.t, b.a)));
+  if (!list.length) list = info.s;
+  const b = list[hashStr(dateKey() + topic + n) % list.length];
+  return { topic, t: b.t, a: b.a };
+}
+function addSeen(id) { const s = U.get('seen', []); if (id && !s.includes(id)) { s.push(id); U.set('seen', s.slice(-400)); } }
+async function resolveDaily() {
+  const today = dateKey();
+  if (!daily || daily.date !== today) {
+    if (daily && daily.id) addSeen(daily.id);          // yesterday's book is not suggested again soon
+    daily = { date: today, n: 0 };
   }
-}, 20000);
+  for (let tries = 0; tries < 4; tries++) {
+    if (!daily.t) {
+      const c = candidate(daily.n + tries, tries >= 2);
+      daily.topic = c.topic;
+      if (c.custom) { try { const m = await customPick(c.topic, daily.n + tries); if (m) { Object.assign(daily, { t: m.title, a: m.author, id: m.id }); U.set('daily', daily); return m; } } catch (e) { console.warn(e.message); } continue; }
+      daily.t = c.t; daily.a = c.a;
+    }
+    const m = await getMeta({ t: daily.t, a: daily.a }, daily.topic);
+    daily.id = m.id; U.set('daily', daily); return m;
+  }
+  const c = candidate(daily.n, true); daily.topic = c.topic; daily.t = c.t; daily.a = c.a;
+  const m = await getMeta({ t: c.t, a: c.a }, c.topic); daily.id = m.id; U.set('daily', daily); return m;
+}
+
+/* ================= library (saved / read) ================= */
+function libEntry(m) { return lib.find(x => x.id === m.id); }
+function setStatus(m, status) {
+  const e = libEntry(m);
+  if (e && e.status === status) lib = lib.filter(x => x.id !== m.id);
+  else { lib = lib.filter(x => x.id !== m.id); lib.unshift({ id: m.id, title: m.title, author: m.author, topic: m.topic, cover: m.cover, cover2: m.cover2, status, ts: Date.now() }); if (status === 'read') addSeen(m.id); }
+  U.set('lib', lib);
+}
+
+/* ================= daily book card ================= */
+function dailyBox() { const box = h('div'); fillDaily(box); return box; }
+async function fillDaily(box) {
+  rc(box, h('div', { class: 'skel', role: 'status', 'aria-label': 'Loading your book' }));
+  let m;
+  try { m = await resolveDaily(); } catch (e) { console.warn(e); }
+  if (!m) { const c = candidate(0, true); m = { id: bookId(c.t, c.a), title: c.t, author: c.a, topic: c.topic, desc: '', cover: '', cover2: '', pages: 0, rating: 0, partial: true }; }
+  drawDaily(box, m);
+}
+function shortDesc(s) {
+  if (!s) return '';
+  if (s.length <= 320) return s;
+  const cut = s.slice(0, 320), i = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
+  return (i > 140 ? cut.slice(0, i + 1) : cut.replace(/\s+\S*$/, '') + '…');
+}
+function drawDaily(box, m) {
+  const e = libEntry(m), refresh = () => drawDaily(box, m);
+  const meta = [m.pages ? m.pages + ' pages' : '', m.rating ? '★ ' + m.rating.toFixed(1) + ' (' + m.ratings + ' ratings)' : ''].filter(Boolean).join(' · ');
+  rc(box, h('div', { class: 'dcard' },
+    h('div', { class: 'dtop' }, coverEl(m),
+      h('div', { class: 'dinfo' }, h('span', { class: 'tag' }, topicInfo(m.topic).e + ' ' + m.topic), h('h2', { class: 'serif' }, m.title), h('div', { class: 'dby' }, 'by ' + m.author), meta ? h('div', { class: 'dmeta' }, meta) : null)),
+    m.desc ? h('p', { class: 'ddesc' }, shortDesc(m.desc)) : null,
+    m.partial ? h('p', { class: 'why' }, "We couldn't load the cover and details just now. ", h('button', { class: 'link', onClick: () => { delete metaCache[m.id]; fillDaily(box); } }, 'Try again')) : null,
+    h('p', { class: 'why' }, 'Picked for you because you chose ' + m.topic + '.'),
+    h('div', { class: 'dacts' },
+      h('button', { class: 'btn', onClick: () => openBook(m) }, '📖 Read the 6-page mini book'),
+      h('button', { class: 'btn ghost', onClick: () => { setStatus(m, 'saved'); refresh(); renderLib(); } }, e && e.status === 'saved' ? '★ Saved' : '☆ Save'),
+      h('button', { class: 'btn ghost', onClick: () => { setStatus(m, 'read'); refresh(); renderLib(); } }, e && e.status === 'read' ? '✓ Read' : 'Mark as read'),
+      h('button', { class: 'btn ghost', onClick: () => { addSeen(m.id); daily = { date: dateKey(), n: (daily ? daily.n : 0) + 1 }; U.set('daily', daily); fillDaily(box); } }, '🔄 Show me another'))));
+}
+function libSection() { const s = h('div', { id: 'libsec' }); renderLib(s); return s; }
+function renderLib(el) {
+  el = el || $('#libsec'); if (!el) return;
+  if (!lib.length) { rc(el); return; }
+  rc(el, h('h3', { class: 'sh' }, 'Your library'), h('div', { class: 'libr' }, lib.map(x => h('button', { class: 'lib-i', onClick: () => openBook(metaCache[x.id] || { id: x.id, title: x.title, author: x.author, topic: x.topic || '', cover: x.cover, cover2: x.cover2, desc: '', pages: 0 }) },
+    h('div', { style: { position: 'relative' } }, x.status === 'read' ? h('span', { class: 'badge' }, '✓ read') : h('span', { class: 'badge' }, '★'), coverEl(x, 'sm')), x.title))));
+}
+/* ================= AI mini book =================
+   Three requests run at the same time (pages 1-2, 3-4, 5-6). Each page appears as soon as its request returns,
+   so the first pages are ready in a few seconds instead of waiting for the whole book. */
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const isStr = s => typeof s === 'string' && s.trim().length > 0;
+const strs = x => arr(x).filter(isStr);
+let minis = LS.get('minis', {});
+function saveMinis() { const ks = Object.keys(minis).sort((a, b) => (minis[a].ts || 0) - (minis[b].ts || 0)); while (ks.length > 40) delete minis[ks.shift()]; LS.set('minis', minis); }
+const GEN = {};                       // book id -> { a, b, c: {state:'loading'|'done'|'error', data, err, detail}, insufficient }
+const PARTS = ['a', 'b', 'c'];
+const PAGE_NAMES = ['Cover', 'Overview', 'Author', 'Lessons', 'Recap', 'Practice', 'Closing'];
+const PAGE_PART = [null, 'a', 'a', 'b', 'b', 'c', 'c'];
+
+const SYSTEM = `You write short "mini books" that help a reader understand a real, published non-fiction book BEFORE they decide to buy the physical copy.
+Accuracy matters more than length. Follow these rules:
+- Use only what is in the book data and what you reliably know about this real book. Never invent facts, quotes, statistics, studies, chapter titles, dates or author details. If you are not sure, leave it out or say less.
+- If you do not reliably know this book and the data is too thin to summarise it accurately, return exactly {"insufficient":true}.
+- Paraphrase in your own words. Never copy long passages from the book.
+- Plain text only. No markdown symbols such as *, # or backticks.
+- Simple English at about Grade 7 level. Sentences under 20 words. Everyday words. Explain any technical word right away. Warm, friendly tone, like explaining to a smart friend. Paragraphs of 2-3 sentences.
+- Return ONLY valid JSON in exactly the shape requested. No text before or after it.`;
+function factSheet(b) {
+  return `BOOK DATA
+Title: ${b.title}
+Author: ${b.author}
+Topic: ${b.topic || 'non-fiction'}
+Page count: ${b.pages || 'unknown'}
+Publisher description: ${(b.desc || 'none').slice(0, 2500)}`;
+}
+function partPrompt(b, k) {
+  const head = factSheet(b) + '\n\n';
+  if (k === 'a') return head + `Write PART A of the mini book (pages 1 and 2). Return JSON with exactly this shape:
+{
+ "hook": "one line on why this book matters",
+ "page1": {
+  "inOneMinute": "3-4 sentences summarising the whole book",
+  "youWillGet": ["4 short benefits for the reader"],
+  "whoFor": "2 sentences",
+  "glance": {"mainIdea": "", "problem": "", "promise": ""},
+  "isThemes": false,
+  "inside": [{"part": "", "line": "one plain line"}],
+  "story": [{"heading": "", "text": "short paragraph"}]
+ },
+ "page2": {"author": ["2 short paragraphs"], "quickFacts": ["up to 3 quick facts"]}
+}
+Notes: "story" walks through the book from start to end in 3-4 short paragraphs, 200-280 words in total. "inside" lists the real parts or chapters only if you are sure; otherwise describe 4-5 main themes and set "isThemes" to true. "author" is 120-180 words in total and holds only what you reliably know about the author; if you know little, write less and give fewer quick facts. Never guess dates, awards or sales numbers.`;
+  if (k === 'b') return head + `Write PART B of the mini book (pages 3 and 4). Return JSON with exactly this shape:
+{
+ "page3": {"lessons": [{"title": "", "text": "2-3 simple sentences", "example": "one-line real-life example"}]},
+ "page4": {"remember": ["6 one-liners"], "bigIdea": "one sentence", "mistakes": ["2 common mistakes when applying the book"]}
+}
+Notes: "lessons" has exactly 6 items and each one is a real teaching of this book.`;
+  return head + `Write PART C of the mini book (pages 5 and 6). Return JSON with exactly this shape:
+{
+ "page5": {"exercises": [{"title": "", "steps": ["simple steps"], "time": "e.g. 10 minutes"}], "reflectionQuestions": []},
+ "page6": {"whoShouldRead": "2 sentences", "whoMightSkip": "2 sentences", "buy": {"suits": "who should buy the physical book", "notSuits": "who can skip it", "physicalGives": "one line on what the physical book gives that a summary cannot"}}
+}
+Notes: give 3 exercises with 3-4 steps each. If the book is purely theoretical, leave "exercises" empty and give 4 "reflectionQuestions" instead.`;
+}
+const VALID = {
+  a: m => m && isStr((m.page1 || {}).inOneMinute) && strs((m.page1 || {}).youWillGet).length >= 2 && strs((m.page2 || {}).author).length >= 1,
+  b: m => m && arr((m.page3 || {}).lessons).filter(l => l && isStr(l.title) && isStr(l.text)).length >= 3 && strs((m.page4 || {}).remember).length >= 3,
+  c: m => m && m.page6 && isStr(m.page6.whoShouldRead) && (arr((m.page5 || {}).exercises).length || strs((m.page5 || {}).reflectionQuestions).length)
+};
+function parseJSON(t) {
+  t = String(t || '').trim().replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
+  try { return JSON.parse(t); } catch (e) { const a = t.indexOf('{'), z = t.lastIndexOf('}'); if (a >= 0 && z > a) return JSON.parse(t.slice(a, z + 1)); throw e; }
+}
+function errDetail(txt) {
+  try { const j = JSON.parse(txt); let d = j.detail || (j.error && (j.error.message || j.error)) || ''; try { const k = JSON.parse(d); d = (k.error && k.error.message) || d; } catch (e) {} return String(d).slice(0, 240); }
+  catch (e) { return String(txt).slice(0, 240); }
+}
+function errMsg(e) {
+  const m = (e && e.message) || '';
+  if (m === 'QUOTA') return 'The free AI limit is used up for now. Wait a minute and try again.';
+  if (m === 'NET') return 'No internet connection, or the AI service could not be reached. Try again.';
+  if (m === 'TIMEOUT') return 'The AI took too long to answer. Try again.';
+  if (/^API (400|401|403)$/.test(m)) return 'The AI service did not accept the request (' + m.slice(4) + '). The site owner needs to check the Gemini key in Cloudflare.';
+  if (m === 'API 404') return 'The AI model name was not found (404). The site owner needs to check the model name in Cloudflare.';
+  if (/^API 5/.test(m)) return "Google's AI is busy right now (" + m.slice(4) + '). Wait a minute and try again.';
+  if (m === 'BAD') return 'The AI sent back an incomplete answer. Try again.';
+  return 'Something went wrong. Please try again.';
+}
+async function callAI(prompt, system) {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    let r, to;
+    try {
+      r = await Promise.race([fetch(CFG.PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prompt, system, json: true }) }), new Promise((_, rej) => { to = setTimeout(() => rej(new Error('TIMEOUT')), 50000); })]);
+      clearTimeout(to);
+    } catch (e) {
+      clearTimeout(to); if (attempt === 0) { await sleep(1500); continue; }
+      const er = new Error(e && e.message === 'TIMEOUT' ? 'TIMEOUT' : 'NET');
+      er.detail = 'The browser said: "' + (e && e.message) + '". If you are looking at this inside a preview window, open the live site instead. Preview windows block outside connections.';
+      throw er;
+    }
+    if (!r.ok) {
+      let detail = ''; try { detail = errDetail(await r.text()); } catch (e) {}
+      if ((r.status >= 500 || r.status === 429) && attempt === 0) { await sleep(r.status === 429 ? 3000 : 2000); continue; }
+      const err = new Error(r.status === 429 ? 'QUOTA' : 'API ' + r.status); err.detail = detail; throw err;
+    }
+    const j = await r.json(); return j.text || '';
+  }
+}
+async function runPart(b, g, k) {
+  g[k] = { state: 'loading' }; refreshReader(b.id);
+  try {
+    let data = null, last = '';
+    for (let i = 0; i < 2 && !data; i++) {
+      last = await callAI(partPrompt(b, k), SYSTEM);
+      try {
+        const m = parseJSON(last);
+        if (m && m.insufficient) { g.insufficient = true; g[k] = { state: 'done', data: m }; refreshReader(b.id); return; }
+        if (VALID[k](m)) data = m;
+      } catch (e) {}
+    }
+    if (!data) { const e = new Error('BAD'); e.detail = 'Part ' + k.toUpperCase() + ', answer length: ' + last.length + ' characters.'; throw e; }
+    g[k] = { state: 'done', data };
+  } catch (e) { g[k] = { state: 'error', err: errMsg(e), detail: e && e.detail ? String(e.detail) : '' }; }
+  if (PARTS.every(x => g[x] && g[x].state === 'done') && !g.insufficient) { minis[b.id] = { ts: Date.now(), a: g.a.data, b: g.b.data, c: g.c.data }; saveMinis(); }
+  refreshReader(b.id);
+}
+function startMini(b) {
+  if (!CFG.PROXY_URL) return;
+  if (minis[b.id]) { const m = minis[b.id]; GEN[b.id] = { a: { state: 'done', data: m.a }, b: { state: 'done', data: m.b }, c: { state: 'done', data: m.c } }; return; }
+  if (GEN[b.id]) return;
+  const g = GEN[b.id] = {}; PARTS.forEach(k => runPart(b, g, k));
+}
+function restartMini(b) { delete GEN[b.id]; startMini(b); refreshReader(b.id); }
+
+/* ================= reader ================= */
+function openBook(m) {
+  if (S.tab !== 'reader') S.from = S.tab;
+  S.cur = m; S.page = (progress[m.id] || 0); S.tab = 'reader';
+  startMini(m); render(); scrollTop();
+}
+function openSeed(x, topic) { toast('Opening ' + x.t + '…'); getMeta({ t: x.t, a: x.a }, topic).then(openBook); }
+function goPage(i) { S.page = i; if (S.cur) { progress[S.cur.id] = i; U.set('progress', progress); } drawReader(); scrollTop(); }
+function refreshReader(id) { if (S.tab === 'reader' && S.cur && S.cur.id === id) drawReader(); }
+function readerView() {
+  const b = S.cur; if (!b) { S.tab = 'home'; return homeView(); }
+  const e = libEntry(b), font = d => { settings.font = Math.max(14, Math.min(26, (settings.font || 18) + d)); saveSettings(); render(); };
+  const v = h('div', { class: 'view rd' },
+    h('div', { class: 'rd-head' }, h('button', { class: 'icon-btn', onClick: () => { S.tab = S.from || 'home'; render(); scrollTop(); } }, '← Back'),
+      h('div', { class: 'row', style: { gap: '6px', flexWrap: 'nowrap' } }, h('button', { class: 'icon-btn', 'aria-label': 'Smaller text', onClick: () => font(-2) }, 'A−'), h('button', { class: 'icon-btn', 'aria-label': 'Larger text', onClick: () => font(2) }, 'A+'))),
+    h('h1', { class: 'serif rd-t' }, b.title), h('div', { class: 'muted' }, 'by ' + b.author),
+    h('div', { class: 'dacts' },
+      h('button', { class: 'btn ghost sm', onClick: () => { setStatus(b, 'saved'); render(); } }, e && e.status === 'saved' ? '★ Saved' : '☆ Save'),
+      h('button', { class: 'btn ghost sm', onClick: () => { setStatus(b, 'read'); render(); } }, e && e.status === 'read' ? '✓ Read' : 'Mark as read')),
+    h('div', { id: 'rd-tabs', class: 'tabs', role: 'tablist' }), h('div', { id: 'rd-body' }));
+  queueMicrotask(drawReader);
+  return v;
+}
+function drawReader() {
+  const tabs = $('#rd-tabs'), body = $('#rd-body'); if (!tabs || !body || !S.cur) return;
+  const b = S.cur, g = GEN[b.id] || {};
+  rc(tabs, PAGE_NAMES.map((n, i) => h('button', { class: 'chip' + (S.page === i ? ' on' : ''), role: 'tab', 'aria-selected': S.page === i ? 'true' : 'false', onClick: () => goPage(i) }, i ? i + '. ' + n : n)));
+  rc(body, pageContent(b, g, S.page), pager());
+}
+function pager() {
+  const i = S.page;
+  return h('div', { class: 'pager' },
+    h('button', { class: 'btn ghost', disabled: i === 0, onClick: () => goPage(i - 1) }, '← Previous'),
+    h('span', { class: 'muted small' }, i === 0 ? 'Cover' : 'Page ' + i + ' of 6'),
+    h('button', { class: 'btn', disabled: i === 6, onClick: () => goPage(i + 1) }, i === 0 ? 'Start →' : 'Next →'));
+}
+function errBox(msg, detail, onRetry) {
+  return h('div', { class: 'err' }, h('p', null, msg), detail ? h('p', { class: 'muted small' }, detail) : null, h('button', { class: 'btn sm', onClick: onRetry }, 'Try again'));
+}
+function pageContent(b, g, i) {
+  if (i === 0) return coverPage(b, g);
+  if (!CFG.PROXY_URL) return sec('', para('AI mini books are not set up on this site yet. The site owner needs to add the Cloudflare worker address as PROXY_URL.'));
+  if (g.insufficient) return h('div', null, h('div', { class: 'banner' }, 'There is not enough reliable information to summarise this book accurately.'), b.desc ? sec('What the book data says', para(shortDesc(b.desc))) : null, h('button', { class: 'btn sm', style: { marginTop: '12px' }, onClick: () => restartMini(b) }, 'Try again'));
+  const k = PAGE_PART[i], st = g[k];
+  if (!st || st.state === 'loading') return h('div', null, h('div', { class: 'skel', role: 'status', 'aria-label': 'Writing this page' }), h('p', { class: 'muted small', style: { marginTop: '10px' } }, 'Writing this page… it usually takes a few seconds.'));
+  if (st.state === 'error') return errBox(st.err, st.detail, () => runPart(b, g, k));
+  return [null, p1, p2, p3, p4, p5, p6][i](b, st.data);
+}
+function coverPage(b, g) {
+  const all = PARTS.every(k => g[k] && g[k].state === 'done') && !g.insufficient, anyErr = PARTS.some(k => g[k] && g[k].state === 'error');
+  const mins = all ? Math.max(5, Math.round(PARTS.reduce((n, k) => n + JSON.stringify(g[k].data).length, 0) / 5.8 / 200)) : 0;
+  const status = !CFG.PROXY_URL ? 'AI mini books are not set up on this site yet.' : g.insufficient ? 'Not enough reliable information to summarise this book.' : all ? 'Ready · about ' + mins + ' min read' : anyErr ? 'Some pages could not be written. Open that page and tap Try again.' : 'Writing your mini book… each page appears as soon as it is ready.';
+  const hook = g.a && g.a.state === 'done' && g.a.data && isStr(g.a.data.hook) ? g.a.data.hook : '';
+  return h('div', { class: 'cvr' }, coverEl(b, 'lg'), b.topic ? h('span', { class: 'tag' }, topicInfo(b.topic).e + ' ' + b.topic) : null,
+    hook ? h('p', { class: 'ddesc' }, hook) : (b.desc ? h('p', { class: 'ddesc' }, shortDesc(b.desc)) : null), h('p', { class: 'why' }, status));
+}
+const sec = (title, ...kids) => h('div', { class: 'sec' }, title ? h('h3', { class: 'serif' }, title) : null, kids);
+const para = t => h('p', { class: 'para' }, t);
+const bullets = items => h('ul', { class: 'bl' }, strs(items).map(t => h('li', null, t)));
+const callout = (label, t) => isStr(t) ? h('div', { class: 'callout' }, h('b', null, label), h('span', null, t)) : null;
+
+function p1(b, d) {
+  const p = d.page1 || {}, g = p.glance || {}, inside = arr(p.inside).filter(x => x && isStr(x.part)), story = arr(p.story).filter(x => x && isStr(x.text));
+  const cards = [['Main idea', g.mainIdea], ['The problem', g.problem], ['The promise', g.promise]].filter(x => isStr(x[1]));
+  return h('div', null,
+    sec('In one minute', para(p.inOneMinute)),
+    strs(p.youWillGet).length ? sec('What you will get', bullets(p.youWillGet)) : null,
+    isStr(p.whoFor) ? sec('Who it is for', para(p.whoFor)) : null,
+    cards.length ? sec('The book at a glance', h('div', { class: 'glance' }, cards.map(x => h('div', { class: 'gcard' }, h('b', null, x[0]), h('span', null, x[1]))))) : null,
+    inside.length ? sec(p.isThemes ? 'Main themes' : 'Inside the book', h('ul', { class: 'bl' }, inside.map(x => h('li', null, h('b', null, x.part), isStr(x.line) ? ' — ' + x.line : '')))) : null,
+    story.length ? sec('The story of the book', story.map(x => h('div', null, isStr(x.heading) ? h('h4', null, x.heading) : null, para(x.text)))) : null);
+}
+function p2(b, d) {
+  const p = d.page2 || {};
+  return h('div', null, sec('About the author', strs(p.author).map(para)), strs(p.quickFacts).length ? sec('Quick facts', bullets(p.quickFacts)) : null);
+}
+function p3(b, d) {
+  const ls = arr((d.page3 || {}).lessons).filter(l => l && isStr(l.title) && isStr(l.text));
+  return sec('Key lessons', ls.map((l, i) => h('div', { class: 'lesson' }, h('b', null, (i + 1) + '. ' + l.title), h('p', null, l.text), isStr(l.example) ? h('p', { class: 'eg' }, 'Example: ' + l.example) : null)));
+}
+function p4(b, d) {
+  const p = d.page4 || {};
+  return h('div', null, sec('Remember these', bullets(p.remember)), callout('The big idea', p.bigIdea), strs(p.mistakes).length ? sec('Common mistakes', bullets(p.mistakes)) : null);
+}
+function p5(b, d) {
+  const p = d.page5 || {}, ex = arr(p.exercises).filter(x => x && isStr(x.title)), q = strs(p.reflectionQuestions);
+  return h('div', null,
+    ex.length ? sec('Try it yourself', ex.map(x => h('div', { class: 'lesson' }, h('b', null, x.title), isStr(x.time) ? h('span', { class: 'muted small' }, ' · ' + x.time) : null, h('ol', { class: 'bl' }, strs(x.steps).map(s => h('li', null, s)))))) : null,
+    q.length ? sec('Questions to think about', bullets(q)) : null);
+}
+// "Read next" comes from our own list of real books, so it can never suggest a book that does not exist.
+function readNext(b) {
+  let pool = topicInfo(b.topic).s.filter(x => bookId(x.t, x.a) !== b.id), topic = b.topic;
+  if (!pool.length) { topic = userTopics().find(t => topicInfo(t).s.length) || 'Self-Improvement'; pool = topicInfo(topic).s.filter(x => bookId(x.t, x.a) !== b.id); }
+  const start = hashStr(b.id) % Math.max(pool.length, 1), out = [];
+  for (let i = 0; i < Math.min(3, pool.length); i++) out.push(pool[(start + i) % pool.length]);
+  return out.map(x => ({ x, topic }));
+}
+// Amazon link: searches the Books department by ISBN when we have one (exact match), otherwise by title and author.
+function amazonUrl(b) {
+  const isbn = String(b.isbn || '').replace(/[^0-9X]/gi, '');
+  const q = /^(\d{9}[\dX]|\d{13})$/i.test(isbn) ? isbn : b.title + ' ' + b.author;
+  let u = 'https://' + CFG.AMAZON_DOMAIN + '/s?k=' + encodeURIComponent(q) + '&i=stripbooks';
+  if (CFG.AFFILIATE_TAG) u += '&tag=' + encodeURIComponent(CFG.AFFILIATE_TAG);
+  return u;
+}
+function closingExtras(b) {
+  return h('div', { class: 'buy' },
+    h('h3', { class: 'serif' }, 'Get the full book'),
+    h('p', { class: 'para' }, 'Liked this mini book? The real book goes much deeper than a summary can.'),
+    h('a', { class: 'btn', href: amazonUrl(b), target: '_blank', rel: 'sponsored nofollow noopener' }, '🛒 Get "' + b.title + '" on Amazon'),
+    CFG.AFFILIATE_TAG ? h('p', { class: 'muted small', style: { marginTop: '10px' } }, 'As an Amazon Associate I earn from qualifying purchases. It does not change the price you pay.') : null);
+}
+function p6(b, d) {
+  const p = d.page6 || {}, by = p.buy || {}, next = readNext(b);
+  return h('div', null,
+    isStr(p.whoShouldRead) ? sec('Who should read it', para(p.whoShouldRead)) : null,
+    isStr(p.whoMightSkip) ? sec('Who might skip it', para(p.whoMightSkip)) : null,
+    (isStr(by.suits) || isStr(by.notSuits) || isStr(by.physicalGives)) ? sec('Should you buy the physical book?', isStr(by.suits) ? para('Good fit: ' + by.suits) : null, isStr(by.notSuits) ? para('You can skip it if: ' + by.notSuits) : null, callout('What the physical book gives you', by.physicalGives)) : null,
+    next.length ? sec('Read next', next.map(n => h('div', { class: 'nextrow' }, h('div', { class: 'grow' }, h('b', null, n.x.t), h('div', { class: 'muted small' }, 'by ' + n.x.a)), h('button', { class: 'btn ghost sm', onClick: () => openSeed(n.x, n.topic) }, 'Open')))) : null,
+    closingExtras(b),
+    h('p', { class: 'muted small', style: { marginTop: '16px' } }, 'Was this summary accurate and helpful? ', h('button', { class: 'link', onClick: () => openFeedback({ book: b }) }, 'Tell us')));
+}
+/* ================= feedback: stars, category, message ================= */
+const gfReady = () => { const G = CFG.GOOGLE_FORM || {}, f = G.FIELDS || {}; return !!(G.VIEW_URL && f.book && f.rating && f.review); };
+async function sendFeedback(p) {
+  if (gfReady()) {
+    const G = CFG.GOOGLE_FORM, f = G.FIELDS, q = new URLSearchParams();
+    q.set(f.book, p.bookTitle || 'The Book Guide (website)');
+    if (f.author) q.set(f.author, p.bookAuthor || '-');
+    q.set(f.rating, String(p.rating));
+    if (f.wouldBuy && p.wouldBuy) q.set(f.wouldBuy, p.wouldBuy);
+    q.set(f.review, '[' + p.category + '] ' + p.message + (p.name ? '\n\nContact: ' + p.name + ' (' + p.email + ')' : ''));
+    let to;
+    // Google does not let a web page read its reply, so a finished request is treated as sent. Only network failures show an error.
+    await Promise.race([fetch(G.VIEW_URL.replace(/\/viewform.*$/, '/formResponse'), { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: q.toString() }),
+      new Promise((_, rej) => { to = setTimeout(() => rej(new Error('TIMEOUT')), 15000); })]);
+    clearTimeout(to);
+    return 'sent';
+  }
+  if (CFG.FEEDBACK_ENDPOINT) {
+    const body = Object.assign({}, p); if (CFG.FEEDBACK_KEY) body.access_key = CFG.FEEDBACK_KEY;
+    let to;
+    const r = await Promise.race([fetch(CFG.FEEDBACK_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) }),
+      new Promise((_, rej) => { to = setTimeout(() => rej(new Error('TIMEOUT')), 15000); })]);
+    clearTimeout(to);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return 'sent';
+  }
+  if (CFG.FEEDBACK_EMAIL) {
+    const text = ['Rating: ' + p.rating + ' of 5', 'Type: ' + p.category, p.book ? 'Book: ' + p.book : '', '', p.message, p.name ? '\nFrom: ' + p.name + ' (' + p.email + ')' : ''].filter((x, i) => x !== '' || i === 3).join('\n');
+    const a = document.createElement('a'); a.href = 'mailto:' + CFG.FEEDBACK_EMAIL + '?subject=' + encodeURIComponent(p._subject) + '&body=' + encodeURIComponent(text);
+    document.body.append(a); a.click(); a.remove(); return 'mailto';
+  }
+  throw new Error('NOT_SET');
+}
+function openFeedback(ctx) {
+  if ($('#fb-modal')) return;
+  ctx = ctx || {};
+  const bk = ctx.book || (S.tab === 'reader' ? S.cur : null);
+  const opener = document.activeElement, st = { rating: 0, cat: '', buy: '', who: false }, labels = ['', 'Poor', 'Fair', 'Good', 'Very good', 'Excellent'];
+  const bg = h('div', { class: 'modal-bg', id: 'fb-modal' }), box = h('div', { class: 'modal', role: 'dialog', 'aria-modal': 'true', 'aria-label': 'Send feedback' });
+  const close = () => { document.removeEventListener('keydown', onKey); bg.remove(); try { opener && opener.focus && opener.focus(); } catch (e) {} };
+  const onKey = e => { if (e.key === 'Escape') close(); };
+  const G = CFG.GOOGLE_FORM || {};
+  if (G.VIEW_URL && !gfReady()) {      // form address is set but the question IDs are not: open the form itself
+    rc(box, h('h2', { class: 'serif' }, 'Send feedback'), h('p', { class: 'muted' }, 'Rate The Book Guide and tell us what you would like changed. Our short feedback form opens in a new tab.'),
+      h('div', { class: 'row', style: { marginTop: '14px' } }, h('a', { class: 'btn', href: G.VIEW_URL, target: '_blank', rel: 'noopener', onClick: () => setTimeout(close, 300) }, 'Open the feedback form'), h('button', { class: 'btn ghost', type: 'button', onClick: close }, 'Cancel')));
+    bg.append(box); bg.addEventListener('click', e => { if (e.target === bg) close(); }); document.addEventListener('keydown', onKey); document.body.append(bg); return;
+  }
+  const stars =h('div', { class: 'stars', role: 'radiogroup', 'aria-label': 'Star rating' }), rl = h('span', { class: 'muted small' });
+  const drawStars = () => {
+    rc(stars, [1, 2, 3, 4, 5].map(n => h('button', { type: 'button', class: 'star' + (n <= st.rating ? ' on' : ''), role: 'radio', 'aria-checked': st.rating === n ? 'true' : 'false', 'aria-label': n + (n === 1 ? ' star' : ' stars'), onClick: () => { st.rating = n; drawStars(); } }, '★')));
+    rl.textContent = st.rating ? st.rating + ' of 5: ' + labels[st.rating] : 'Tap a star';
+  };
+  const cats = ['Bug', 'Idea', 'Summary quality', 'Design', 'Other'], catRow = h('div', { class: 'chips wrap' });
+  const drawCats = () => rc(catRow, cats.map(c => h('button', { type: 'button', class: 'chip' + (st.cat === c ? ' on' : ''), 'aria-pressed': st.cat === c ? 'true' : 'false', onClick: () => { st.cat = st.cat === c ? '' : c; drawCats(); } }, c)));
+  const buyRow = h('div', { class: 'chips wrap' });
+  const drawBuy = () => rc(buyRow, ['YES', 'NO'].map(v => h('button', { type: 'button', class: 'chip' + (st.buy === v ? ' on' : ''), 'aria-pressed': st.buy === v ? 'true' : 'false', onClick: () => { st.buy = st.buy === v ? '' : v; drawBuy(); } }, v === 'YES' ? 'Yes' : 'No')));
+  const msg = h('textarea', { rows: 4, maxlength: 1000, 'aria-label': 'Your feedback', placeholder: ctx.book ? 'Was the summary accurate and clear? What was wrong or missing?' : 'What did you like? What should be changed or added?' });
+  const trap = h('input', { type: 'text', name: '_gotcha', tabindex: '-1', autocomplete: 'off', 'aria-hidden': 'true', style: { display: 'none' } });
+  const who = h('input', { type: 'checkbox', id: 'fb-who' }); who.addEventListener('change', () => { st.who = who.checked; });
+  const status = h('p', { class: 'small', role: 'status', style: { marginTop: '10px', color: '#a8452f' } });
+  const send = h('button', { class: 'btn', type: 'button', onClick: async () => {
+    status.textContent = '';
+    if (!st.rating) { status.textContent = 'Please tap a star rating first.'; return; }
+    if (trap.value) { done('sent'); return; }                                   // a bot filled the hidden field
+    const last = LS.get('fb_last', 0); if (Date.now() - last < 20000) { status.textContent = 'Please wait a few seconds before sending again.'; return; }
+    const b = bk;
+    if (gfReady() && msg.value.trim().length < 3) { status.textContent = 'Please write a short comment.'; return; }
+    const p = { _subject: 'The Book Guide feedback: ' + st.rating + ' of 5 stars', rating: st.rating, category: st.cat || 'General', message: msg.value.trim(), book: b ? b.title + ' by ' + b.author : '', bookTitle: b ? b.title : '', bookAuthor: b ? b.author : '', wouldBuy: st.buy, screen: S.tab, time: new Date().toISOString() };
+    if (st.who && user) { p.name = user.name; p.email = user.email; }
+    send.disabled = true; send.textContent = 'Sending…';
+    try { const how = await sendFeedback(p); LS.set('fb_last', Date.now()); done(how); }
+    catch (e) {
+      send.disabled = false; send.textContent = 'Send feedback';
+      status.textContent = e.message === 'NOT_SET' ? 'Feedback is not switched on for this site yet. The site owner needs to add a feedback address.' : 'Could not send. Check your connection and try again. Your message is still here.';
+    }
+  } }, 'Send feedback');
+  const done = how => rc(box, h('div', { class: 'fb-ok' }, h('div', { class: 'big', style: { fontSize: '48px' } }, '🙏'), h('h2', { class: 'serif' }, 'Thank you!'),
+    h('p', { class: 'muted' }, how === 'mailto' ? 'Your email app should have opened. Press send there to finish.' : 'Your feedback was sent. It really helps.'), h('button', { class: 'btn', style: { marginTop: '14px' }, onClick: close }, 'Close')));
+  rc(box, h('h2', { class: 'serif' }, ctx.book ? 'How was this mini book?' : 'Send feedback'), ctx.book ? h('p', { class: 'muted small' }, ctx.book.title) : h('p', { class: 'muted small' }, 'Your stars and ideas help make The Book Guide better.'),
+    h('span', { class: 'fb-l' }, 'Your rating'), stars, rl,
+    h('span', { class: 'fb-l' }, 'What is it about? (optional)'), catRow,
+    bk ? h('span', { class: 'fb-l' }, 'Would you buy the physical book? (optional)') : null, bk ? buyRow : null,
+    h('span', { class: 'fb-l' }, 'Your feedback and the changes you want (optional)'), msg, trap,
+    user ? h('label', { class: 'consent', for: 'fb-who', style: { display: 'flex', gap: '8px', alignItems: 'flex-start', marginTop: '12px', fontSize: '14px' } }, who, 'You may contact me about this. Include my name and email.') : null,
+    status, h('div', { class: 'row', style: { marginTop: '14px' } }, send, h('button', { class: 'btn ghost', type: 'button', onClick: close }, 'Cancel')));
+  drawStars(); drawCats(); drawBuy();
+  bg.append(box); bg.addEventListener('click', e => { if (e.target === bg) close(); });
+  document.addEventListener('keydown', onKey); document.body.append(bg);
+  const first = box.querySelector('.star'); if (first) first.focus();
+}
+
+/* ================= Explore: search any book by title or author ================= */
+S.ex = { q: '', items: null, loading: false, noNet: false, token: 0 };
+function fromGBList(items) {
+  const seen = new Set(), out = [];
+  for (const it of arr(items)) {
+    const v = it.volumeInfo || {};
+    if (!v.title || !arr(v.authors).length || (v.pageCount && v.pageCount < 40)) continue;
+    const m = fromGB(it, '', null), k = tkey(m.title.split(':')[0]) + '|' + lastName(arr(v.authors)[0]);
+    if (seen.has(k)) continue; seen.add(k); out.push(m);
+  }
+  return out.filter(m => m.cover).concat(out.filter(m => !m.cover)).slice(0, 20);   // books with a cover first
+}
+async function olSearch(q) {
+  const j = await getJSON('https://openlibrary.org/search.json?q=' + encodeURIComponent(q) + '&limit=25&fields=title,author_name,cover_i,isbn,number_of_pages_median');
+  const seen = new Set(), out = [];
+  for (const d of arr(j.docs)) {
+    if (!d.title || !arr(d.author_name).length || !d.cover_i) continue;
+    const author = d.author_name.slice(0, 2).join(', '), k = tkey(d.title) + '|' + lastName(d.author_name[0]);
+    if (seen.has(k)) continue; seen.add(k);
+    out.push({ id: bookId(d.title, author), title: d.title, author, topic: '', isbn: arr(d.isbn)[0] || '', pages: d.number_of_pages_median || 0, rating: 0, ratings: 0, desc: '', cover: 'https://covers.openlibrary.org/b/id/' + d.cover_i + '-L.jpg', cover2: '', src: 'ol' });
+  }
+  return out.slice(0, 20);
+}
+async function runSearch(q) {
+  q = String(q || '').trim(); if (q.length < 2) { toast('Type at least 2 letters'); return; }
+  const ex = S.ex, token = ++ex.token; ex.q = q; ex.loading = true; ex.noNet = false; ex.items = null; drawExplore();
+  let items = [], failed = 0;
+  try { items = fromGBList((await getJSON(gbUrl(q, 30))).items); } catch (e) { failed++; console.warn('Search (Google Books):', e.message); }
+  if (!items.length) { try { items = await olSearch(q); } catch (e) { failed++; console.warn('Search (Open Library):', e.message); } }
+  if (token !== ex.token) return;
+  ex.items = items; ex.loading = false; ex.noNet = !items.length && failed >= 2; drawExplore();
+}
+function resultRow(m) {
+  const meta = [m.pages ? m.pages + ' pages' : '', m.rating ? '★ ' + m.rating.toFixed(1) : ''].filter(Boolean).join(' · ');
+  return h('div', { class: 'res' }, coverEl(m, 'sm'),
+    h('div', { class: 'grow' }, h('b', null, m.title), h('div', { class: 'muted small' }, 'by ' + m.author + (meta ? ' · ' + meta : '')), m.desc ? h('p', { class: 'clamp' }, m.desc) : null),
+    h('button', { class: 'btn ghost sm', onClick: () => { if (!metaCache[m.id]) { metaCache[m.id] = m; saveMeta(); } openBook(metaCache[m.id]); } }, 'Open'));
+}
+function exploreView() {
+  const input = h('input', { type: 'search', placeholder: 'Search by book title or author…', 'aria-label': 'Search books', value: S.ex.q, maxlength: 80, enterkeyhint: 'search' });
+  const form = h('form', { class: 'sform', onSubmit: e => { e.preventDefault(); runSearch(input.value); } }, input, h('button', { type: 'submit', class: 'btn' }, 'Search'));
+  queueMicrotask(drawExplore);
+  return h('div', { class: 'view' }, h('h1', { class: 'serif', style: { fontSize: '26px' } }, 'Explore'), h('p', { class: 'muted' }, 'Find any book by its title or the author\'s name.'), form, h('div', { id: 'ex-body' }));
+}
+function drawExplore() {
+  const body = $('#ex-body'); if (!body) return;
+  const ex = S.ex, topics = h('div', null, h('h3', { class: 'sh' }, 'Browse by topic'),
+    GROUPS.map(g => h('div', { class: 'tgroup' }, h('div', { class: 'tg-h' }, g), h('div', { class: 'chips wrap' }, TOPICS.filter(t => t.g === g).map(t => h('button', { class: 'chip', onClick: () => { S.topic = t.k; S.topicFrom = 'explore'; S.tab = 'topic'; render(); scrollTop(); } }, t.e + ' ' + t.k))))));
+  if (ex.loading) return rc(body, h('div', { class: 'skel', style: { marginTop: '16px' }, role: 'status', 'aria-label': 'Searching' }));
+  if (ex.noNet) return rc(body, h('div', { class: 'err' }, h('p', null, "Search could not reach the book service. Check your connection and try again. If you are looking at this inside a preview window, open the live site instead."), h('button', { class: 'btn sm', onClick: () => runSearch(ex.q) }, 'Try again')), topics);
+  if (ex.items && !ex.items.length) return rc(body, h('div', { class: 'empty' }, h('div', { class: 'big' }, '🔎'), h('h2', { class: 'serif' }, 'No books found'), h('p', { class: 'muted' }, 'Try the full title, or just the author\'s last name.')), topics);
+  if (ex.items) return rc(body, h('div', { class: 'row', style: { justifyContent: 'space-between', marginTop: '14px' } }, h('span', { class: 'muted small' }, ex.items.length + ' results for "' + ex.q + '"'), h('button', { class: 'link', onClick: () => { ex.items = null; ex.q = ''; render(); } }, 'Clear')), ex.items.map(resultRow), topics);
+  rc(body, h('h3', { class: 'sh' }, 'Try searching for'), h('div', { class: 'chips wrap' }, ['Atomic Habits', 'Carl Sagan', 'stoicism', 'Rich Dad Poor Dad', 'Brené Brown'].map(s => h('button', { class: 'chip', onClick: () => { ex.q = s; runSearch(s); const i = $('.sform input'); if (i) i.value = s; } }, s))), topics);
+}
+
+/* ================= browse one topic ================= */
+function topicView() {
+  const info = topicInfo(S.topic), list = h('div');
+  if (!info.s.length) { S.tab = 'home'; return homeView(); }
+  info.s.forEach(x => {
+    const row = h('div', { class: 'nextrow' });
+    const fill = m => rc(row, coverEl(m, 'sm'), h('div', { class: 'grow' }, h('b', null, m.title), h('div', { class: 'muted small' }, 'by ' + m.author)), h('button', { class: 'btn ghost sm', onClick: () => openBook(m) }, 'Open'));
+    const base = { id: bookId(x.t, x.a), title: x.t, author: x.a, topic: S.topic, cover: '', cover2: '', desc: '', pages: 0 };
+    fill(base);
+    getMeta({ t: x.t, a: x.a }, S.topic).then(m => { if (S.tab === 'topic' && S.topic === info.k) fill(m); }).catch(() => {});
+    list.append(row);
+  });
+  return h('div', { class: 'view' },
+    h('div', { class: 'rd-head' }, h('button', { class: 'icon-btn', onClick: () => { S.tab = S.topicFrom || 'home'; render(); scrollTop(); } }, '← Back')),
+    h('h1', { class: 'serif', style: { fontSize: '24px' } }, info.e + ' ' + info.k),
+    h('p', { class: 'muted' }, 'Tap a book to read its 6-page mini book.'), list);
+}
+/*__SHEETS__*/
+
+/* ================= start ================= */
+/*__START__*/
 render();
-if (!user && !LS.get('skipped', false)) { LS.set('skipped', true); onboarding(); }
 })();
 </script>
 </body>
