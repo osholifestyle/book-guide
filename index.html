@@ -452,12 +452,15 @@ const authorMatch = (list, a) => { const ln = lastName(a); return !ln || arr(lis
 
 /* ================= pre-written mini books (books/*.json) =================
    books/index.json lists every ready book; books/<topic>.json holds the written mini books. If anything here fails, the app falls back to the AI as before. */
-const READY = { list: [], loaded: false, packs: {}, p: null };
+const READY = { list: [], loaded: false, packs: {}, p: null, base: 'books/' };
 function loadReadyIndex() {
   if (READY.p) return READY.p;
   READY.p = (async () => {
-    try { const j = await fetchJSON('books/index.json', 6000); READY.list = arr(j.books).filter(x => x && x.t && x.a && x.s && x.topic); }
-    catch (e) { console.warn('Library index:', e.message); }
+    // The library files normally live in a "books" folder. If they were uploaded next to index.html instead, look there too.
+    for (const base of ['books/', '']) {
+      try { const j = await fetchJSON(base + 'index.json', 6000); const l = arr(j.books).filter(x => x && x.t && x.a && x.s && x.topic); if (l.length) { READY.list = l; READY.base = base; break; } }
+      catch (e) { console.warn('Library index (' + (base || 'main folder') + '):', e.message); }
+    }
     READY.loaded = true;
   })();
   return READY.p;
@@ -465,7 +468,7 @@ function loadReadyIndex() {
 const readyFor = topic => READY.list.filter(x => x.topic === topic);
 const findReady = (t, a) => READY.list.find(x => titleMatch(x.t, t) && authorMatch([x.a], a)) || null;
 function loadPack(slug) {
-  if (!READY.packs[slug]) READY.packs[slug] = fetchJSON('books/' + slug + '.json', 15000).then(j => arr(j.books)).catch(e => { delete READY.packs[slug]; throw e; });
+  if (!READY.packs[slug]) READY.packs[slug] = fetchJSON(READY.base + slug + '.json', 15000).then(j => arr(j.books)).catch(e => { delete READY.packs[slug]; throw e; });
   return READY.packs[slug];
 }
 const toMini = pb => ({ a: { basis: 'known', hook: pb.hook, page1: pb.page1, page2: pb.page2 }, b: { page3: pb.page3, page4: pb.page4 }, c: { page5: pb.page5, page6: pb.page6 } });
