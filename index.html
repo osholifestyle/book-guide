@@ -450,6 +450,31 @@ const lastName = a => tkey(String(a || '').split(/[ ,]+/).filter(Boolean).pop())
 const titleMatch = (x, y) => { x = tkey(String(x).split(':')[0]); y = tkey(String(y).split(':')[0]); return !!x && !!y && (x === y || x.startsWith(y) || y.startsWith(x)); };
 const authorMatch = (list, a) => { const ln = lastName(a); return !ln || arr(list).some(n => tkey(n).includes(ln)); };
 
+/* ================= pre-written mini books (books/*.json) =================
+   books/index.json lists every ready book; books/<topic>.json holds the written mini books. If anything here fails, the app falls back to the AI as before. */
+const READY = { list: [], loaded: false, packs: {}, p: null };
+function loadReadyIndex() {
+  if (READY.p) return READY.p;
+  READY.p = (async () => {
+    try { const j = await fetchJSON('books/index.json', 6000); READY.list = arr(j.books).filter(x => x && x.t && x.a && x.s && x.topic); }
+    catch (e) { console.warn('Library index:', e.message); }
+    READY.loaded = true;
+  })();
+  return READY.p;
+}
+const readyFor = topic => READY.list.filter(x => x.topic === topic);
+const findReady = (t, a) => READY.list.find(x => titleMatch(x.t, t) && authorMatch([x.a], a)) || null;
+function loadPack(slug) {
+  if (!READY.packs[slug]) READY.packs[slug] = fetchJSON('books/' + slug + '.json', 15000).then(j => arr(j.books)).catch(e => { delete READY.packs[slug]; throw e; });
+  return READY.packs[slug];
+}
+const toMini = pb => ({ a: { basis: 'known', hook: pb.hook, page1: pb.page1, page2: pb.page2 }, b: { page3: pb.page3, page4: pb.page4 }, c: { page5: pb.page5, page6: pb.page6 } });
+function searchLocal(q) {
+  const toks = String(q).toLowerCase().split(/[^a-z0-9]+/).filter(x => x.length > 1);
+  if (!toks.length) return [];
+  return READY.list.filter(x => { const hay = (x.t + ' ' + x.a).toLowerCase(); return toks.every(k => hay.includes(k)); }).slice(0, 20);
+}
+
 // Fallback for restricted windows that block fetch(): Google Books also answers through a script tag (JSONP).
 function jsonp(url, ms = 8000) {
   return new Promise((res, rej) => {
@@ -499,6 +524,10 @@ async function fromOL(seed, topic) {
 async function getMeta(seed, topic) {
   const id = bookId(seed.t, seed.a);
   if (metaCache[id]) return metaCache[id];
+  const rd = findReady(seed.t, seed.a);
+  if (rd) {
+    try { const ol = await fromOL(seed, topic); if (ol) { ol.desc = rd.h || ''; metaCache[id] = ol; saveMeta(); return ol; } } catch (e) { console.warn('Open Library:', e.message); }
+  }
   let best = null;
   try {
     const j = await getJSON(gbUrl('intitle:"' + seed.t + '" inauthor:"' + seed.a + '"'));
@@ -514,7 +543,8 @@ async function getMeta(seed, topic) {
   if (!best || !best.cover) {
     try { const ol = await fromOL(seed, topic); if (ol) best = best ? Object.assign(best, { cover: ol.cover, pages: best.pages || ol.pages, isbn: best.isbn || ol.isbn }) : ol; } catch (e) { console.warn('Open Library:', e.message); }
   }
-  if (!best) return { id, title: seed.t, author: seed.a, topic, isbn: '', pages: 0, rating: 0, ratings: 0, desc: '', cover: '', cover2: '', src: 'none', partial: true };
+  if (!best) return { id, title: seed.t, author: seed.a, topic, isbn: '', pages: 0, rating: 0, ratings: 0, desc: rd ? rd.h || '' : '', cover: '', cover2: '', src: 'none', partial: true };
+  if (rd && !best.desc) best.desc = rd.h || '';
   metaCache[id] = best; saveMeta(); return best;
 }
 // A reader's own topic has no seed books, so search for a good one.
@@ -546,18 +576,21 @@ function coverEl(m, cls) {
 const dayNum = () => { const d = new Date(); return Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5); };
 // Rotates through the reader's topics day by day, so every chosen topic gets its turn. n = "show me another".
 function candidate(n, onlySeeded) {
-  let pool = userTopics().filter(t => !onlySeeded || topicInfo(t).s.length);
+  let pool = userTopics().filter(t => !onlySeeded || topicInfo(t).s.length || readyFor(t).length);
   if (!pool.length) pool = ['Self-Improvement', 'Habits', 'Personal Finance'];
-  const topic = pool[(hashStr(user.email) + dayNum() + n) % pool.length], info = topicInfo(topic);
-  if (!info.s.length) return { topic, custom: true };
+  const topic = pool[(hashStr(user.email) + dayNum() + n) % pool.length], info = topicInfo(topic), rd = readyFor(topic).map(x => ({ t: x.t, a: x.a }));
+  if (!info.s.length && !rd.length) return { topic, custom: true };
   const seen = new Set(U.get('seen', []));
-  let list = info.s.filter(b => !seen.has(bookId(b.t, b.a)));
-  if (!list.length) list = info.s;
+  // Books that are already written come first (instant, no AI needed); then the curated list.
+  let list = rd.filter(b => !seen.has(bookId(b.t, b.a)));
+  if (!list.length) list = info.s.filter(b => !seen.has(bookId(b.t, b.a)));
+  if (!list.length) list = info.s.length ? info.s : rd;
   const b = list[hashStr(dateKey() + topic + n) % list.length];
   return { topic, t: b.t, a: b.a };
 }
 function addSeen(id) { const s = U.get('seen', []); if (id && !s.includes(id)) { s.push(id); U.set('seen', s.slice(-400)); } }
 async function resolveDaily() {
+  await Promise.race([loadReadyIndex(), new Promise(r => setTimeout(r, 4000))]);
   const today = dateKey();
   if (!daily || daily.date !== today) {
     if (daily && daily.id) addSeen(daily.id);          // yesterday's book is not suggested again soon
@@ -636,26 +669,60 @@ const PARTS = ['a', 'b', 'c'];
 const PAGE_NAMES = ['Cover', 'Overview', 'Author', 'Lessons', 'Recap', 'Practice', 'Closing'];
 const PAGE_PART = [null, 'a', 'a', 'b', 'b', 'c', 'c'];
 
-const SYSTEM = `You write short "mini books" that help a reader understand a real, published non-fiction book BEFORE they decide to buy the physical copy.
-Accuracy matters more than length. Follow these rules:
-- Use only what is in the book data and what you reliably know about this real book. Never invent facts, quotes, statistics, studies, chapter titles, dates or author details. If you are not sure, leave it out or say less.
+const SYSTEM = `You write mini books: short, honest, well-written guides that help a reader understand a real non-fiction book BEFORE deciding whether to buy it. Accuracy comes first, then clarity, then charm.
+
+ACCURACY RULES
+- Use only the BOOK DATA and the WIKIPEDIA EXTRACT you are given, plus things you are certain about this exact book. If you are not certain, leave it out. A shorter true answer beats a longer shaky one.
+- Never invent or guess: chapter titles, quotes, statistics, studies, dates, years, prices, awards, sales numbers or biographical details. Do not write any year or number that is not in the data unless you are certain of it.
+- Do not confuse this book with another book by the same author or with a book that has a similar title.
 - If you do not reliably know this book and the data is too thin to summarise it accurately, return exactly {"insufficient":true}.
-- Paraphrase in your own words. Never copy long passages from the book.
-- Plain text only. No markdown symbols such as *, # or backticks.
-- Simple English at about Grade 7 level. Sentences under 20 words. Everyday words. Explain any technical word right away. Warm, friendly tone, like explaining to a smart friend. Paragraphs of 2-3 sentences.
-- Return ONLY valid JSON in exactly the shape requested. No text before or after it.`;
-function factSheet(b) {
+
+WRITING RULES
+- Simple English at about Grade 7. Sentences under 20 words. Everyday words; explain any technical word at once. Warm and friendly, like a smart friend explaining over tea.
+- Be concrete. Name the actual idea, example or technique from the book instead of vague praise. Never use filler such as "delves into", "a must-read", "in today's fast-paced world", "journey", "tapestry", "unlock" or "game-changer".
+- Use active voice. Vary the sentence length. Paragraphs of 2-3 sentences. Every lesson, point and exercise must be a different idea; never repeat the same idea in new words.
+- Paraphrase in your own words. Never copy long passages from the book or from the data.
+- Plain text only. No markdown symbols such as *, # or backticks. No emoji. No numbering inside the text.
+- Return ONLY valid JSON in exactly the requested shape. No text before or after it.`;
+
+// Trusted background for the AI: the book's Wikipedia intro. Used only when the page clearly matches the title AND the author.
+async function wikiExtract(b) {
+  const id = 'w:' + b.id, cache = LS.get('wiki', {});
+  if (cache[id] !== undefined) return cache[id];
+  const api = 'https://en.wikipedia.org/w/api.php?format=json&origin=*&action=query&';
+  const run = async () => {
+    const s = await getJSON(api + 'list=search&srlimit=3&srsearch=' + encodeURIComponent(b.title + ' ' + b.author + ' book'), 4000);
+    const titles = arr((s.query || {}).search).map(x => x.title); if (!titles.length) return '';
+    const e = await getJSON(api + 'prop=extracts&exintro=1&explaintext=1&exchars=1600&titles=' + encodeURIComponent(titles.join('|')), 4000);
+    const pages = Object.values((e.query || {}).pages || {}), ln = lastName(b.author), tk = tkey(String(b.title).split(':')[0]);
+    for (const t of titles) {
+      const pg = pages.find(x => x.title === t), ex = (pg && pg.extract) || '', nx = tkey(ex);
+      if (ex.length > 120 && ln && nx.includes(ln) && (nx.includes(tk) || tkey(t).includes(tk))) return ex.trim();
+    }
+    return '';
+  };
+  let text;
+  try { text = await Promise.race([run(), new Promise(r => setTimeout(() => r(null), 4500))]); } catch (e) { console.warn('Wikipedia:', e.message); text = null; }
+  if (text === null) return '';                       // failed or too slow: do not remember it, try again next time
+  cache[id] = text; const ks = Object.keys(cache); while (ks.length > 60) delete cache[ks.shift()];
+  LS.set('wiki', cache); return text;
+}
+function factSheet(b, wiki) {
   return `BOOK DATA
 Title: ${b.title}
 Author: ${b.author}
 Topic: ${b.topic || 'non-fiction'}
 Page count: ${b.pages || 'unknown'}
-Publisher description: ${(b.desc || 'none').slice(0, 2500)}`;
+Publisher description: ${(b.desc || 'none').slice(0, 2500)}` + (wiki ? `
+
+WIKIPEDIA EXTRACT (reliable background about this exact book; rely on it):
+${wiki}` : '');
 }
-function partPrompt(b, k) {
-  const head = factSheet(b) + '\n\n';
+function partPrompt(b, k, wiki, hint) {
+  const head = factSheet(b, wiki) + '\n\n', tail = hint ? '\n\nIMPORTANT: ' + hint : '';
   if (k === 'a') return head + `Write PART A of the mini book (pages 1 and 2). Return JSON with exactly this shape:
 {
+ "basis": "known",
  "hook": "one line on why this book matters",
  "page1": {
   "inOneMinute": "3-4 sentences summarising the whole book",
@@ -668,25 +735,51 @@ function partPrompt(b, k) {
  },
  "page2": {"author": ["2 short paragraphs"], "quickFacts": ["up to 3 quick facts"]}
 }
-Notes: "story" walks through the book from start to end in 3-4 short paragraphs, 200-280 words in total. "inside" lists the real parts or chapters only if you are sure; otherwise describe 4-5 main themes and set "isThemes" to true. "author" is 120-180 words in total and holds only what you reliably know about the author; if you know little, write less and give fewer quick facts. Never guess dates, awards or sales numbers.`;
+Notes: "basis" is "known" if you genuinely know this book beyond the data above, or "description" if you wrote mainly from the data. "story" walks through the book from start to end in 3-4 short paragraphs, 200-280 words in total. "inside" lists the real parts or chapters only if you are sure; otherwise describe 4-5 main themes and set "isThemes" to true. "author" is 120-180 words in total and holds only what you reliably know about the author; if you know little, write less and give fewer quick facts. Never guess dates, awards or sales numbers.` + tail;
   if (k === 'b') return head + `Write PART B of the mini book (pages 3 and 4). Return JSON with exactly this shape:
 {
  "page3": {"lessons": [{"title": "", "text": "2-3 simple sentences", "example": "one-line real-life example"}]},
  "page4": {"remember": ["6 one-liners"], "bigIdea": "one sentence", "mistakes": ["2 common mistakes when applying the book"]}
 }
-Notes: "lessons" has exactly 6 items and each one is a real teaching of this book.`;
+Notes: "lessons" has exactly 6 items. Each is a different, real teaching of this book, in the order the book teaches them when you are sure of that order.` + tail;
   return head + `Write PART C of the mini book (pages 5 and 6). Return JSON with exactly this shape:
 {
  "page5": {"exercises": [{"title": "", "steps": ["simple steps"], "time": "e.g. 10 minutes"}], "reflectionQuestions": []},
  "page6": {"whoShouldRead": "2 sentences", "whoMightSkip": "2 sentences", "buy": {"suits": "who should buy the physical book", "notSuits": "who can skip it", "physicalGives": "one line on what the physical book gives that a summary cannot"}}
 }
-Notes: give 3 exercises with 3-4 steps each. If the book is purely theoretical, leave "exercises" empty and give 4 "reflectionQuestions" instead.`;
+Notes: give 3 exercises with 3-4 steps each, based on what this book actually teaches. If the book is purely theoretical, leave "exercises" empty and give 4 "reflectionQuestions" instead.` + tail;
 }
+const long = (s, n) => isStr(s) && s.trim().length >= n;
 const VALID = {
-  a: m => m && isStr((m.page1 || {}).inOneMinute) && strs((m.page1 || {}).youWillGet).length >= 2 && strs((m.page2 || {}).author).length >= 1,
-  b: m => m && arr((m.page3 || {}).lessons).filter(l => l && isStr(l.title) && isStr(l.text)).length >= 3 && strs((m.page4 || {}).remember).length >= 3,
-  c: m => m && m.page6 && isStr(m.page6.whoShouldRead) && (arr((m.page5 || {}).exercises).length || strs((m.page5 || {}).reflectionQuestions).length)
+  a: m => m && long((m.page1 || {}).inOneMinute, 100) && strs((m.page1 || {}).youWillGet).length >= 3 && strs((m.page2 || {}).author).some(t => t.length >= 60),
+  b: m => m && arr((m.page3 || {}).lessons).filter(l => l && isStr(l.title) && long(l.text, 30)).length >= 4 && strs((m.page4 || {}).remember).length >= 4,
+  c: m => m && m.page6 && long(m.page6.whoShouldRead, 20) && (arr((m.page5 || {}).exercises).length || strs((m.page5 || {}).reflectionQuestions).length)
 };
+// Tidy the AI's text and remove years it could not have taken from our sources (a common way for summaries to go wrong).
+const YEAR_RE = /\b(1[0-9]{3}|20[0-3][0-9])\b/g;
+const tidy = s => String(s).replace(/[*`]+/g, '').replace(/^#+\s*/, '').replace(/^\s*(?:[-•–]|\d+[.)])\s+/, '').replace(/\s+/g, ' ').trim();
+function cleanData(x, ok) {
+  if (typeof x === 'string') {
+    let s = tidy(x);
+    if (s.length > 80) {
+      const parts = s.match(/[^.!?]+[.!?]+(\s|$)|[^.!?]+$/g) || [s];
+      const keep = parts.filter(p => (p.match(YEAR_RE) || []).every(y => ok.has(y)));
+      if (keep.length && keep.length < parts.length) s = keep.join('').trim();
+    }
+    return s;
+  }
+  if (Array.isArray(x)) {
+    const seen = new Set();
+    let out = x.map(v => cleanData(v, ok)).filter(v => v !== '' && v != null).filter(v => { if (typeof v !== 'string') return true; const k = tkey(v); if (seen.has(k)) return false; seen.add(k); return true; });
+    const bad = out.filter(v => typeof v === 'string' && (v.match(YEAR_RE) || []).some(y => !ok.has(y)));
+    if (bad.length && out.length - bad.length >= 2) out = out.filter(v => !bad.includes(v));
+    return out;
+  }
+  if (x && typeof x === 'object') { const o = {}; for (const k of Object.keys(x)) o[k] = cleanData(x[k], ok); return o; }
+  return x;
+}
+const okYears = (b, wiki) => new Set(((b.title + ' ' + b.author + ' ' + (b.desc || '') + ' ' + (wiki || '')).match(YEAR_RE) || []));
+const STYLE_RE = /\b(delves? into|must[- ]read|tapestry|game[- ]changer|fast-paced world|as an ai|language model|lorem ipsum)\b/i;
 function parseJSON(t) {
   t = String(t || '').trim().replace(/^```(?:json)?/i, '').replace(/```$/, '').trim();
   try { return JSON.parse(t); } catch (e) { const a = t.indexOf('{'), z = t.lastIndexOf('}'); if (a >= 0 && z > a) return JSON.parse(t.slice(a, z + 1)); throw e; }
@@ -729,26 +822,53 @@ async function callAI(prompt, system) {
 async function runPart(b, g, k) {
   g[k] = { state: 'loading' }; refreshReader(b.id);
   try {
-    let data = null, last = '';
+    let data = null, fallback = null, last = '', hint = '';
     for (let i = 0; i < 2 && !data; i++) {
-      last = await callAI(partPrompt(b, k), SYSTEM);
+      last = await callAI(partPrompt(b, k, g.wiki, hint), SYSTEM);
       try {
-        const m = parseJSON(last);
+        let m = parseJSON(last);
         if (m && m.insufficient) { g.insufficient = true; g[k] = { state: 'done', data: m }; refreshReader(b.id); return; }
-        if (VALID[k](m)) data = m;
-      } catch (e) {}
+        m = cleanData(m, okYears(b, g.wiki));
+        if (!VALID[k](m)) { hint = 'Your last answer did not follow the JSON shape or was too short. Follow the shape exactly and write full sentences.'; continue; }
+        const f = JSON.stringify(m).match(STYLE_RE);
+        if (f) { fallback = m; hint = 'Your last answer used banned filler words ("' + f[0] + '"). Rewrite it in plain, concrete words without them.'; continue; }
+        data = m;
+      } catch (e) { hint = 'Your last answer was not valid JSON. Return only the JSON.'; }
     }
+    data = data || fallback;                                   // a good answer with one filler word beats no answer
     if (!data) { const e = new Error('BAD'); e.detail = 'Part ' + k.toUpperCase() + ', answer length: ' + last.length + ' characters.'; throw e; }
     g[k] = { state: 'done', data };
   } catch (e) { g[k] = { state: 'error', err: errMsg(e), detail: e && e.detail ? String(e.detail) : '' }; }
-  if (PARTS.every(x => g[x] && g[x].state === 'done') && !g.insufficient) { minis[b.id] = { ts: Date.now(), a: g.a.data, b: g.b.data, c: g.c.data }; saveMinis(); }
+  if (PARTS.every(x => g[x] && g[x].state === 'done') && !g.insufficient) { minis[b.id] = { v: 2, ts: Date.now(), a: g.a.data, b: g.b.data, c: g.c.data }; saveMinis(); }
   refreshReader(b.id);
 }
 function startMini(b) {
-  if (!CFG.PROXY_URL) return;
-  if (minis[b.id]) { const m = minis[b.id]; GEN[b.id] = { a: { state: 'done', data: m.a }, b: { state: 'done', data: m.b }, c: { state: 'done', data: m.c } }; return; }
   if (GEN[b.id]) return;
-  const g = GEN[b.id] = {}; PARTS.forEach(k => runPart(b, g, k));
+  if (!READY.loaded) {                                   // wait for the library list, then decide
+    GEN[b.id] = { a: { state: 'loading' }, b: { state: 'loading' }, c: { state: 'loading' } };
+    loadReadyIndex().then(() => { delete GEN[b.id]; startMini(b); refreshReader(b.id); });
+    return;
+  }
+  const r = findReady(b.title, b.author);
+  if (r) {
+    const g = GEN[b.id] = { a: { state: 'loading' }, b: { state: 'loading' }, c: { state: 'loading' }, ready: true };
+    loadPack(r.s).then(books => {
+      const pb = books.find(x => titleMatch(x.title, b.title) && authorMatch([x.author], b.author));
+      if (!pb) throw new Error('not in pack');
+      const m = toMini(pb); PARTS.forEach(k => { g[k] = { state: 'done', data: m[k] }; }); refreshReader(b.id);
+    }).catch(e => { console.warn('Library:', e.message); delete GEN[b.id]; startMiniAI(b); refreshReader(b.id); });
+    return;
+  }
+  startMiniAI(b);
+}
+function startMiniAI(b) {
+  if (!CFG.PROXY_URL) return;
+  const m = minis[b.id];
+  if (m && m.v === 2) { GEN[b.id] = { a: { state: 'done', data: m.a }, b: { state: 'done', data: m.b }, c: { state: 'done', data: m.c } }; return; }
+  if (GEN[b.id]) return;
+  const g = GEN[b.id] = { a: { state: 'loading' }, b: { state: 'loading' }, c: { state: 'loading' } };
+  // Look up the Wikipedia intro first (a second or so at most), then write all three parts at once.
+  wikiExtract(b).catch(() => '').then(w => { g.wiki = w; PARTS.forEach(k => runPart(b, g, k)); });
 }
 function restartMini(b) { delete GEN[b.id]; startMini(b); refreshReader(b.id); }
 
@@ -793,7 +913,7 @@ function errBox(msg, detail, onRetry) {
 }
 function pageContent(b, g, i) {
   if (i === 0) return coverPage(b, g);
-  if (!CFG.PROXY_URL) return sec('', para('AI mini books are not set up on this site yet. The site owner needs to add the Cloudflare worker address as PROXY_URL.'));
+  if (!CFG.PROXY_URL && !GEN[b.id]) return sec('', para('AI mini books are not set up on this site yet. The site owner needs to add the Cloudflare worker address as PROXY_URL.'));
   if (g.insufficient) return h('div', null, h('div', { class: 'banner' }, 'There is not enough reliable information to summarise this book accurately.'), b.desc ? sec('What the book data says', para(shortDesc(b.desc))) : null, h('button', { class: 'btn sm', style: { marginTop: '12px' }, onClick: () => restartMini(b) }, 'Try again'));
   const k = PAGE_PART[i], st = g[k];
   if (!st || st.state === 'loading') return h('div', null, h('div', { class: 'skel', role: 'status', 'aria-label': 'Writing this page' }), h('p', { class: 'muted small', style: { marginTop: '10px' } }, 'Writing this page… it usually takes a few seconds.'));
@@ -803,7 +923,7 @@ function pageContent(b, g, i) {
 function coverPage(b, g) {
   const all = PARTS.every(k => g[k] && g[k].state === 'done') && !g.insufficient, anyErr = PARTS.some(k => g[k] && g[k].state === 'error');
   const mins = all ? Math.max(5, Math.round(PARTS.reduce((n, k) => n + JSON.stringify(g[k].data).length, 0) / 5.8 / 200)) : 0;
-  const status = !CFG.PROXY_URL ? 'AI mini books are not set up on this site yet.' : g.insufficient ? 'Not enough reliable information to summarise this book.' : all ? 'Ready · about ' + mins + ' min read' : anyErr ? 'Some pages could not be written. Open that page and tap Try again.' : 'Writing your mini book… each page appears as soon as it is ready.';
+  const status = !CFG.PROXY_URL && !g.a ? 'AI mini books are not set up on this site yet.' : g.insufficient ? 'Not enough reliable information to summarise this book.' : all ? 'Ready · about ' + mins + ' min read' : anyErr ? 'Some pages could not be written. Open that page and tap Try again.' : 'Writing your mini book… each page appears as soon as it is ready.';
   const hook = g.a && g.a.state === 'done' && g.a.data && isStr(g.a.data.hook) ? g.a.data.hook : '';
   return h('div', { class: 'cvr' }, coverEl(b, 'lg'), b.topic ? h('span', { class: 'tag' }, topicInfo(b.topic).e + ' ' + b.topic) : null,
     hook ? h('p', { class: 'ddesc' }, hook) : (b.desc ? h('p', { class: 'ddesc' }, shortDesc(b.desc)) : null), h('p', { class: 'why' }, status));
@@ -814,9 +934,10 @@ const bullets = items => h('ul', { class: 'bl' }, strs(items).map(t => h('li', n
 const callout = (label, t) => isStr(t) ? h('div', { class: 'callout' }, h('b', null, label), h('span', null, t)) : null;
 
 function p1(b, d) {
-  const p = d.page1 || {}, g = p.glance || {}, inside = arr(p.inside).filter(x => x && isStr(x.part)), story = arr(p.story).filter(x => x && isStr(x.text));
+  const p = Object.assign({}, d.page1 || {}, d.basis === 'description' ? { basisNote: 'Written mainly from the publisher description, so some details may be limited. Check the physical book before relying on a specific point.' } : {}), g = p.glance || {}, inside = arr(p.inside).filter(x => x && isStr(x.part)), story = arr(p.story).filter(x => x && isStr(x.text));
   const cards = [['Main idea', g.mainIdea], ['The problem', g.problem], ['The promise', g.promise]].filter(x => isStr(x[1]));
   return h('div', null,
+    p.basisNote ? h('div', { class: 'banner' }, p.basisNote) : null,
     sec('In one minute', para(p.inOneMinute)),
     strs(p.youWillGet).length ? sec('What you will get', bullets(p.youWillGet)) : null,
     isStr(p.whoFor) ? sec('Who it is for', para(p.whoFor)) : null,
@@ -844,7 +965,8 @@ function p5(b, d) {
 }
 // "Read next" comes from our own list of real books, so it can never suggest a book that does not exist.
 function readNext(b) {
-  let pool = topicInfo(b.topic).s.filter(x => bookId(x.t, x.a) !== b.id), topic = b.topic;
+  const uniq = l => { const s = new Set(); return l.filter(x => { const k = bookId(x.t, x.a); if (s.has(k)) return false; s.add(k); return true; }); };
+  let pool = uniq(readyFor(b.topic).map(x => ({ t: x.t, a: x.a })).concat(topicInfo(b.topic).s)).filter(x => bookId(x.t, x.a) !== b.id), topic = b.topic;
   if (!pool.length) { topic = userTopics().find(t => topicInfo(t).s.length) || 'Self-Improvement'; pool = topicInfo(topic).s.filter(x => bookId(x.t, x.a) !== b.id); }
   const start = hashStr(b.id) % Math.max(pool.length, 1), out = [];
   for (let i = 0; i < Math.min(3, pool.length); i++) out.push(pool[(start + i) % pool.length]);
@@ -967,7 +1089,7 @@ function openFeedback(ctx) {
 }
 
 /* ================= Explore: search any book by title or author ================= */
-S.ex = { q: '', items: null, loading: false, noNet: false, token: 0 };
+S.ex = { q: '', items: null, loading: false, noNet: false, token: 0, canMore: false };
 function fromGBList(items) {
   const seen = new Set(), out = [];
   for (const it of arr(items)) {
@@ -989,20 +1111,32 @@ async function olSearch(q) {
   }
   return out.slice(0, 20);
 }
-async function runSearch(q) {
+async function runSearch(q, online) {
   q = String(q || '').trim(); if (q.length < 2) { toast('Type at least 2 letters'); return; }
   const ex = S.ex, token = ++ex.token; ex.q = q; ex.loading = true; ex.noNet = false; ex.items = null; drawExplore();
+  await Promise.race([loadReadyIndex(), new Promise(r => setTimeout(r, 3000))]);
+  if (token !== ex.token) return;
+  const local = online ? [] : searchLocal(q);
+  if (local.length) {                                    // our own library first: instant, no Google call
+    ex.items = local.map(x => ({ id: bookId(x.t, x.a), title: x.t, author: x.a, topic: x.topic, isbn: '', pages: 0, rating: 0, ratings: 0, desc: x.h || '', cover: '', cover2: '', src: 'lib' }));
+    ex.loading = false; ex.canMore = true; drawExplore();
+    let rt; const later = () => { clearTimeout(rt); rt = setTimeout(() => { if (token === ex.token) drawExplore(); }, 250); };
+    ex.items.forEach(it => getMeta({ t: it.title, a: it.author }, it.topic).then(m => { Object.assign(it, { cover: m.cover, cover2: m.cover2, isbn: m.isbn, pages: m.pages || it.pages }); later(); }).catch(() => {}));
+    return;
+  }
+  ex.canMore = false;
   let items = [], failed = 0;
   try { items = fromGBList((await getJSON(gbUrl(q, 30))).items); } catch (e) { failed++; console.warn('Search (Google Books):', e.message); }
   if (!items.length) { try { items = await olSearch(q); } catch (e) { failed++; console.warn('Search (Open Library):', e.message); } }
   if (token !== ex.token) return;
-  ex.items = items; ex.loading = false; ex.noNet = !items.length && failed >= 2; drawExplore();
+  ex.items = online ? searchLocal(q).map(x => ({ id: bookId(x.t, x.a), title: x.t, author: x.a, topic: x.topic, isbn: '', pages: 0, rating: 0, ratings: 0, desc: x.h || '', cover: '', cover2: '', src: 'lib' })).concat(items.filter(m => !findReady(m.title, m.author))) : items;
+  ex.loading = false; ex.noNet = !ex.items.length && failed >= 2; drawExplore();
 }
 function resultRow(m) {
   const meta = [m.pages ? m.pages + ' pages' : '', m.rating ? '★ ' + m.rating.toFixed(1) : ''].filter(Boolean).join(' · ');
   return h('div', { class: 'res' }, coverEl(m, 'sm'),
-    h('div', { class: 'grow' }, h('b', null, m.title), h('div', { class: 'muted small' }, 'by ' + m.author + (meta ? ' · ' + meta : '')), m.desc ? h('p', { class: 'clamp' }, m.desc) : null),
-    h('button', { class: 'btn ghost sm', onClick: () => { if (!metaCache[m.id]) { metaCache[m.id] = m; saveMeta(); } openBook(metaCache[m.id]); } }, 'Open'));
+    h('div', { class: 'grow' }, h('b', null, m.title), h('div', { class: 'muted small' }, 'by ' + m.author + (meta ? ' · ' + meta : '')), (m.src === 'lib' || findReady(m.title, m.author)) ? h('div', { class: 'small', style: { color: '#2f6f4f', margin: '2px 0' } }, '✓ Mini book ready') : null, m.desc ? h('p', { class: 'clamp' }, m.desc) : null),
+    h('button', { class: 'btn ghost sm', onClick: () => { if (!metaCache[m.id] && m.src !== 'lib') { const rd = findReady(m.title, m.author); if (rd) m.topic = rd.topic; metaCache[m.id] = m; saveMeta(); } openBook(metaCache[m.id] || m); } }, 'Open'));
 }
 function exploreView() {
   const input = h('input', { type: 'search', placeholder: 'Search by book title or author…', 'aria-label': 'Search books', value: S.ex.q, maxlength: 80, enterkeyhint: 'search' });
@@ -1017,17 +1151,18 @@ function drawExplore() {
   if (ex.loading) return rc(body, h('div', { class: 'skel', style: { marginTop: '16px' }, role: 'status', 'aria-label': 'Searching' }));
   if (ex.noNet) return rc(body, h('div', { class: 'err' }, h('p', null, "Search could not reach the book service. Check your connection and try again. If you are looking at this inside a preview window, open the live site instead."), h('button', { class: 'btn sm', onClick: () => runSearch(ex.q) }, 'Try again')), topics);
   if (ex.items && !ex.items.length) return rc(body, h('div', { class: 'empty' }, h('div', { class: 'big' }, '🔎'), h('h2', { class: 'serif' }, 'No books found'), h('p', { class: 'muted' }, 'Try the full title, or just the author\'s last name.')), topics);
-  if (ex.items) return rc(body, h('div', { class: 'row', style: { justifyContent: 'space-between', marginTop: '14px' } }, h('span', { class: 'muted small' }, ex.items.length + ' results for "' + ex.q + '"'), h('button', { class: 'link', onClick: () => { ex.items = null; ex.q = ''; render(); } }, 'Clear')), ex.items.map(resultRow), topics);
+  if (ex.items) return rc(body, h('div', { class: 'row', style: { justifyContent: 'space-between', marginTop: '14px' } }, h('span', { class: 'muted small' }, ex.items.length + ' results for "' + ex.q + '"'), h('button', { class: 'link', onClick: () => { ex.items = null; ex.q = ''; render(); } }, 'Clear')), ex.items.map(resultRow), ex.canMore ? h('div', { style: { margin: '14px 0' } }, h('p', { class: 'muted small' }, 'These are in our library. Looking for another book?'), h('button', { class: 'btn ghost sm', onClick: () => runSearch(ex.q, true) }, '🌐 Search online for more')) : null, topics);
   rc(body, h('h3', { class: 'sh' }, 'Try searching for'), h('div', { class: 'chips wrap' }, ['Atomic Habits', 'Carl Sagan', 'stoicism', 'Rich Dad Poor Dad', 'Brené Brown'].map(s => h('button', { class: 'chip', onClick: () => { ex.q = s; runSearch(s); const i = $('.sform input'); if (i) i.value = s; } }, s))), topics);
 }
 
 /* ================= browse one topic ================= */
 function topicView() {
   const info = topicInfo(S.topic), list = h('div');
-  if (!info.s.length) { S.tab = 'home'; return homeView(); }
-  info.s.forEach(x => {
+  const items = (() => { const s = new Set(); return readyFor(S.topic).map(x => ({ t: x.t, a: x.a, r: 1 })).concat(info.s).filter(x => { const k = bookId(x.t, x.a); if (s.has(k)) return false; s.add(k); return true; }); })();
+  if (!items.length) { S.tab = 'home'; return homeView(); }
+  items.forEach(x => {
     const row = h('div', { class: 'nextrow' });
-    const fill = m => rc(row, coverEl(m, 'sm'), h('div', { class: 'grow' }, h('b', null, m.title), h('div', { class: 'muted small' }, 'by ' + m.author)), h('button', { class: 'btn ghost sm', onClick: () => openBook(m) }, 'Open'));
+    const fill = m => rc(row, coverEl(m, 'sm'), h('div', { class: 'grow' }, h('b', null, m.title), h('div', { class: 'muted small' }, 'by ' + m.author), findReady(m.title, m.author) ? h('div', { class: 'small', style: { color: '#2f6f4f' } }, '✓ Mini book ready') : null), h('button', { class: 'btn ghost sm', onClick: () => openBook(m) }, 'Open'));
     const base = { id: bookId(x.t, x.a), title: x.t, author: x.a, topic: S.topic, cover: '', cover2: '', desc: '', pages: 0 };
     fill(base);
     getMeta({ t: x.t, a: x.a }, S.topic).then(m => { if (S.tab === 'topic' && S.topic === info.k) fill(m); }).catch(() => {});
@@ -1042,6 +1177,7 @@ function topicView() {
 
 /* ================= start ================= */
 /*__START__*/
+loadReadyIndex();
 render();
 })();
 </script>
