@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Book Guide</title>
-<meta name="description" content="Understand a book before you buy the physical copy. Simple mini books on any non-fiction topic.">
+<title>The Book Guide - Understand Any Book Before You Buy It</title>
+<meta name="description" content="Free tool that helps you understand a book's core ideas before buying the physical copy. Decide smarter and avoid books that don't serve you">
 <meta name="theme-color" content="#f1f3ef">
 <style>
 *{box-sizing:border-box;margin:0}
@@ -340,7 +340,7 @@ function authView() {
   if (A.step === 1) {
     const ck = h('input', { type: 'checkbox', checked: d.consent, id: 'consent' });
     ck.addEventListener('change', () => { d.consent = ck.checked; });
-    rc(body, bar(1), h('h1', { class: 'serif' }, 'Create your free account'), h('p', { class: 'muted' }, 'Understand a book first, then decide if the physical copy is worth buying.'),
+    rc(body, bar(1), h('h1', { class: 'serif' }, 'Understand a Book First. Then Decide If It's Worth Buying.'), h('p', { class: 'muted' }, 'Understand a book first, then decide if the physical copy is worth buying.'),
       input('Email address', 'email', { type: 'email', placeholder: 'you@example.com', autocomplete: 'email' }),
       h('label', { class: 'consent', for: 'consent' }, ck, CFG.SIGNUP_ENDPOINT ? 'I agree that my email and the details I enter next are saved in this browser and shared with The Book Guide to improve book suggestions.' : 'I understand my email and details are saved only in this browser, and I can delete them any time in Profile.'),
       h('div', { class: 'row', style: { marginTop: '18px' } },
