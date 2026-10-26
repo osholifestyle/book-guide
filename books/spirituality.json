@@ -1,0 +1,186 @@
+{
+ "topic": "Spirituality",
+ "books": [
+  {
+   "title": "The Power of Now",
+   "author": "Eckhart Tolle",
+   "topic": "Spirituality",
+   "basis": "known",
+   "confidence": "high",
+   "sources": [
+    "New World Library, The Power of Now: https://redwheelweiser.com/book/the-power-of-now-9781577311522/",
+    "Eckhart Tolle official website: https://eckharttolle.com/books/",
+    "Vermont State Colleges Libraries, verified table of contents: https://catalog.libraries.vsc.edu/cgi-bin/koha/opac-detail.pl?biblionumber=248413",
+    "Foreword Reviews, The Power of Now: https://www.forewordreviews.com/reviews/the-power-of-now/"
+   ],
+   "needsHumanCheck": [
+    "The book presents spiritual teachings rather than experimentally established scientific claims. Its descriptions of consciousness and enlightenment should be understood within that context."
+   ],
+   "hook": "Your mind spends much of life elsewhere, while the moment you actually live keeps passing unnoticed.",
+   "page1": {
+    "inOneMinute": "The Power of Now explores how identification with constant thinking can create distress and distance people from present experience. Eckhart Tolle distinguishes awareness from the stream of thoughts that passes through the mind. He argues that peace becomes more available when attention returns to the present rather than becoming trapped in regret, anticipation, and resistance. The book develops this approach through bodily awareness, observation of thought, acceptance, and relationships. Its central teaching is that freedom begins by changing your relationship with the mind.",
+    "youWillGet": [
+     "Recognize when thoughts pull you away from the present.",
+     "Understand Tolle's distinction between awareness and mental activity.",
+     "Explore the pain-body concept.",
+     "Practise presence during ordinary activities."
+    ],
+    "whoFor": "This book suits readers interested in meditation, spiritual awareness, and the relationship between thought and suffering. It appeals to people who want an experiential approach rather than a conventional productivity system.",
+    "glance": {
+     "mainIdea": "Present-moment awareness offers a way to relate differently to thoughts and emotional pain.",
+     "problem": "Constant identification with thought can keep people trapped in regret, worry, and resistance.",
+     "promise": "Greater awareness of the present creates space between an experience and the mental reactions surrounding it."
+    },
+    "isThemes": false,
+    "inside": [
+     {
+      "part": "You Are Not Your Mind",
+      "line": "Examine the difference between awareness and the thoughts that usually dominate attention."
+     },
+     {
+      "part": "Consciousness: The Way Out of Pain",
+      "line": "Explore how identifying with thought and emotional patterns contributes to suffering."
+     },
+     {
+      "part": "Moving Deeply into the Now",
+      "line": "Learn why attention to the present matters more than constant mental preoccupation with past and future."
+     },
+     {
+      "part": "The State of Presence",
+      "line": "Explore awareness through attention to the body and the experience of being present."
+     },
+     {
+      "part": "Enlightened Relationships",
+      "line": "Examine how awareness changes reactions, emotional dependence, and interactions with others."
+     },
+     {
+      "part": "The Meaning of Surrender",
+      "line": "Distinguish accepting present reality from abandoning sensible action."
+     }
+    ],
+    "story": [
+     {
+      "heading": "Step outside constant thought",
+      "text": "Tolle begins by questioning the assumption that the mind's ongoing commentary defines who we are. Thoughts describe, judge, remember, and predict, but awareness can notice those activities. When people become completely identified with their thoughts, every mental story can feel like reality itself. Tolle invites readers to observe thinking instead of automatically following it."
+     },
+     {
+      "heading": "Understand emotional pain",
+      "text": "The discussion turns toward emotional suffering and the patterns that keep it active. Tolle introduces the pain-body, his term for accumulated emotional pain that can become active and influence present reactions. Recognizing this pattern creates an opportunity to observe feelings without feeding them with further identification. Awareness becomes more important than trying to defeat every unpleasant feeling."
+     },
+     {
+      "heading": "Return to the present",
+      "text": "Tolle examines how attention repeatedly escapes into memories and imagined futures. Planning and remembering remain useful, but mental preoccupation can replace direct contact with the moment. He develops ways of returning to present experience, including attention to the inner body. These practices shift attention from abstract mental activity toward immediate awareness."
+     },
+     {
+      "heading": "Bring awareness into relationships",
+      "text": "The later chapters consider relationships, acceptance, and surrender. Tolle argues that resistance to what is already happening adds another layer of suffering. Acceptance does not require allowing harmful behavior or refusing to solve problems. It means recognizing reality clearly before choosing a response. The book concludes by emphasizing presence as an ongoing practice rather than an idea to understand once."
+     }
+    ]
+   },
+   "page2": {
+    "author": [
+     "Eckhart Tolle is a spiritual teacher and author whose work focuses on present-moment awareness, consciousness, and freedom from excessive identification with thought. His books include The Power of Now and A New Earth. His teaching draws on spiritual ideas about awareness and being, presenting them in language intended for general readers rather than academic specialists.",
+     "The Power of Now became the central work associated with Tolle's teachings. His approach asks readers to investigate their own experience instead of treating spiritual understanding as an intellectual exercise alone. He uses questions, explanations, and practical suggestions to encourage awareness of thoughts and feelings. The book's language reflects a spiritual framework, so its claims about enlightenment and consciousness should not be confused with established psychological or neurological findings."
+    ],
+    "quickFacts": [
+     "The book's subtitle is A Guide to Spiritual Enlightenment.",
+     "New World Library is its authorized publisher.",
+     "The book includes chapters on the mind, presence, relationships, and surrender."
+    ]
+   },
+   "page3": {
+    "lessons": [
+     {
+      "title": "Observe the thinking mind",
+      "text": "Tolle distinguishes the awareness that notices thoughts from the thoughts themselves. A thought can appear convincing without defining the person noticing it. Watching mental activity creates room to respond instead of treating every judgment as an unquestionable fact.",
+      "example": "On Monday morning, Anika thinks her manager's short email means she has failed. She notices the conclusion as a thought and waits for more information before reacting."
+     },
+     {
+      "title": "Return to the Now",
+      "text": "Tolle treats the present moment as the place where life is actually experienced. Memories and plans remain useful, but repeated mental escape can create unnecessary distress. Bring attention back to the task, person, or sensation directly in front of you.",
+      "example": "While drinking tea before work, Ravi notices himself rehearsing an argument from yesterday. He feels the warm cup and returns his attention to the drink."
+     },
+     {
+      "title": "Recognize the pain-body",
+      "text": "The pain-body is Tolle's term for accumulated emotional pain that becomes active and influences reactions. He encourages readers to recognize this state instead of automatically identifying with it. This is a spiritual concept, not a formal clinical diagnosis.",
+      "example": "After a tense phone call, Meera feels irritated with everyone at home. She notices the emotional reaction before taking her frustration out on her family."
+     },
+     {
+      "title": "Use the inner body",
+      "text": "Tolle encourages attention to bodily sensations as a way to shift away from constant thought. Rather than analysing every experience, notice the physical sense of being alive. This practice brings attention into immediate experience without requiring complicated techniques.",
+      "example": "Before a presentation, Dev feels his thoughts racing. He stands quietly, notices his feet against the floor, and brings his attention to his breathing."
+     },
+     {
+      "title": "Accept before acting",
+      "text": "Surrender means acknowledging the present situation rather than mentally fighting the fact that it exists. Acceptance does not forbid practical change. It separates recognition of reality from the additional distress created by refusing to see it clearly.",
+      "example": "When Priya's train is cancelled, she stops arguing with the announcement and checks alternative routes. She accepts the delay without giving up on reaching her destination."
+     },
+     {
+      "title": "Bring awareness to relationships",
+      "text": "Tolle examines how unconscious reactions shape relationships. When people are absorbed in their own thoughts and emotional demands, they struggle to meet others with attention. Presence means listening to what is happening instead of preparing an automatic defence.",
+      "example": "During dinner, Arjun wants to interrupt his sister's complaint with advice. He pauses, listens to the full story, and asks what she needs from him."
+     }
+    ]
+   },
+   "page4": {
+    "remember": [
+     "A thought is something you notice, not your entire identity.",
+     "The present is where experience actually happens.",
+     "Recognize emotional patterns before acting from them.",
+     "Bodily awareness offers an anchor for attention.",
+     "Accept reality before deciding how to change it.",
+     "Listen to people instead of rehearsing your next response."
+    ],
+    "bigIdea": "Freedom begins when awareness is no longer completely absorbed in the mind's stories.",
+    "mistakes": [
+     "Treating presence as a reason to ignore future responsibilities or practical problems.",
+     "Assuming that accepting an experience means approving harmful behavior or suppressing painful emotions."
+    ]
+   },
+   "page5": {
+    "exercises": [
+     {
+      "title": "Watch your thoughts",
+      "steps": [
+       "Sit quietly and notice thoughts as they appear.",
+       "Identify a thought without trying to argue with it.",
+       "Notice that you are aware of the thought.",
+       "Return to the activity in front of you."
+      ],
+      "time": "5 minutes"
+     },
+     {
+      "title": "Practise bodily awareness",
+      "steps": [
+       "Sit comfortably and feel your feet against the floor.",
+       "Notice sensations in your hands and body.",
+       "When attention wanders, gently return to physical sensations.",
+       "Continue with an ordinary activity while keeping some attention on your body."
+      ],
+      "time": "10 minutes"
+     },
+     {
+      "title": "Accept and respond",
+      "steps": [
+       "Name a situation that is upsetting you.",
+       "Separate the facts from your judgments about them.",
+       "Notice the emotions and sensations arising now.",
+       "Choose one practical response to the actual situation."
+      ],
+      "time": "10 minutes"
+     }
+    ],
+    "reflectionQuestions": []
+   },
+   "page6": {
+    "whoShouldRead": "Read this book if you want to explore present-moment awareness through a spiritual framework. It suits readers interested in observing thought and developing a less reactive relationship with everyday experience.",
+    "whoMightSkip": "You may prefer a psychology textbook if you want claims supported by controlled scientific studies. Readers who prefer step-by-step secular meditation instructions may find Tolle's spiritual language less suitable.",
+    "buy": {
+     "suits": "Buy the physical book if you want the full discussion, extended question-and-answer sections, and repeated explanations of presence.",
+     "notSuits": "Skip it if this overview gives you enough to begin practising awareness independently.",
+     "physicalGives": "The full book provides more detailed discussions of the mind, emotional pain, relationships, and spiritual presence."
+    }
+   }
+  }
+ ]
+}

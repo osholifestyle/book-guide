@@ -725,6 +725,184 @@
     }
    },
    "readyKey": "the compound effect"
+  },
+  {
+   "title": "Better Than Before",
+   "author": "Gretchen Rubin",
+   "topic": "Habits",
+   "basis": "known",
+   "confidence": "high",
+   "sources": [
+    "Penguin Random House, Better Than Before: https://www.penguinrandomhouse.com/books/225164/better-than-before-by-gretchen-rubin/",
+    "Gretchen Rubin official website: https://gretchenrubin.com/resources/",
+    "Gretchen Rubin, Better Than Before discussion guide",
+    "Gretchen Rubin official Four Tendencies chapter excerpt: https://gretchenrubin.com/wp-content/uploads/2017/08/Four-Tendencies-Chapter-1.pdf"
+   ],
+   "needsHumanCheck": [
+    "The complete table of contents was not independently confirmed for every chapter.",
+    "The Four Tendencies framework is discussed in the book, but readers should not treat it as a clinical personality assessment."
+   ],
+   "hook": "Lasting habits begin when you stop copying other people's routines and start understanding your own nature.",
+   "page1": {
+    "inOneMinute": "Better Than Before explores why people struggle to change their daily behavior, even when they genuinely want to improve. Gretchen Rubin argues that habits become easier to maintain when they fit our individual needs, personalities, and circumstances. She examines different approaches to forming routines, managing temptation, and responding to expectations. Instead of searching for one perfect method, readers learn to identify the strategies that suit them. The central message is simple: lasting change depends on understanding how you actually behave.",
+    "youWillGet": [
+     "Identify the conditions that make habits easier to maintain.",
+     "Understand the Four Tendencies framework.",
+     "Choose habit strategies that fit your personality.",
+     "Recognize common obstacles to consistent behavior."
+    ],
+    "whoFor": "This book suits readers who repeatedly start new routines but struggle to maintain them. It is especially useful for people who want practical ways to make everyday behavior more consistent.",
+    "glance": {
+     "mainIdea": "Habits work best when their design matches the person trying to build them.",
+     "problem": "People often copy strategies that suit someone else's personality and circumstances.",
+     "promise": "A better understanding of yourself gives you more useful ways to change your behavior."
+    },
+    "isThemes": true,
+    "inside": [
+     {
+      "part": "The Four Tendencies",
+      "line": "Explore how people respond differently to expectations placed on them by others and themselves."
+     },
+     {
+      "part": "Monitoring",
+      "line": "Pay attention to behavior to understand what you actually do rather than what you intend to do."
+     },
+     {
+      "part": "Convenience and Inconvenience",
+      "line": "Change the effort required to perform a desired habit or an unwanted behavior."
+     },
+     {
+      "part": "Scheduling and Accountability",
+      "line": "Use planned routines and suitable forms of responsibility to support consistent action."
+     },
+     {
+      "part": "Rewards, Abstaining, and Other Strategies",
+      "line": "Examine different ways of responding to temptation and making habits more sustainable."
+     }
+    ],
+    "story": [
+     {
+      "heading": "Why change feels difficult",
+      "text": "Rubin begins with a familiar problem: people want to improve, yet their good intentions often disappear. A plan that works beautifully for one person may fail another. The difference is not always discipline. People respond differently to rules, rewards, schedules, and social pressure. Understanding those differences provides a more useful starting point than blaming yourself."
+     },
+     {
+      "heading": "Understand your own tendencies",
+      "text": "The book examines how people meet inner expectations, such as personal goals, and outer expectations, such as promises to others. Rubin's Four Tendencies framework describes Upholders, Questioners, Obligers, and Rebels according to their responses to these expectations. Each tendency suggests different ways of approaching change. The point is to notice your usual behavior and choose strategies accordingly."
+     },
+     {
+      "heading": "Design the conditions for success",
+      "text": "Rubin then examines practical strategies for changing everyday behavior. Monitoring reveals what is happening. Scheduling gives actions a place in the day. Accountability creates a reason to follow through. Convenience makes desired behavior easier, while removing convenience can interrupt unwanted behavior. Abstaining and moderation also suit different people in different situations. No single tactic needs to work for everyone."
+     },
+     {
+      "heading": "Build a personal system",
+      "text": "The book brings these ideas together around a central question: which conditions support your own consistency? A reader who responds to deadlines might arrange regular check-ins. Someone who resists rigid rules might experiment with a different structure. Rather than treating a failed strategy as proof of personal weakness, readers can study the failure and adjust their approach. Habit change becomes a process of learning about yourself."
+     }
+    ]
+   },
+   "page2": {
+    "author": [
+     "Gretchen Rubin is an author who writes about happiness, human nature, habits, and everyday behavior. Her books include The Happiness Project, Better Than Before, and The Four Tendencies. Her work combines personal observation, research, and practical suggestions for changing ordinary routines. She is also known for exploring how differences between people affect their experiences of happiness and self-management.",
+     "Rubin hosts the Happier with Gretchen Rubin podcast, where she discusses practical approaches to happier living with her sister, Elizabeth Craft. Her work frequently focuses on small actions and the conditions that make them easier to repeat. In Better Than Before, she applies this interest to habits, arguing that self-knowledge matters when selecting methods for lasting change. Her approach encourages readers to examine their own patterns instead of assuming that one system will suit everyone."
+    ],
+    "quickFacts": [
+     "The book was published by Crown.",
+     "Rubin is also the author of The Happiness Project.",
+     "The book examines personal differences in habit formation."
+    ]
+   },
+   "page3": {
+    "lessons": [
+     {
+      "title": "Understand your tendency",
+      "text": "Rubin's Four Tendencies framework describes how people respond to inner and outer expectations. Upholders generally respond to both, Questioners require reasons, Obligers respond more readily to outside expectations, and Rebels resist both. Recognizing your usual response gives you a starting point for choosing a workable habit strategy.",
+      "example": "Priya keeps appointments with her running partner but ignores her private exercise goals. She schedules three runs with a friend and uses the commitment to make exercise more consistent."
+     },
+     {
+      "title": "Monitor actual behavior",
+      "text": "Memory and intention do not always reflect what happens in daily life. Monitoring means recording behavior so patterns become visible. Instead of guessing why a routine fails, examine when you follow through, when you skip it, and what conditions surround each result.",
+      "example": "Rohan believes he checks social media only during breaks. He records each check for a week and discovers that most happen when he gets stuck on difficult work."
+     },
+     {
+      "title": "Make good behavior convenient",
+      "text": "Small practical barriers often interrupt good intentions. Reducing the steps required to begin a habit makes action easier. Prepare the environment so the desired behavior is ready when you need it, rather than relying on motivation to overcome unnecessary friction.",
+      "example": "Meera wants to read before bed. She places her current book beside her pillow and charges her phone across the room."
+     },
+     {
+      "title": "Schedule the behavior",
+      "text": "A clear place in your routine removes repeated decisions about when to act. Scheduling works especially well when an action benefits from regular timing. The goal is not to fill every minute but to give an important behavior a dependable opportunity.",
+      "example": "Arjun plans to study after dinner but keeps postponing it. He reserves the first half hour after dinner for study before opening his entertainment apps."
+     },
+     {
+      "title": "Use accountability that fits",
+      "text": "Responsibility to another person supports some people more than private promises do. The useful form depends on the individual. Choose accountability that encourages follow-through without creating needless pressure or turning every missed action into a source of shame.",
+      "example": "Nisha struggles to practise speaking English alone. She arranges a short weekly conversation with a friend and prepares a topic before each call."
+     },
+     {
+      "title": "Choose your temptation strategy",
+      "text": "People differ in how they manage enjoyable but unwanted behavior. Rubin explores both abstaining and moderation rather than insisting on one universal rule. Notice whether a clear boundary or a limited allowance makes a particular temptation easier to handle.",
+      "example": "Kabir repeatedly watches one more episode after midnight. He tries stopping after a fixed number of episodes, then compares that approach with avoiding television on work nights."
+     }
+    ]
+   },
+   "page4": {
+    "remember": [
+     "A habit strategy must fit the person using it.",
+     "Your response to expectations affects your approach to change.",
+     "Track behavior before guessing why it fails.",
+     "Make useful actions easier to begin.",
+     "Give important routines a dependable place in your day.",
+     "Choose temptation rules that match your own behavior."
+    ],
+    "bigIdea": "You improve your chances of lasting change when you build habits around your actual nature and circumstances.",
+    "mistakes": [
+     "Copying a popular routine without checking whether its structure fits your needs.",
+     "Treating every failed attempt as a lack of discipline instead of examining the strategy and circumstances."
+    ]
+   },
+   "page5": {
+    "exercises": [
+     {
+      "title": "Observe one habit",
+      "steps": [
+       "Choose one behavior you want to understand.",
+       "Record each time it happens for seven days.",
+       "Note the time, location, and situation surrounding it.",
+       "Use the pattern to choose one change."
+      ],
+      "time": "10 minutes daily"
+     },
+     {
+      "title": "Design a convenient routine",
+      "steps": [
+       "Choose a useful behavior you often postpone.",
+       "List the steps needed to begin it.",
+       "Remove one unnecessary step or barrier.",
+       "Prepare the required materials before the next opportunity."
+      ],
+      "time": "15 minutes"
+     },
+     {
+      "title": "Test an accountability method",
+      "steps": [
+       "Choose a habit that benefits from outside support.",
+       "Ask a suitable person to check in with you.",
+       "Agree on a clear action and review time.",
+       "After a week, decide whether the arrangement helped."
+      ],
+      "time": "15 minutes to set up"
+     }
+    ],
+    "reflectionQuestions": []
+   },
+   "page6": {
+    "whoShouldRead": "Read this book if you want to understand why your routines keep breaking down and how to adapt them. It suits readers who prefer practical experiments over rigid rules.",
+    "whoMightSkip": "You may prefer another book if you want a narrowly focused scientific review of habit research. Readers seeking a strict daily schedule with exact instructions may also want a more prescriptive guide.",
+    "buy": {
+     "suits": "Buy the physical book if you want the fuller discussion of Rubin's habit strategies and enough space to compare them with your own behavior.",
+     "notSuits": "Skip it if this overview already gives you a clear strategy and you prefer to test it without further reading.",
+     "physicalGives": "The full book provides more explanation, examples, and discussion of the different ways people approach habit change."
+    }
+   }
   }
  ]
 }

@@ -1,0 +1,186 @@
+{
+ "topic": "Personal Finance",
+ "books": [
+  {
+   "title": "The Psychology of Money",
+   "author": "Morgan Housel",
+   "topic": "Personal Finance",
+   "basis": "known",
+   "confidence": "high",
+   "sources": [
+    "Harriman House, The Psychology of Money: https://harriman.house/books/the-psychology-of-money/",
+    "Harriman House, official contents and author biography: https://www.harriman-house.com/psychologyofmoney",
+    "Macmillan Academic: https://academic.macmillan.com/academictrade/9780857197689/thepsychologyofmoney/",
+    "Harriman House, book reviews and author information: https://www.harriman-house.com/authors/morgan-housel/the-psychology-of-money/9780857197689"
+   ],
+   "needsHumanCheck": [
+    "The book uses historical and financial examples to illustrate behavior. Readers should not treat its examples as individualized investment advice or assume past market patterns will repeat."
+   ],
+   "hook": "Your financial future depends not only on what you know, but also on how you behave when money is involved.",
+   "page1": {
+    "inOneMinute": "The Psychology of Money examines how emotions, personal history, luck, and behavior shape financial decisions. Morgan Housel argues that financial success depends on more than mathematical knowledge. People make choices through the lens of their own experiences and beliefs. The book explores compounding, saving, uncertainty, wealth, risk, and the value of financial independence. It encourages readers to protect themselves against unexpected events, avoid comparison, and define what enough means. Its central lesson is that a sustainable relationship with money matters more than looking wealthy.",
+    "youWillGet": [
+     "Understand how personal experiences shape financial decisions.",
+     "Distinguish visible wealth from financial security.",
+     "Recognize the roles of luck, risk, and compounding.",
+     "Build a personal definition of financial independence."
+    ],
+    "whoFor": "This book suits readers who want to understand money behavior rather than learn technical investing methods alone. It is especially useful for people making decisions about saving, spending, risk, and long-term security.",
+    "glance": {
+     "mainIdea": "Financial outcomes depend heavily on behavior, expectations, and how people respond to uncertainty.",
+     "problem": "Comparison, overconfidence, and emotional reactions often undermine otherwise sensible financial decisions.",
+     "promise": "A better understanding of money psychology supports more sustainable choices about saving, spending, and risk."
+    },
+    "isThemes": false,
+    "inside": [
+     {
+      "part": "No One's Crazy",
+      "line": "Understand why different financial choices make sense to people with different life experiences."
+     },
+     {
+      "part": "Luck & Risk",
+      "line": "Examine the role of chance and uncertainty in financial outcomes."
+     },
+     {
+      "part": "Confounding Compounding",
+      "line": "Explore how returns build over time and why duration matters."
+     },
+     {
+      "part": "Getting Wealthy vs. Staying Wealthy",
+      "line": "Distinguish accumulating money from protecting it through caution and resilience."
+     },
+     {
+      "part": "Wealth is What You Don't See",
+      "line": "Recognize that unspent money and financial flexibility are often invisible."
+     },
+     {
+      "part": "Room for Error",
+      "line": "Leave a margin of safety for unexpected events and uncertain outcomes."
+     }
+    ],
+    "story": [
+     {
+      "heading": "Money is personal",
+      "text": "Housel begins by explaining why people with different experiences make different financial choices. A person's view of risk, saving, and investing develops through the events they have lived through. What seems reckless to one person may seem sensible to another. Understanding this difference is essential because money decisions involve emotions and personal beliefs as well as calculations."
+     },
+     {
+      "heading": "Understand chance and time",
+      "text": "The book explores the roles of luck and risk in financial outcomes. Success does not always prove skill, and failure does not always prove poor judgment. Housel also explains compounding, where returns build on earlier returns over time. Small advantages sustained for long periods can matter greatly, making patience and consistency important parts of financial behavior."
+     },
+     {
+      "heading": "Build and protect wealth",
+      "text": "Housel distinguishes becoming wealthy from staying wealthy. Accumulation often requires taking risks, while preservation requires caution and the ability to survive setbacks. He discusses saving, humility, and leaving room for error. He also argues that wealth is frequently invisible because financial security often consists of assets not spent on visible displays."
+     },
+     {
+      "heading": "Decide what is enough",
+      "text": "The later chapters examine freedom, comparison, pessimism, changing preferences, and the limits of prediction. Housel argues that people need personal goals rather than endless competition with others. Financial independence means having control over how time is used, not merely owning expensive things. The book concludes by encouraging readers to build a financial approach they can maintain through uncertain conditions."
+     }
+    ]
+   },
+   "page2": {
+    "author": [
+     "Morgan Housel is a financial writer and partner at The Collaborative Fund. He previously wrote columns for The Motley Fool and The Wall Street Journal. His work focuses on how people think about money, investing, uncertainty, and wealth. Rather than presenting finance as mathematics alone, he examines the behavior and expectations that influence financial choices.",
+     "The Psychology of Money presents financial ideas through short stories and reflections. Housel draws attention to how personal experiences influence people's reactions to risk and opportunity. He discusses the difference between visible consumption and hidden financial security, along with the importance of saving, patience, and humility. His approach is aimed at general readers and does not replace individualized financial advice. Its central concern is the behavior needed to make financial decisions that remain workable over time."
+    ],
+    "quickFacts": [
+     "The book's subtitle is Timeless Lessons on Wealth, Greed, and Happiness.",
+     "Harriman House published the original English-language edition.",
+     "The book uses short stories to explain financial behavior."
+    ]
+   },
+   "page3": {
+    "lessons": [
+     {
+      "title": "No one's crazy",
+      "text": "Housel argues that financial behavior often reflects personal experience. People who lived through different economic conditions develop different ideas about safety, opportunity, and risk. Understanding these differences makes it easier to examine your own assumptions without assuming everyone should make identical choices.",
+      "example": "After seeing her parents struggle with debt, Kavita keeps most of her savings in cash. Her friend prefers investments, but Kavita reviews her own needs before changing her approach."
+     },
+     {
+      "title": "Respect luck and risk",
+      "text": "Financial outcomes include factors outside personal control. Luck can support a good result, while unexpected events can damage a sensible plan. Housel encourages humility when judging success and failure because a result alone does not reveal every decision or circumstance behind it.",
+      "example": "Rohan's small business grows after a competitor closes unexpectedly. He saves part of the extra income rather than assuming the same growth will continue."
+     },
+     {
+      "title": "Let compounding work",
+      "text": "Compounding occurs when gains build on earlier gains over time. Housel emphasizes the importance of allowing growth to continue instead of repeatedly interrupting it. Patience matters because long-term outcomes depend not only on returns but also on how long money remains invested.",
+      "example": "Each month, Asha puts an affordable amount into a suitable long-term investment. She focuses on maintaining the habit rather than checking the balance every hour."
+     },
+     {
+      "title": "Protect what you build",
+      "text": "Getting wealthy and staying wealthy require different attitudes toward risk. Housel stresses survival, caution, and the ability to remain in the game. Avoiding financial ruin matters because a person who cannot recover loses the opportunity to benefit from future growth.",
+      "example": "After a profitable year, Imran avoids borrowing heavily to expand his shop. He keeps reserves for quiet months and unexpected repairs."
+     },
+     {
+      "title": "Wealth is often invisible",
+      "text": "Visible spending reveals what people have purchased, not what they own or can afford. Housel distinguishes looking wealthy from having financial resources that remain unspent. Savings create options and security precisely because they do not need to be displayed to others.",
+      "example": "At a family gathering, Neel feels pressure to replace his old phone. He keeps it because he values the money reserved for future needs."
+     },
+     {
+      "title": "Leave room for error",
+      "text": "A financial plan built on perfect predictions is fragile. Housel encourages people to leave a margin of safety for unexpected costs, changes in income, and uncertain outcomes. Extra flexibility makes it easier to survive surprises without abandoning long-term goals.",
+      "example": "Before moving into a new apartment, Priya calculates rent and ordinary bills, then keeps extra savings for repairs or an unexpected drop in income."
+     }
+    ]
+   },
+   "page4": {
+    "remember": [
+     "Money choices reflect personal history as well as knowledge.",
+     "Luck and risk influence financial outcomes.",
+     "Compounding rewards patience and time.",
+     "Protecting wealth requires avoiding financial ruin.",
+     "Visible spending does not reveal financial security.",
+     "A margin of safety makes plans more resilient."
+    ],
+    "bigIdea": "A sound financial life depends on behavior you can sustain through uncertainty, not just calculations that look good on paper.",
+    "mistakes": [
+     "Copying another person's financial strategy without considering different goals, resources, and tolerance for risk.",
+     "Assuming that a strong recent result proves skill or guarantees future success."
+    ]
+   },
+   "page5": {
+    "exercises": [
+     {
+      "title": "Define what enough means",
+      "steps": [
+       "Write down what financial security means in your life.",
+       "Identify the expenses and responsibilities that matter most.",
+       "Separate personal goals from purchases driven by comparison.",
+       "Choose one spending decision that better reflects your priorities."
+      ],
+      "time": "20 minutes"
+     },
+     {
+      "title": "Build a margin of safety",
+      "steps": [
+       "List your regular essential expenses.",
+       "Identify costs that could appear unexpectedly.",
+       "Review how much accessible savings you currently have.",
+       "Set a realistic savings target based on your circumstances."
+      ],
+      "time": "20 minutes"
+     },
+     {
+      "title": "Review your money behavior",
+      "steps": [
+       "Choose one recent spending or saving decision.",
+       "Write down the emotion or belief influencing it.",
+       "Consider whether comparison or fear affected your choice.",
+       "Decide what you would repeat or change next time."
+      ],
+      "time": "15 minutes"
+     }
+    ],
+    "reflectionQuestions": []
+   },
+   "page6": {
+    "whoShouldRead": "Read this book if you want a more thoughtful relationship with saving, investing, risk, and spending. It suits beginners and experienced readers who want to understand the human behavior behind financial decisions.",
+    "whoMightSkip": "You may prefer a technical finance textbook if you need detailed valuation methods or specific investment calculations. Readers seeking personalized recommendations for their financial situation should consult a qualified financial professional.",
+    "buy": {
+     "suits": "Buy the physical book if you want the complete collection of stories and the fuller development of Housel's financial principles.",
+     "notSuits": "Skip it if this guide provides the behavioral ideas you need and you are looking for a more technical resource.",
+     "physicalGives": "The complete book provides more stories, historical examples, and detailed explanations connecting money behavior with long-term financial choices."
+    }
+   }
+  }
+ ]
+}

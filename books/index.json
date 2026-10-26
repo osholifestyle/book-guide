@@ -1,6 +1,13 @@
 {
  "books": [
   {
+   "t": "Decisive",
+   "a": "Chip Heath and Dan Heath",
+   "topic": "Decision-Making",
+   "s": "decision-making",
+   "h": "Better decisions require more than careful thinking; they require a process that challenges the way we choose."
+  },
+  {
    "t": "Atomic Habits",
    "a": "James Clear",
    "topic": "Habits",
@@ -27,6 +34,48 @@
    "topic": "Habits",
    "s": "habits",
    "h": "Small daily decisions accumulate over time. Tracking them makes it easier to see which routines move you toward your goals and which pull you away."
+  },
+  {
+   "t": "Better Than Before",
+   "a": "Gretchen Rubin",
+   "topic": "Habits",
+   "s": "habits",
+   "h": "Lasting habits begin when you stop copying other people's routines and start understanding your own nature."
+  },
+  {
+   "t": "Lost Connections",
+   "a": "Johann Hari",
+   "topic": "Mental Health",
+   "s": "mental-health",
+   "h": "Depression deserves more than one explanation: relationships, work, values, and living conditions matter too."
+  },
+  {
+   "t": "The Brain That Changes Itself",
+   "a": "Norman Doidge",
+   "topic": "Mind & Brain",
+   "s": "mind-and-brain",
+   "h": "The brain is not simply fixed wiring; experience and practice change how it works."
+  },
+  {
+   "t": "Goodbye, Things",
+   "a": "Fumio Sasaki",
+   "topic": "Minimalism",
+   "s": "minimalism",
+   "h": "Your possessions occupy more than physical space; they also demand attention, care, and decisions."
+  },
+  {
+   "t": "The Psychology of Money",
+   "a": "Morgan Housel",
+   "topic": "Personal Finance",
+   "s": "personal-finance",
+   "h": "Your financial future depends not only on what you know, but also on how you behave when money is involved."
+  },
+  {
+   "t": "Man's Search for Meaning",
+   "a": "Viktor E. Frankl",
+   "topic": "Philosophy",
+   "s": "philosophy",
+   "h": "When life becomes painfully difficult, meaning gives a person a reason to keep going."
   },
   {
    "t": "The Communist Manifesto",
@@ -155,6 +204,20 @@
    "h": "A society can be full of people and still be short of the connections that help communities work."
   },
   {
+   "t": "Getting Things Done",
+   "a": "David Allen",
+   "topic": "Productivity",
+   "s": "productivity",
+   "h": "Stop using your memory as a storage system and start turning unfinished commitments into clear next actions."
+  },
+  {
+   "t": "Thinking, Fast and Slow",
+   "a": "Daniel Kahneman",
+   "topic": "Psychology",
+   "s": "psychology",
+   "h": "Your mind makes fast judgments before you notice, and confidence does not guarantee that those judgments are correct."
+  },
+  {
    "t": "The Selfish Gene",
    "a": "Richard Dawkins",
    "topic": "Science",
@@ -251,6 +314,13 @@
    "topic": "Self-Improvement",
    "s": "self-improvement",
    "h": "Change the way you interpret a situation, and you create more room for creativity, contribution, and shared success."
+  },
+  {
+   "t": "The Power of Now",
+   "a": "Eckhart Tolle",
+   "topic": "Spirituality",
+   "s": "spirituality",
+   "h": "Your mind spends much of life elsewhere, while the moment you actually live keeps passing unnoticed."
   }
  ]
 }
