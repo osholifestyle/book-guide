@@ -1,0 +1,256 @@
+{
+ "books": [
+  {
+   "t": "Atomic Habits",
+   "a": "James Clear",
+   "topic": "Habits",
+   "s": "habits",
+   "h": "Small habits become more useful when you make good actions easier to start and build them into the person you want to become."
+  },
+  {
+   "t": "The Power of Habit",
+   "a": "Charles Duhigg",
+   "topic": "Habits",
+   "s": "habits",
+   "h": "Understanding the cue, routine, and reward loop gives you a practical way to examine repeated behavior and plan a different response."
+  },
+  {
+   "t": "Tiny Habits",
+   "a": "BJ Fogg",
+   "topic": "Habits",
+   "s": "habits",
+   "h": "Start with a behavior small enough to do, attach it to a reliable daily prompt, and build change through repeated success."
+  },
+  {
+   "t": "The Compound Effect",
+   "a": "Darren Hardy",
+   "topic": "Habits",
+   "s": "habits",
+   "h": "Small daily decisions accumulate over time. Tracking them makes it easier to see which routines move you toward your goals and which pull you away."
+  },
+  {
+   "t": "The Communist Manifesto",
+   "a": "Karl Marx and Friedrich Engels",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Understand how Marx and Engels connect economic power, class conflict, and the struggle to change society."
+  },
+  {
+   "t": "The Origins of Totalitarianism",
+   "a": "Hannah Arendt",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Discover how Arendt connects antisemitism, imperialism, mass politics, propaganda, and terror in her account of totalitarian rule."
+  },
+  {
+   "t": "The Open Society and Its Enemies",
+   "a": "Karl Popper",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Learn why Karl Popper defends open debate and gradual reform against political visions built on historical certainty."
+  },
+  {
+   "t": "The Clash of Civilizations and the Remaking of World Order",
+   "a": "Samuel P. Huntington",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Explore Huntington's controversial claim that cultural identity would shape international conflict after the Cold War."
+  },
+  {
+   "t": "The Spirit Level",
+   "a": "Richard Wilkinson and Kate Pickett",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Discover why Wilkinson and Pickett argue that the gap between rich and poor affects the wellbeing of an entire society."
+  },
+  {
+   "t": "The New Jim Crow",
+   "a": "Michelle Alexander",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Understand Alexander's argument that mass incarceration reproduces racial exclusion even when laws use race-neutral language."
+  },
+  {
+   "t": "The Color of Law",
+   "a": "Richard Rothstein",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Discover how government housing policies helped create and preserve racial segregation across American neighbourhoods."
+  },
+  {
+   "t": "The Road to Unfreedom",
+   "a": "Timothy Snyder",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Explore how Timothy Snyder connects Russian political ideas, propaganda, and international interference with threats to democracy."
+  },
+  {
+   "t": "Why Nations Fail",
+   "a": "Daron Acemoglu and James A. Robinson",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Discover why Acemoglu and Robinson believe political and economic institutions explain much of the difference between rich and poor nations."
+  },
+  {
+   "t": "The Age of Surveillance Capitalism",
+   "a": "Shoshana Zuboff",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Learn how companies turn personal data into predictions about human behaviour—and why Zuboff believes this threatens freedom."
+  },
+  {
+   "t": "The Origins of Political Order",
+   "a": "Francis Fukuyama",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Discover how states, laws, and political accountability developed—and why building all three together is so difficult."
+  },
+  {
+   "t": "The Death of Democracy",
+   "a": "Benjamin Carter Hett",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "See how political elites, economic crisis, and failed democratic safeguards helped Hitler rise to power in Germany."
+  },
+  {
+   "t": "A People's History of the United States",
+   "a": "Howard Zinn",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "See American history through the experiences of workers, enslaved people, Indigenous communities, women, and others often left at the margins."
+  },
+  {
+   "t": "The Great Transformation",
+   "a": "Karl Polanyi",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Understand why Polanyi believed that treating markets as separate from society damages livelihoods, communities, and political stability."
+  },
+  {
+   "t": "The Jakarta Method",
+   "a": "Vincent Bevins",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Explore how Cold War anti-communist campaigns shaped Indonesia and influenced political violence across other countries."
+  },
+  {
+   "t": "The True Believer",
+   "a": "Eric Hoffer",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Why do people surrender their own judgment to a cause, and what makes mass movements so powerful?"
+  },
+  {
+   "t": "The Authoritarian Personality",
+   "a": "Theodor W. Adorno, Else Frenkel-Brunswik, Daniel J. Levinson, and R. Nevitt Sanford",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "Can a person's upbringing and need for certainty help explain prejudice and obedience to authority?"
+  },
+  {
+   "t": "Bowling Alone",
+   "a": "Robert D. Putnam",
+   "topic": "Politics & Society",
+   "s": "politics-and-society",
+   "h": "A society can be full of people and still be short of the connections that help communities work."
+  },
+  {
+   "t": "The Selfish Gene",
+   "a": "Richard Dawkins",
+   "topic": "Science",
+   "s": "science",
+   "h": "Understand evolution by looking at how genes persist, cooperate, compete, and shape the bodies that carry them."
+  },
+  {
+   "t": "The Demon-Haunted World",
+   "a": "Carl Sagan",
+   "topic": "Science",
+   "s": "science",
+   "h": "Learn how to question extraordinary claims without losing your sense of wonder about the world."
+  },
+  {
+   "t": "The Gene",
+   "a": "Siddhartha Mukherjee",
+   "topic": "Science",
+   "s": "science",
+   "h": "Trace the search for the gene and face the difficult questions raised by our growing power over heredity."
+  },
+  {
+   "t": "Think and Grow Rich",
+   "a": "Napoleon Hill",
+   "topic": "Self-Improvement",
+   "s": "self-improvement",
+   "h": "Clear goals, practical planning, and persistent effort form the heart of Hill's approach to achievement."
+  },
+  {
+   "t": "The 7 Habits of Highly Effective People",
+   "a": "Stephen R. Covey",
+   "topic": "Self-Improvement",
+   "s": "self-improvement",
+   "h": "Build effectiveness through personal responsibility, clear priorities, mutual respect, and regular renewal."
+  },
+  {
+   "t": "Awaken the Giant Within",
+   "a": "Anthony Robbins",
+   "topic": "Self-Improvement",
+   "s": "self-improvement",
+   "h": "Change begins with the decisions you make, the standards you set, and the actions you repeat."
+  },
+  {
+   "t": "The Road Less Traveled",
+   "a": "M. Scott Peck",
+   "topic": "Self-Improvement",
+   "s": "self-improvement",
+   "h": "Accepting that life is difficult frees you to solve hard problems with discipline and genuine love."
+  },
+  {
+   "t": "The Six Pillars of Self-Esteem",
+   "a": "Nathaniel Branden",
+   "topic": "Self-Improvement",
+   "s": "self-improvement",
+   "h": "True self-esteem is an internal practice rooted in conscious choices, not hollow praise."
+  },
+  {
+   "t": "The Courage to Be Disliked",
+   "a": "Ichiro Kishimi and Fumitake Koga",
+   "topic": "Self-Improvement",
+   "s": "self-improvement",
+   "h": "True freedom begins when you separate your tasks from others and let go of their approval."
+  },
+  {
+   "t": "The Gifts of Imperfection",
+   "a": "Brené Brown",
+   "topic": "Self-Improvement",
+   "s": "self-improvement",
+   "h": "Embracing imperfection, practicing courage, and building honest connections create room for a more wholehearted life."
+  },
+  {
+   "t": "Mindset",
+   "a": "Carol S. Dweck",
+   "topic": "Self-Improvement",
+   "s": "self-improvement",
+   "h": "Believing that your abilities can develop changes how you respond to challenges, feedback, and failure."
+  },
+  {
+   "t": "The Success Principles",
+   "a": "Jack Canfield",
+   "topic": "Self-Improvement",
+   "s": "self-improvement",
+   "h": "Taking responsibility for your choices, setting clear goals, and acting consistently gives you a practical way to move toward the life you want."
+  },
+  {
+   "t": "Psycho-Cybernetics",
+   "a": "Maxwell Maltz",
+   "topic": "Self-Improvement",
+   "s": "self-improvement",
+   "h": "The way you see yourself influences how you act. Changing that picture can give you a different starting point for handling life's challenges."
+  },
+  {
+   "t": "The Art of Possibility",
+   "a": "Rosamund Stone Zander and Benjamin Zander",
+   "topic": "Self-Improvement",
+   "s": "self-improvement",
+   "h": "Change the way you interpret a situation, and you create more room for creativity, contribution, and shared success."
+  }
+ ]
+}

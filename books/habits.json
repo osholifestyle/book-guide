@@ -1,0 +1,730 @@
+{
+ "topic": "Habits",
+ "books": [
+  {
+   "title": "Atomic Habits",
+   "author": "James Clear",
+   "topic": "Habits",
+   "basis": "known",
+   "confidence": "high",
+   "sources": [
+    "https://jamesclear.com/about",
+    "https://jamesclear.com/atomic-habits",
+    "https://jamesclear.com/atomic-habits-summary",
+    "https://www.penguinrandomhouse.com/books/543993/atomic-habits-by-james-clear/9781524779269/",
+    "https://jamesclear.com/books"
+   ],
+   "needsHumanCheck": [
+    "The author's book and website provide the core framework. Verify any additional chapter-level claims against the exact edition being summarized.",
+    "Sales figures and subscriber counts change over time. The source list uses the author's current biography rather than treating these numbers as permanent."
+   ],
+   "hook": "Small habits become more useful when you make good actions easier to start and build them into the person you want to become.",
+   "page1": {
+    "inOneMinute": "Atomic Habits explains how small repeated actions shape everyday behavior over time. James Clear argues that goals matter, but the systems used to pursue them deserve equal attention. He also connects lasting change with identity: repeated actions provide evidence about the kind of person you are becoming. The book presents four laws for designing habits: make them obvious, attractive, easy, and satisfying. These principles offer a practical framework, not a guarantee of automatic success.",
+    "youWillGet": [
+     "A four-law framework for building useful habits and reducing unwanted ones",
+     "Methods for making good habits easier to notice and begin",
+     "The Two-Minute Rule for reducing the starting effort of a new habit",
+     "Ways to connect routines with identity, track progress, and recover after interruptions"
+    ],
+    "whoFor": "This book suits people who want practical methods for improving routines around exercise, reading, work, learning, or daily organization. Managers and team leaders may also find its focus on systems useful. Readers who want a technical academic treatment of behavior science may prefer specialist research texts.",
+    "glance": {
+     "mainIdea": "Small actions repeated within a supportive system can shape behavior over time. Clear connects habit design with cues, motivation, ease, rewards, and personal identity.",
+     "problem": "People often set ambitious goals without changing the routines and surroundings that shape daily behavior. They may also rely on motivation when a smaller, easier action would be more practical.",
+     "promise": "The four laws give readers a structured way to change cues, make actions appealing, reduce friction, and notice rewards. They improve the design of habits but cannot make every desired behavior inevitable."
+    },
+    "isThemes": true,
+    "inside": [
+     {
+      "part": "Small Changes and Long-Term Progress",
+      "line": "Understanding how repeated actions contribute to results and why systems deserve attention alongside goals."
+     },
+     {
+      "part": "The First Law: Make It Obvious",
+      "line": "Recognizing cues, reviewing existing routines, and arranging the environment to prompt useful actions."
+     },
+     {
+      "part": "The Second Law: Make It Attractive",
+      "line": "Connecting habits with motivation, social influences, and activities you already enjoy."
+     },
+     {
+      "part": "The Third Law: Make It Easy",
+      "line": "Reducing friction, preparing the environment, and using the Two-Minute Rule to begin."
+     },
+     {
+      "part": "The Fourth Law: Make It Satisfying",
+      "line": "Using immediate feedback, tracking, and practical ways to return to a routine after a missed day."
+     }
+    ],
+    "story": [
+     {
+      "heading": "Small Actions Add Up",
+      "text": "Clear opens with the idea that repeated actions matter more than they first appear to. A single habit may have little visible effect, while the pattern it creates can influence later results. The book uses compounding as an illustration of why small improvements deserve attention. This is a way to think about gradual progress, not a promise that every person will improve at a fixed mathematical rate."
+     },
+     {
+      "heading": "Change the System and Identity",
+      "text": "Clear distinguishes a desired outcome from the process used to pursue it. A goal describes a result; a system describes the routines that support that result. He also discusses identity-based habits. Instead of focusing only on what you want to achieve, consider what kind of person your repeated actions support. Each action provides evidence, but identity changes through patterns rather than a single decision."
+     },
+     {
+      "heading": "Make the Habit Easier to Start",
+      "text": "The book's four laws provide a structure for designing behavior. First, make the cue obvious. Next, make the habit attractive. Then make the action easy enough to begin. Finally, make the result satisfying. Clear also describes habit stacking, which links a new action to an established routine, and the Two-Minute Rule, which reduces a new habit to a small starting version."
+     },
+     {
+      "heading": "Keep the Routine Flexible",
+      "text": "The final part of the framework emphasizes feedback and repetition. A habit tracker can make progress visible, while a small immediate reward can make an action feel worthwhile. Clear also discusses adjusting habits to personal strengths and circumstances. Missing a day does not erase earlier work. Returning to the routine gives you another opportunity to continue, learn, and improve the system that supports the behavior."
+     }
+    ]
+   },
+   "page2": {
+    "author": [
+     "James Clear is an American author and speaker whose work focuses on habits, decision-making, and continuous improvement. He studied biomechanics at Denison University and later wrote about behavior and personal development through his website. His work explains research and practical ideas in accessible language, with an emphasis on actions that people can apply to everyday routines. His official biography identifies Atomic Habits as his first book and describes his ongoing work as a writer and speaker.",
+     "Clear's Atomic Habits presents a structured approach to habit formation, including the four laws of behavior change, identity-based habits, environment design, and small starting actions. His website also publishes the weekly 3-2-1 newsletter. The book draws on ideas from behavior science and uses stories to illustrate its methods. Readers should distinguish the book's practical recommendations from guarantees about how every person will respond to a habit or how quickly a result will appear."
+    ],
+    "quickFacts": [
+     "James Clear studied biomechanics at Denison University.",
+     "He created the 3-2-1 weekly newsletter.",
+     "Atomic Habits was published in 2018."
+    ]
+   },
+   "page3": {
+    "lessons": [
+     {
+      "title": "Build a System Around the Goal",
+      "text": "A goal describes the result you want, while a system describes the actions you repeat. Make the routine specific enough to follow on an ordinary day. Review the system when progress stalls instead of assuming that wanting the result more strongly will solve the problem.",
+      "example": "At 7 a.m. in Boston, Rachel packs lunch for work before leaving home, making a planned meal easier than buying food during a busy afternoon."
+     },
+     {
+      "title": "Use Actions to Support Identity",
+      "text": "Identity-based habits connect repeated actions with the kind of person you want to become. You do not need to make a dramatic declaration. Start with small, observable actions that provide evidence of the behavior you want to maintain.",
+      "example": "At noon in Denver, David declines a cigarette and takes a short walk with a colleague, supporting his decision to live without smoking."
+     },
+     {
+      "title": "Make the Cue Visible",
+      "text": "A habit is easier to remember when its cue is noticeable. Put useful objects where you will see them, and reduce reminders of behaviors you want to limit. Environment design will not remove every temptation, but it can change which actions are easiest to notice.",
+      "example": "Before breakfast in San Diego, Chloe puts an apple on the kitchen counter and stores the cookies in a cupboard away from the table."
+     },
+     {
+      "title": "Make the First Step Small",
+      "text": "The Two-Minute Rule reduces the starting effort of a new routine. Choose a small version of the action that is easy to begin, then build the full behavior gradually. The short version is a starting point, not the final limit of your progress.",
+      "example": "At 6 a.m. in Seattle, Marcus puts on his running shoes and walks outside. Once the routine is established, he gradually adds more running."
+     },
+     {
+      "title": "Connect a Habit with Enjoyment",
+      "text": "Temptation bundling pairs a task you need to do with an activity you enjoy. This can make the routine more appealing when the pairing is practical. It does not remove every obstacle, so choose a combination that fits your schedule and does not distract from the task.",
+      "example": "At 5 p.m. in Chicago, Elena listens to her favorite fiction podcast while using the stationary bike at the gym."
+     },
+     {
+      "title": "Return After an Interruption",
+      "text": "Missing a planned session does not mean the habit has failed. The useful response is to return rather than allow one interruption to become a long break. Review why the routine was missed and make the next session realistic enough to complete.",
+      "example": "After missing Tuesday's writing session in Austin, Tom writes for fifteen minutes before breakfast on Wednesday and revises his calendar to protect that time."
+     }
+    ]
+   },
+   "page4": {
+    "remember": [
+     "Focus on the routines that support your goal, not only the result you want.",
+     "Repeated actions provide evidence for the identity you are building.",
+     "Make useful habits visible by placing cues where you will notice them.",
+     "Use the Two-Minute Rule to make the first step easier to begin.",
+     "Make a routine more appealing by connecting it with an activity you enjoy.",
+     "Return to your routine after a missed session instead of abandoning it."
+    ],
+    "bigIdea": "Atomic Habits presents a practical system for changing repeated behavior through cues, motivation, ease, and rewards. Small actions support lasting change when the system fits real life and is adjusted as needed.",
+    "mistakes": [
+     "Relying only on motivation while leaving the environment and daily routine unchanged.",
+     "Trying to change every habit at once instead of starting with a manageable action."
+    ]
+   },
+   "page5": {
+    "exercises": [
+     {
+      "title": "Create a Habits Scorecard",
+      "steps": [
+       "Write down your usual actions from waking up until bedtime.",
+       "Mark each action as helpful, unhelpful, or neutral for your current goals.",
+       "Identify one pattern you want to keep and one you want to change.",
+       "Choose a specific adjustment and observe how it affects your routine."
+      ],
+      "time": "15 minutes"
+     },
+     {
+      "title": "Build a Habit Stack",
+      "steps": [
+       "Choose an existing routine you already perform reliably.",
+       "Select a small new action that supports a current goal.",
+       "Write when and where you will do the new action after the existing routine.",
+       "Try the sequence and adjust it if the timing or setting creates friction."
+      ],
+      "time": "10 minutes"
+     },
+     {
+      "title": "Change Your Environment",
+      "steps": [
+       "Choose one habit you want to make easier to start.",
+       "Place the required object or reminder where you will see it.",
+       "Remove one obstacle that makes the action harder to begin.",
+       "Reduce the visibility or convenience of one competing behavior and review the result."
+      ],
+      "time": "15 minutes"
+     }
+    ],
+    "reflectionQuestions": []
+   },
+   "page6": {
+    "whoShouldRead": "Readers who want practical ways to build routines, reduce procrastination, and change everyday behavior may find this book useful. It suits people who prefer clear frameworks and small actions over large motivational plans. Team leaders may also find its systems-based approach useful when reviewing workplace routines.",
+    "whoMightSkip": "Readers seeking detailed academic research methods or a specialist neuroscience textbook may prefer a more technical source. People looking for an instant solution may find the book's emphasis on repeated actions and gradual adjustment less appealing.",
+    "buy": {
+     "suits": "Consider the full book if you want the author's extended explanations, examples, and habit-design methods. It provides more context for applying the four laws to different areas of daily life.",
+     "notSuits": "This summary may be enough if you want a concise introduction to the four laws, identity-based habits, environment design, and the Two-Minute Rule.",
+     "physicalGives": "The full edition provides the book's detailed framework, examples, and practical guidance. Check the edition for any companion resources or supplementary worksheets, since not every edition includes identical materials."
+    }
+   },
+   "readyKey": "atomic habits"
+  },
+  {
+   "title": "The Power of Habit",
+   "author": "Charles Duhigg",
+   "topic": "Habits",
+   "basis": "known",
+   "confidence": "high",
+   "sources": [
+    "https://www.penguinrandomhouse.com/books/202855/the-power-of-habit-by-charles-duhigg/teachers-guide/",
+    "https://charlesduhigg.com/about/",
+    "https://www.penguinrandomhouse.com/authors/2256117/charles-duhigg/",
+    "https://books.google.co.in/books?id=xQ1_z5_kj6sC",
+    "https://www.supersummary.com/the-power-of-habit/summary/"
+   ],
+   "needsHumanCheck": [
+    "Verify the exact edition intended for sale or cataloguing before adding edition-specific claims.",
+    "Confirm the complete contents against that edition if individual chapter titles and page numbers are required.",
+    "Review the practical exercises as editorial applications, not as a verbatim or official workbook."
+   ],
+   "hook": "Understanding the cue, routine, and reward loop gives you a practical way to examine repeated behavior and plan a different response.",
+   "page1": {
+    "inOneMinute": "Habits are repeated actions that become easier to perform without much conscious thought. Charles Duhigg explains them through a loop involving a cue, a routine, and a reward. The cue starts the behavior, the routine is the action, and the reward reinforces the pattern. By examining these parts, you can test a different routine. The book also explores how habits shape workplaces, businesses, and social movements.",
+    "youWillGet": [
+     "A clear explanation of the cue, routine, and reward model of habits.",
+     "An account of the Golden Rule of Habit Change and how it guides habit replacement.",
+     "An introduction to keystone habits, which influence other behaviors and routines.",
+     "Examples of how organizations and communities use repeated behavior to create wider change."
+    ],
+    "whoFor": "This book suits readers who want to understand repeated behavior rather than rely on motivation alone. Professionals can examine workplace routines, while managers can study how organizational practices shape results. Readers working on personal habits can use its framework to identify triggers and rewards. The book also interests people who enjoy investigative reporting, psychology, neuroscience, and stories about businesses and social movements.",
+    "glance": {
+     "mainIdea": "Habits influence everyday behavior, but examining their cues, routines, and rewards creates opportunities to change how they work.",
+     "problem": "Repeated actions often happen automatically, making it easy to overlook the situations and rewards that keep them going.",
+     "promise": "The book provides a way to study personal, organizational, and social habits through research and detailed real-world cases."
+    },
+    "isThemes": true,
+    "inside": [
+     {
+      "part": "Habit Formation and the Brain",
+      "line": "How repeated actions become automatic and why the brain relies on familiar behavior patterns."
+     },
+     {
+      "part": "Cravings and Rewards",
+      "line": "How anticipation and learned expectations help maintain a repeated routine."
+     },
+     {
+      "part": "Changing Existing Habits",
+      "line": "How identifying cues and rewards creates a basis for replacing a familiar routine."
+     },
+     {
+      "part": "Habits in Organizations",
+      "line": "How selected workplace practices affect safety, communication, and business decisions."
+     },
+     {
+      "part": "Habits in Communities and Society",
+      "line": "How social relationships, shared expectations, and repeated actions influence collective behavior."
+     }
+    ],
+    "story": [
+     {
+      "heading": "The Habit Loop",
+      "text": "Duhigg begins by examining how habits develop and why they often operate without much conscious attention. His account draws on research into the brain, including the role of the basal ganglia in habitual behavior. He explains a three-part loop: a cue signals that a familiar action should begin, a routine follows, and a reward reinforces the pattern. As a behavior becomes familiar, a person may perform it with less deliberate thought. The loop offers a useful way to investigate repeated actions instead of treating them as mysterious personal weaknesses."
+     },
+     {
+      "heading": "Cravings and Change",
+      "text": "The book then examines the role of anticipation. People often repeat an action because they expect a particular feeling or result. Recognizing this expectation helps explain why a routine persists even when its consequences are unwanted. Duhigg presents the Golden Rule of Habit Change: retain the cue and reward while substituting a different routine. The approach requires investigation rather than guesswork. A person must identify what starts the behavior and what satisfaction follows it. Belief and social support also matter when people try to maintain a change during difficult periods."
+     },
+     {
+      "heading": "Habits at Work",
+      "text": "The discussion expands beyond individual behavior to businesses and institutions. Duhigg describes keystone habits, which influence other patterns in a person's life or an organization's work. A change in one important routine can affect communication, accountability, and decisions elsewhere. His organizational examples show why leaders should examine everyday practices rather than focus only on written policies. Repeated behavior often shapes how people respond when pressure rises. The lesson is not that one adjustment fixes every problem, but that carefully chosen routines can influence several connected parts of a system."
+     },
+     {
+      "heading": "Groups and Responsibility",
+      "text": "The final sections examine habits within communities, social movements, and questions of personal responsibility. Relationships and group expectations influence which behaviors people repeat. Shared practices can help a movement grow, while social support can strengthen an individual's attempt to change. The book also recognizes that habits differ in their strength and that some behaviors raise difficult questions about control. Duhigg's overall argument is that understanding a pattern improves the ability to respond to it. His investigative stories connect research about the brain with the choices made by people, companies, and communities."
+     }
+    ]
+   },
+   "page2": {
+    "author": [
+     "Charles Duhigg is an American journalist and nonfiction author. He studied history at Yale University and earned an MBA from Harvard Business School. He worked for The New York Times and later wrote for The New Yorker. His reporting examines business, behavior, communication, and the forces that shape everyday decisions. His books connect research with detailed accounts of people and organizations.",
+     "Duhigg led the New York Times reporting team behind the 2013 Pulitzer Prize in Explanatory Reporting for its iEconomy series about Apple and the global economy. He is the author of The Power of Habit, Smarter Faster Better, and Supercommunicators. His reporting combines interviews, research, and narrative examples to explain complex subjects in accessible language. In The Power of Habit, he uses stories from science, business, and society to examine how routines develop and how people attempt to change them."
+    ],
+    "quickFacts": [
+     "Studied at Yale University and Harvard Business School.",
+     "Led the New York Times team recognized with the 2013 Pulitzer Prize in Explanatory Reporting for the iEconomy series.",
+     "Also wrote Smarter Faster Better and Supercommunicators."
+    ]
+   },
+   "page3": {
+    "lessons": [
+     {
+      "title": "Map the Habit Loop",
+      "text": "Separate a repeated behavior into its cue, routine, and reward. Record what happens just before the action and what you gain afterward. This process gives you specific details to examine instead of relying on a vague promise to improve.",
+      "example": "At 3 p.m. in Boston, David walks to the office snack table whenever work feels dull. He records the time, action, and feeling afterward to see which part of the pattern repeats."
+     },
+     {
+      "title": "Identify the Expected Reward",
+      "text": "The apparent reward is not always the real attraction. A snack might offer a break, conversation, or relief from boredom. Test different responses and notice what satisfies the urge. Better information makes choosing an alternative routine easier.",
+      "example": "At 4 p.m. in Chicago, Sarah wants biscuits while working alone. She takes a short walk and chats with a colleague, then checks whether the urge for biscuits has changed."
+     },
+     {
+      "title": "Replace the Routine",
+      "text": "The Golden Rule of Habit Change focuses on changing the routine while preserving the cue and reward. Choose a realistic alternative that addresses the same need. This approach gives you a clear plan to test instead of depending only on resistance.",
+      "example": "When his afternoon meeting ends in Delhi, Rahul usually checks social media for twenty minutes. He instead takes a brief break and speaks with a teammate before returning to work."
+     },
+     {
+      "title": "Look for Keystone Habits",
+      "text": "Some routines influence several areas of life. These are called keystone habits. Look for a behavior that changes how you plan, communicate, or manage your day. Its wider effects are worth observing, but they are not automatic or guaranteed.",
+      "example": "After starting a Sunday planning session in Pune, Meera prepares her work calendar and grocery list together. She checks whether this routine reduces missed appointments and last-minute shopping."
+     },
+     {
+      "title": "Examine Group Habits",
+      "text": "Shared expectations shape behavior at work and in communities. Notice what a group repeatedly rewards, ignores, or corrects. Changing a common routine can influence how members cooperate, especially when people understand the purpose and support the new practice.",
+      "example": "At a Mumbai design studio, the team spends ten minutes each morning reviewing urgent tasks. The manager tracks whether this shared routine reduces confusion about deadlines."
+     },
+     {
+      "title": "Make a Plan for Difficult Moments",
+      "text": "Understanding a habit is only a starting point. Prepare a response for the situations in which the old routine is most likely to return. Support from trusted people can strengthen commitment, while a realistic plan makes the next action easier to identify.",
+      "example": "Before a stressful customer call in Bengaluru, Anita writes down the steps she will follow if the caller becomes angry. Afterward, she reviews which steps helped her respond calmly."
+     }
+    ]
+   },
+   "page4": {
+    "remember": [
+     "A cue, routine, and reward form the basic habit loop described in the book.",
+     "Anticipation and cravings help explain why familiar routines continue.",
+     "Changing a routine while keeping its cue and reward is the Golden Rule of Habit Change.",
+     "Keystone habits influence other behaviors, but their effects depend on the situation.",
+     "Organizational routines shape safety, communication, and everyday decisions.",
+     "Social relationships and shared expectations influence habit change and collective action."
+    ],
+    "bigIdea": "Study the triggers and rewards behind repeated behavior, then test a different routine. The same way of thinking also applies to workplaces and communities.",
+    "mistakes": [
+     "Trying to change a repeated behavior without examining the cue and the reward that maintain it.",
+     "Assuming that every habit is easy to control or that one new routine automatically fixes unrelated problems."
+    ]
+   },
+   "page5": {
+    "exercises": [
+     {
+      "title": "The Habit Loop Audit",
+      "steps": [
+       "Choose one repeated behavior that you want to understand, such as checking your phone during work.",
+       "Record when and where it happens, who is nearby, and what you were doing immediately before it.",
+       "Write down the routine and the immediate result or feeling that follows it.",
+       "Review several recorded instances and identify the cues and rewards that appear most often."
+      ],
+      "time": "20 minutes"
+     },
+     {
+      "title": "Test a Replacement Routine",
+      "steps": [
+       "Choose a habit and write down the cue that usually starts it.",
+       "List the different rewards you might be seeking, such as a break, stimulation, or social contact.",
+       "Test a suitable alternative routine when the cue appears and observe the result.",
+       "Record which alternative best meets the need and decide whether to test it again."
+      ],
+      "time": "15 minutes"
+     },
+     {
+      "title": "Find a Keystone Habit",
+      "steps": [
+       "Choose one routine that could affect several areas of your day, such as planning tomorrow's tasks.",
+       "Write down the other behaviors you expect it to influence.",
+       "Follow the routine consistently and record changes in the related behaviors.",
+       "Review the results and keep, revise, or replace the routine based on what you observe."
+      ],
+      "time": "15 minutes"
+     }
+    ],
+    "reflectionQuestions": []
+   },
+   "page6": {
+    "whoShouldRead": "Readers interested in psychology, business, neuroscience, and behavior will find a detailed account of how habits shape everyday life. The book suits people who want a framework for examining repeated actions and leaders who want to understand workplace routines. Its case studies also appeal to readers who enjoy narrative nonfiction. The book offers ideas to investigate rather than a promise that every habit can be changed quickly.",
+    "whoMightSkip": "Readers who want a short checklist with little background may find the detailed reporting lengthy. Those seeking a clinical treatment plan for addiction or another health condition should not treat this book as a substitute for qualified professional care. Its framework explains behavior but does not guarantee that every person can change every habit through the same method.",
+    "buy": {
+     "suits": "Consider the full book if you want the detailed stories behind the habit loop, organizational routines, and social movements. The reporting gives context that a short summary cannot provide, and the cases offer material to revisit while examining your own habits.",
+     "notSuits": "A summary may be enough if you only want the basic cue, routine, and reward model and a starting point for examining one repeated behavior. You will miss much of the book's reporting and the context behind its examples.",
+     "physicalGives": "A print copy provides the text of the edition you purchase, including its published notes or other included material where present. Specific appendices and supplementary resources vary by edition, so check the edition's contents before buying for a particular feature."
+    }
+   },
+   "readyKey": "the power of habit"
+  },
+  {
+   "title": "Tiny Habits",
+   "author": "BJ Fogg",
+   "topic": "Habits",
+   "basis": "known",
+   "confidence": "high",
+   "sources": [
+    "https://tinyhabits.com/book/",
+    "https://tinyhabits.com/about/",
+    "https://www.bjfogg.com/about",
+    "https://books.google.co.in/books/about/Tiny_Habits.html?id=s7OCDwAAQBAJ",
+    "https://www.penguin.co.in/book/tiny-habits/",
+    "https://catalog.libraries.vsc.edu/cgi-bin/koha/opac-ISBDdetail.pl?biblionumber=511588"
+   ],
+   "needsHumanCheck": [
+    "Verify the edition and its exact chapter wording before using chapter titles in a paid catalogue.",
+    "Do not present the exercises in this summary as official worksheets from the book.",
+    "Avoid claims that a particular action releases dopamine or permanently forms a habit within seconds unless supported by suitable scientific evidence."
+   ],
+   "hook": "Start with a behavior small enough to do, attach it to a reliable daily prompt, and build change through repeated success.",
+   "page1": {
+    "inOneMinute": "BJ Fogg presents behavior change as a design problem rather than a test of character. His Behavior Model explains that motivation, ability, and a prompt work together when behavior occurs. Tiny Habits makes a new action easier by reducing it to a small step. You then attach it to an existing routine and celebrate completing it. The book also explains how to adjust unwanted behaviors and build supportive habits with other people.",
+    "youWillGet": [
+     "An explanation of Fogg's Behavior Model, which links motivation, ability, and prompts.",
+     "A method for reducing a desired behavior to a tiny, manageable action.",
+     "A practical recipe that links a new behavior to an existing routine.",
+     "Ways to use positive emotion, adjust difficult behaviors, and build change with other people."
+    ],
+    "whoFor": "This book suits readers who struggle to begin large goals or maintain demanding routines. Busy workers, parents, students, and people building healthier daily practices can use its small-step approach. It also interests designers and managers who want to understand how behavior is shaped by prompts and practical difficulty. Readers should expect a structured method for experimenting with change, not a guarantee that every habit will become automatic.",
+    "glance": {
+     "mainIdea": "Make a desired behavior easy to perform, attach it to a reliable prompt, and reinforce success with a positive feeling.",
+     "problem": "Large goals often depend on motivation and effort that are difficult to sustain across changing days.",
+     "promise": "Tiny Habits provides a practical process for designing small behaviors and adjusting the conditions that make them easier or harder."
+    },
+    "isThemes": true,
+    "inside": [
+     {
+      "part": "The Elements of Behavior",
+      "line": "How motivation, ability, and prompts combine when a behavior happens."
+     },
+     {
+      "part": "Motivation and Matching",
+      "line": "Choosing actions that fit both personal wants and realistic circumstances."
+     },
+     {
+      "part": "Ability and Simplicity",
+      "line": "Reducing effort and difficulty so a behavior becomes easier to perform."
+     },
+     {
+      "part": "Prompts and Existing Routines",
+      "line": "Using an established daily action as the reminder for a new behavior."
+     },
+     {
+      "part": "Emotion, Growth, and Shared Change",
+      "line": "Celebrating progress, developing tiny behaviors, adjusting unwanted routines, and changing together."
+     }
+    ],
+    "story": [
+     {
+      "heading": "Understand Behavior",
+      "text": "Fogg begins by explaining that behavior depends on three elements: motivation, ability, and a prompt. His model describes how these elements work together at the moment an action occurs. A person may want to exercise but find the available routine too difficult. Another person may have enough motivation and ability but receive no reminder to begin. Looking at these conditions makes behavior easier to analyze. Instead of treating every failure as a personal weakness, the reader learns to examine what needs to change in the situation."
+     },
+     {
+      "heading": "Make the Action Tiny",
+      "text": "The method focuses on reducing the size of a desired behavior. Rather than demanding a complete workout, a person might begin with a very small movement. Rather than setting a large reading target, a reader might start with one sentence. The point is to reduce the effort required to begin. Fogg also encourages people to match behaviors with their actual interests and abilities. A small action is a starting point, not a limit on future progress. The behavior can grow as the person learns what works."
+     },
+     {
+      "heading": "Attach a Prompt and Celebrate",
+      "text": "A tiny action still needs a reliable reminder. Fogg's approach uses an existing routine as an anchor for a new behavior. The reader creates a clear recipe linking the familiar action to the desired step. Completing the action is followed by a celebration that creates a positive emotional response. Fogg treats that immediate feeling as an important part of the method. The purpose is to make success feel rewarding, not to claim that every celebration produces a measurable brain change or guarantees permanent learning."
+     },
+     {
+      "heading": "Grow and Adjust",
+      "text": "The later sections explain how tiny behaviors can develop, how unwanted habits can be approached systematically, and how people influence each other's changes. The method is flexible: a behavior that proves too difficult can be reduced or redesigned. A weak prompt can be replaced with a more reliable one. Supportive relationships can also make change easier to sustain. The book's central message is practical rather than dramatic. Design the behavior to fit real life, notice what happens, and adjust the conditions instead of relying on motivation alone."
+     }
+    ]
+   },
+   "page2": {
+    "author": [
+     "BJ Fogg is a behavioral scientist who founded the Behavior Design Lab at Stanford University. His work examines how behavior develops and how technology and other conditions influence human actions. He studied persuasive technology, an area concerned with how computers can affect attitudes and behavior. His academic work and teaching led to a broader approach he calls Behavior Design, which focuses on understanding behavior and creating practical ways to change it.",
+     "Fogg wrote Tiny Habits to present his method to a general audience. His official website describes years of research and experience coaching people through behavior change. The book connects his Behavior Model with small actions, existing routines, and positive emotion. Fogg has also taught behavior design to industry innovators and worked on methods for designing products that support healthier behavior. His approach emphasizes changing the conditions around an action instead of treating motivation or self-control as the only answer."
+    ],
+    "quickFacts": [
+     "Founded the Behavior Design Lab at Stanford University.",
+     "Studied persuasive technology during his academic career.",
+     "Developed the Tiny Habits method and teaches Behavior Design."
+    ]
+   },
+   "page3": {
+    "lessons": [
+     {
+      "title": "Use the Behavior Model",
+      "text": "When a behavior does not happen, examine motivation, ability, and the prompt. One of these conditions may be missing or insufficient. Adjust the design before blaming yourself. The model offers a way to investigate a specific action rather than judge your character.",
+      "example": "At 7 a.m. in Jaipur, Nisha wants to drink water but forgets. She places a glass beside her kettle so the morning tea routine reminds her."
+     },
+     {
+      "title": "Reduce the First Step",
+      "text": "Make the first version of a new behavior small enough to begin with little effort. A tiny action removes some of the practical barriers that stop people from starting. Expand it later if you choose, but first make beginning manageable.",
+      "example": "At 6 p.m. in Hyderabad, Arjun finds a full workout intimidating. He puts on his trainers and walks outside for two minutes after work."
+     },
+     {
+      "title": "Attach the Habit to an Anchor",
+      "text": "An existing routine can serve as a prompt for a new action. Write a clear recipe that states what happens first and what you will do next. Choose an anchor that already occurs reliably in your day.",
+      "example": "After brushing her teeth at 10 p.m. in Kochi, Priya writes one sentence in her journal. The familiar bedtime routine reminds her what to do."
+     },
+     {
+      "title": "Celebrate the Small Success",
+      "text": "Notice completion immediately and choose a celebration that feels genuine. The point is to create a positive experience around the behavior. A celebration should suit you; forced enthusiasm is not necessary, and a particular gesture does not guarantee permanent habit formation.",
+      "example": "After clearing his desk at 5 p.m. in Surat, Mohan smiles and acknowledges the completed task before leaving work."
+     },
+     {
+      "title": "Choose a Behavior You Want",
+      "text": "A plan is easier to follow when the behavior fits your interests and circumstances. Compare the action you think you should do with alternatives that meet the same goal. Choose a workable option instead of forcing a routine that does not suit you.",
+      "example": "At noon in Mysuru, Kavya wants more movement but dislikes running. She chooses a short walk through the garden after lunch."
+     },
+     {
+      "title": "Redesign Unwanted Behavior",
+      "text": "Examine what prompts an unwanted routine and how difficult it is to resist. Change the surroundings, remove a trigger, or create an easier alternative. The goal is to alter the conditions supporting the behavior rather than depend only on guilt.",
+      "example": "At 9 p.m. in Chandigarh, Sameer keeps checking social media while studying. He leaves his phone in another room and places his textbook on the desk."
+     }
+    ]
+   },
+   "page4": {
+    "remember": [
+     "Behavior occurs when motivation, ability, and a prompt work together.",
+     "Reducing the effort required makes a behavior easier to begin.",
+     "Existing routines provide useful prompts for new actions.",
+     "A genuine positive feeling after completion is part of the Tiny Habits method.",
+     "A behavior should fit your interests and practical circumstances.",
+     "Unwanted behaviors can be approached by changing prompts, difficulty, and surrounding conditions."
+    ],
+    "bigIdea": "Design small behaviors that fit your real circumstances, attach them to reliable prompts, and build on what works. The method favors practical adjustment over relying on motivation alone.",
+    "mistakes": [
+     "Choosing a new behavior that demands more effort than the available time, skills, or circumstances allow.",
+     "Using an unreliable reminder or ignoring the immediate experience of completing the action."
+    ]
+   },
+   "page5": {
+    "exercises": [
+     {
+      "title": "Write Three Tiny Habit Recipes",
+      "steps": [
+       "Identify three routines you already perform reliably, such as brushing your teeth or making tea.",
+       "Choose one small behavior you want to add to each routine.",
+       "Write each recipe in the form: After I complete the existing routine, I will perform the tiny behavior.",
+       "Read the recipes and reduce any action that still feels difficult to begin."
+      ],
+      "time": "15 minutes"
+     },
+     {
+      "title": "Find a Natural Celebration",
+      "steps": [
+       "Choose a tiny behavior and complete it once.",
+       "Try a natural response such as smiling, acknowledging success, or making a small gesture.",
+       "Notice which response feels genuine rather than forced.",
+       "Use that response immediately after completing the behavior and observe how it feels."
+      ],
+      "time": "5 minutes"
+     },
+     {
+      "title": "Check the Ability Chain",
+      "steps": [
+       "Choose a behavior that you find difficult to perform consistently.",
+       "Examine whether time, money, physical effort, mental effort, or fit with your routine creates a barrier.",
+       "Choose the main obstacle and make one change that reduces it.",
+       "Try the redesigned behavior and review whether it has become easier to perform."
+      ],
+      "time": "15 minutes"
+     }
+    ],
+    "reflectionQuestions": []
+   },
+   "page6": {
+    "whoShouldRead": "Readers who struggle to start exercise, reading, planning, or other daily routines can use the book's small-step approach. It also suits people who want a structured way to examine why a behavior happens or fails to happen. Parents, teachers, managers, and product designers may find its focus on prompts and practical difficulty useful. The book is especially relevant to readers who prefer testing manageable changes over making large promises about future behavior.",
+    "whoMightSkip": "Readers who want a detailed academic textbook on neuroscience may prefer a research-focused work. People seeking an instant solution to a complex behavioral or medical problem should not expect tiny habits to replace professional guidance. The method requires observation and adjustment, and its results depend on the person and situation. Readers who want strict, demanding routines may also find its emphasis on small beginnings different from their preferred style.",
+    "buy": {
+     "suits": "Consider the full book if you want more detail on the Behavior Model, tiny behavior recipes, prompts, celebrations, and changing unwanted routines. The chapters provide a fuller explanation of how the method fits together than a short summary can offer.",
+     "notSuits": "A summary may be enough if you only need the basic model and a simple recipe for attaching a tiny action to an existing routine. You will miss the book's fuller discussion of behavior design and examples.",
+     "physicalGives": "The print edition gives you the published text and any supplementary material included in that particular edition. The contents and page numbers differ across editions, so verify the specific copy before expecting a particular chart, worksheet, or additional resource."
+    }
+   },
+   "readyKey": "tiny habits"
+  },
+  {
+   "title": "The Compound Effect",
+   "author": "Darren Hardy",
+   "topic": "Habits",
+   "basis": "known",
+   "confidence": "high",
+   "sources": [
+    "https://store.darrenhardy.com/products/the-compound-effect",
+    "https://books.google.com/books/about/The_Compound_Effect.html?id=P28DsLkv5cgC",
+    "https://dygest.co/en/books/the-compound-effect/",
+    "https://www.success.com/",
+    "https://www.hachettebookgroup.com/"
+   ],
+   "needsHumanCheck": [
+    "Confirm the precise edition and publication details before publishing a definitive bibliographic record.",
+    "Verify the complete text of the acceleration chapter if a chapter-by-chapter summary is required.",
+    "Treat the penny-doubling illustration as a mathematical example, not a forecast of real financial returns.",
+    "Check the author's current biography before adding claims about his early career or personal finances."
+   ],
+   "hook": "Small daily decisions accumulate over time. Tracking them makes it easier to see which routines move you toward your goals and which pull you away.",
+   "page1": {
+    "inOneMinute": "Darren Hardy argues that repeated small choices shape long-term results. A single decision often appears unimportant, but its effects accumulate when the behavior continues. The book examines choices, habits, momentum, influences, and acceleration. Hardy encourages readers to track relevant actions, take responsibility for their decisions, and build routines that support their goals. The approach emphasizes consistent effort over quick fixes, while recognizing that results depend on the choices people make and the conditions they face.",
+    "youWillGet": [
+     "An explanation of how repeated choices can create larger effects over time.",
+     "A practical reason to track daily behavior and notice patterns that are easy to overlook.",
+     "Ways to build routines and maintain momentum through consistent action.",
+     "A framework for examining the people, information, and surroundings that influence your decisions."
+    ],
+    "whoFor": "This book suits readers who want a direct, practical approach to personal responsibility and daily behavior. Entrepreneurs, professionals, and people working toward health, financial, or personal goals can use its focus on tracking and consistency. It also appeals to readers who prefer motivational nonfiction with clear actions. The book does not provide a guarantee of wealth or success; it encourages people to examine the choices and routines that contribute to their results.",
+    "glance": {
+     "mainIdea": "Small choices, repeated over time, influence outcomes in ways that are easy to underestimate when viewed one day at a time.",
+     "problem": "People often overlook daily decisions and expect visible progress before consistent behavior has had time to produce a result.",
+     "promise": "The book offers a practical framework for tracking choices, building habits, maintaining momentum, and examining outside influences."
+    },
+    "isThemes": true,
+    "inside": [
+     {
+      "part": "The Compound Effect in Action",
+      "line": "How repeated small decisions can produce different results over time."
+     },
+     {
+      "part": "Choices",
+      "line": "Taking responsibility for decisions and tracking behavior related to a chosen goal."
+     },
+     {
+      "part": "Habits",
+      "line": "Examining routines and the reasons people continue to repeat them."
+     },
+     {
+      "part": "Momentum",
+      "line": "How consistency makes it easier to continue a behavior after a routine is established."
+     },
+     {
+      "part": "Influences and Acceleration",
+      "line": "How relationships, information, surroundings, and additional effort affect progress."
+     }
+    ],
+    "story": [
+     {
+      "heading": "The Effect of Small Choices",
+      "text": "Hardy opens with the idea that small decisions accumulate. A choice that appears harmless today can contribute to a larger pattern when repeated over weeks or months. The book uses a penny-doubling illustration to make the mathematics of accumulation easier to understand. The example is a thought experiment, not a claim that real investments grow at that rate. Its purpose is to show why early changes can appear insignificant while the difference between two patterns becomes clearer over time. The principle applies to helpful and unhelpful behavior alike."
+     },
+     {
+      "heading": "Choices and Habits",
+      "text": "The discussion turns to personal decisions and the need to notice what people actually do. Hardy encourages readers to take responsibility for their choices rather than blame every outcome on circumstances. Tracking spending, eating, work, or other relevant actions reveals patterns that memory often misses. The book then examines habits, which make repeated actions part of daily life. A person does not need to change everything at once. Identifying one important behavior and observing it carefully creates a more practical starting point than making a broad promise without a plan."
+     },
+     {
+      "heading": "Momentum Through Consistency",
+      "text": "Hardy presents momentum as the effect of continuing a routine. Starting a new behavior often requires deliberate effort, while repetition can make it more familiar. The book encourages readers to create routines that support their goals and to give those routines time to develop. This does not mean that progress becomes effortless or that every streak continues without interruption. It means that consistent actions establish a pattern worth protecting. Clear reasons for pursuing a goal can also make it easier to continue when the work becomes uncomfortable."
+     },
+     {
+      "heading": "Influences and Acceleration",
+      "text": "The final themes examine the effect of outside influences and the role of deliberate extra effort. The people around us, the information we consume, and our physical surroundings all affect what we notice and do. Hardy encourages readers to review those influences and make choices that better support their aims. The acceleration theme asks readers to consider where an additional effort can improve progress. These ideas are best used with judgment. More effort is not always better, and relationships should not be judged by a rigid numerical rule. The central concern is making everyday choices more deliberate."
+     }
+    ]
+   },
+   "page2": {
+    "author": [
+     "Darren Hardy is an American author, speaker, and business adviser known for his work on personal development and achievement. He has worked in success-focused media and business education. His writing emphasizes daily choices, habits, accountability, and consistent action. In The Compound Effect, he presents these themes as a practical approach to improving the decisions that shape a person's life over time.",
+     "Hardy served as publisher and editorial director of SUCCESS magazine. Through his work in business media, he interviewed and studied people known for achievement in different fields. His books and teaching focus on personal responsibility and the practical routines behind progress. The Compound Effect brings these ideas together in a sequence covering choices, habits, momentum, influences, and acceleration. His approach is motivational and action-oriented, so readers should distinguish its coaching advice from independently established scientific laws or guarantees about financial and personal outcomes."
+    ],
+    "quickFacts": [
+     "Former publisher and editorial director of SUCCESS magazine.",
+     "Author of The Compound Effect, a book about choices, habits, and accumulated results.",
+     "Writes and teaches about personal development, accountability, and consistent action."
+    ]
+   },
+   "page3": {
+    "lessons": [
+     {
+      "title": "Notice the Small Choices",
+      "text": "A single decision often has little visible effect, but repeated choices establish a pattern. Look at what happens across several weeks rather than judging progress from one day. The same principle applies to actions that help you and those that work against your goal.",
+      "example": "At lunch in Ahmedabad, Dev buys a sugary drink each workday. He records the choice for two weeks before deciding whether to replace it with water."
+     },
+     {
+      "title": "Track What You Do",
+      "text": "Memory does not always give a clear picture of daily behavior. Recording relevant actions makes patterns easier to see and discuss. Choose one area to track first, then use the information to make a specific decision rather than collecting numbers without a purpose.",
+      "example": "At the end of each workday in Indore, Riya records her online purchases. After two weeks, she reviews which expenses were planned and which were spontaneous."
+     },
+     {
+      "title": "Connect Habits to a Reason",
+      "text": "A clear personal reason gives a routine meaning beyond immediate effort. Write down why the goal matters and what it would change in daily life. A strong reason does not remove every obstacle, but it gives you something concrete to remember when motivation falls.",
+      "example": "Before starting his evening study session in Lucknow, Aman reviews his goal of qualifying for a professional exam. He then studies one planned topic instead of browsing videos."
+     },
+     {
+      "title": "Build Momentum Gradually",
+      "text": "Repeated action makes a routine more familiar. Start with a schedule you can realistically maintain and notice what disrupts it. Protecting a workable pattern is more useful than making a dramatic commitment that does not fit your life or responsibilities.",
+      "example": "At 7 a.m. in Nagpur, Leena writes for fifteen minutes before checking messages. She tracks her sessions and adjusts the time when family duties change."
+     },
+     {
+      "title": "Review Your Influences",
+      "text": "The people, media, and surroundings in your life affect the information and behaviors you encounter. Examine which influences support your goals and which distract you. Change specific habits of exposure where practical, without assuming that every person who disagrees with you is harmful.",
+      "example": "After noticing late-night news browsing in Patna, Kabir removes news alerts from his phone and reads a chosen summary at lunchtime instead."
+     },
+     {
+      "title": "Choose Extra Effort Carefully",
+      "text": "Progress sometimes requires a deliberate step beyond your usual routine. Identify where that effort has a clear purpose rather than pushing harder everywhere. Consider the costs, available time, and need for rest before adding more work to an already demanding schedule.",
+      "example": "Before a client presentation in Bhopal, Neha spends twenty minutes rehearsing the opening and checking the figures. She stops when the planned review is complete and gets enough sleep."
+     }
+    ]
+   },
+   "page4": {
+    "remember": [
+     "Repeated small choices influence long-term results.",
+     "The compound effect can work in helpful or harmful directions.",
+     "Tracking relevant actions reveals patterns that memory often misses.",
+     "Habits turn repeated choices into familiar routines.",
+     "Momentum describes how continued action can make a routine easier to maintain.",
+     "People, information, surroundings, and deliberate effort all influence the path toward a goal."
+    ],
+    "bigIdea": "Pay attention to the decisions you repeat. Track them, develop routines that fit your goals, and review the influences that shape your behavior. Consistency matters, but results are not guaranteed.",
+    "mistakes": [
+     "Expecting major results immediately and abandoning a useful routine before evaluating it over a suitable period.",
+     "Assuming that more effort, stricter routines, or different social connections always improve results regardless of context."
+    ]
+   },
+   "page5": {
+    "exercises": [
+     {
+      "title": "The Daily Tracking Log",
+      "steps": [
+       "Choose one area to examine, such as spending, study time, exercise, or customer outreach.",
+       "Decide which actions you need to record and prepare a notebook or digital log.",
+       "Record each relevant action as it happens during the chosen tracking period.",
+       "Review the entries and select one specific change to test based on the pattern you find."
+      ],
+      "time": "10 minutes"
+     },
+     {
+      "title": "The Influence Review",
+      "steps": [
+       "List the news, entertainment, social media, and other information you regularly consume.",
+       "Identify which sources support your current goals and which repeatedly distract you.",
+       "Choose one source or habit of exposure to reduce or change.",
+       "Review the result after a week and decide whether the adjustment is useful."
+      ],
+      "time": "20 minutes"
+     },
+     {
+      "title": "The Relationship and Routine Audit",
+      "steps": [
+       "List the relationships and recurring group activities that occupy a significant part of your week.",
+       "Consider how these interactions affect your habits, mood, decisions, and priorities.",
+       "Choose one practical change, such as scheduling a useful conversation or reducing an unproductive recurring activity.",
+       "Review the effect and preserve healthy relationships while adjusting patterns that do not serve your goals."
+      ],
+      "time": "15 minutes"
+     }
+    ],
+    "reflectionQuestions": []
+   },
+   "page6": {
+    "whoShouldRead": "Readers who want practical guidance on daily choices, accountability, and consistent action may find this book useful. It suits entrepreneurs, professionals, and people working toward personal goals who want to examine their routines. Its motivational style is direct and action-focused. Readers who prefer detailed scientific analysis should treat the book as a personal development framework and consult specialist research for claims about psychology, finance, or health.",
+    "whoMightSkip": "Readers who prefer a research-heavy academic book may find Hardy's motivational approach too direct. Those seeking guaranteed investment returns, rapid weight loss, or a fixed formula for success should look elsewhere. The book emphasizes choices and routines, but real outcomes also depend on resources, health, opportunity, and circumstances beyond individual control.",
+    "buy": {
+     "suits": "Consider the full book if you want a fuller explanation of choices, habits, momentum, influences, and acceleration. Its sequence provides more context than a short summary and gives you material to revisit while tracking your own behavior.",
+     "notSuits": "A summary may be enough if you want the main principle and a starting exercise for tracking daily actions. You will miss the full discussion and the examples that connect the ideas across the book.",
+     "physicalGives": "A physical copy gives you the text and any material included in the edition you purchase. Do not assume that a particular edition contains printable worksheets, tracking sheets, or relationship-audit guides unless its contents or publisher description confirms them."
+    }
+   },
+   "readyKey": "the compound effect"
+  }
+ ]
+}
