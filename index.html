@@ -147,6 +147,11 @@ button.mood{background:none;border:0;padding:0}
 .pts{display:grid;gap:14px;margin-top:30px}
 .pt{border-top:2px solid var(--text);padding-top:10px}.pt b{font:700 18px var(--serif)}.pt p{color:var(--muted);font-size:15px;margin-top:4px}
 @media(min-width:760px){.tlinks{display:flex}.nav{display:none}body{padding-bottom:24px}.hero{grid-template-columns:1.15fr .85fr;padding:64px 0 40px}.pts{grid-template-columns:repeat(3,1fr)}.cluster{height:380px}.cluster .cv{width:185px}.cv2{left:140px;width:205px!important}.view{max-width:900px}.top-in{padding:14px 20px}}
+.greet{display:flex;justify-content:space-between;align-items:center;gap:16px}.greet h1{font-size:clamp(28px,5vw,40px)}
+.gcl{position:relative;width:130px;height:90px;flex:none}.gc{position:absolute;top:0}.gc .cover{width:56px}.g0{left:0;transform:rotate(-8deg)}.g1{left:36px;z-index:2}.g2{left:72px;transform:rotate(8deg)}
+.tsearch{display:none;flex:1;max-width:300px;margin:0 12px}.tsearch input{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:14px}
+@media(min-width:900px){.tsearch{display:block}}
+.nav-b{font-size:10px}
 /*__CSS__*/
 </style>
 </head>
@@ -419,10 +424,11 @@ function authView() {
 function topbar() {
   return h('header', { class: 'top' }, h('div', { class: 'top-in' },
     h('div', { class: 'brand' }, h('span', null, '📖'), h('span', { class: 'serif' }, 'The Book Guide')),
+    h('form', { class: 'tsearch', onSubmit: e => { e.preventDefault(); const q = e.target.q.value; S.tab = 'explore'; render(); scrollTop(); if (q.trim().length > 1) runSearch(q); } }, h('input', { name: 'q', type: 'search', placeholder: 'Search books or authors', 'aria-label': 'Search books', maxlength: 80 })),
     h('div', { class: 'tlinks' }, NAV.map(([k, i, l]) => h('button', { class: S.tab === k ? 'on' : '', onClick: () => { S.tab = k; render(); scrollTop(); } }, l))),
     h('div', { class: 'row', style: { gap: '8px', flexWrap: 'nowrap' } }, h('button', { class: 'icon-btn', 'aria-label': 'Send feedback', onClick: () => openFeedback() }, '💬 Feedback'), h('button', { class: 'icon-btn', onClick: () => { settings.theme = settings.theme === 'dark' ? 'light' : 'dark'; saveSettings(); render(); }, 'aria-label': 'Switch theme' }, settings.theme === 'dark' ? '☀️' : '🌙'))));
 }
-const NAV = [['home', '🏠', 'Home'], ['explore', '🔍', 'Explore'], ['profile', '👤', 'Profile']];
+const NAV = [['home', '🏠', 'Home'], ['explore', '🔍', 'Explore'], ['list', '📚', 'My Reading List'], ['profile', '👤', 'Profile']];
 function nav() {
   return h('nav', { class: 'nav', 'aria-label': 'Main' }, h('div', { class: 'nav-in' }, NAV.map(([k, i, l]) => h('button', { class: 'nav-b' + (S.tab === k ? ' on' : ''), onClick: () => { S.tab = k; render(); scrollTop(); } }, h('span', { class: 'ni' }, i), h('span', null, l)))));
 }
@@ -431,7 +437,7 @@ function render() {
   const tc = document.querySelector('meta[name=theme-color]'); if (tc) tc.setAttribute('content', settings.theme === 'dark' ? '#14181a' : '#f7f2e8');
   document.documentElement.style.setProperty('--fs', (settings.font || 18) + 'px');
   if (!user || A.done) { $('#app').replaceChildren(authView()); return; }
-  const views = { home: homeView, explore: exploreView, profile: profileView, reader: readerView, topic: topicView };
+  const views = { list: listView, home: homeView, explore: exploreView, profile: profileView, reader: readerView, topic: topicView };
   $('#app').replaceChildren(topbar(), (views[S.tab] || homeView)(), nav());
 }
 
@@ -439,7 +445,8 @@ function render() {
 function homeView() {
   const hr = new Date().getHours(), g = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
   return h('div', { class: 'view' },
-    h('div', { class: 'greet' }, h('h1', null, g + ', ' + user.name + '.'), h('p', { class: 'muted' }, new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }))),
+    h('div', { class: 'greet' }, h('div', null, h('h1', null, g + ', ' + user.name + '.'), h('p', { class: 'muted' }, new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' }))),
+      lib.length ? h('div', { class: 'gcl', 'aria-hidden': 'true' }, lib.slice(0, 3).map((x, i) => h('div', { class: 'gc g' + i }, coverEl(x, 'sm')))) : null),
     h('h3', { class: 'sh' }, 'Your book for today'),
     dailyBox(),
     libSection(),
@@ -448,6 +455,11 @@ function homeView() {
       const inner = [h('span', { class: 'mood-i' }, topicInfo(t).e), h('span', { class: 'mood-l' }, t)];
       return topicInfo(t).s.length ? h('button', { class: 'mood', onClick: () => { S.topic = t; S.topicFrom = 'home'; S.tab = 'topic'; render(); scrollTop(); } }, inner) : h('div', { class: 'mood' }, inner);
     })));
+}
+function listView() {
+  const v = h('div', { class: 'view' }, h('h1', { class: 'serif', style: { fontSize: '26px' } }, 'My Reading List'));
+  if (!lib.length) { v.append(h('div', { class: 'empty' }, h('div', { class: 'big' }, '📚'), h('p', { class: 'muted' }, 'Books you save or mark as read appear here.'), h('button', { class: 'btn', style: { marginTop: '14px' }, onClick: () => { S.tab = 'explore'; render(); scrollTop(); } }, 'Explore books'))); return v; }
+  v.append(libSection()); return v;
 }
 function profileView() {
   const v = h('div', { class: 'view' }, h('h1', { class: 'serif', style: { fontSize: '24px' } }, 'Profile'));
