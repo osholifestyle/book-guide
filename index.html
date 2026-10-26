@@ -170,6 +170,20 @@ button.mood{background:none;border:0;padding:0}
 .bk span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
 @media(min-width:760px){.dtop .cover{width:168px}.dinfo h2{font-size:30px}.dtop{gap:24px}.dcard{padding:24px}.bk,.bk .cover{width:150px}.lib-i,.lib-i .cover.sm{width:92px}}
 @media(min-width:760px){.dcard{display:grid;grid-template-columns:168px 1fr;column-gap:28px;align-items:start}.dtop{display:contents}.dtop .cover{grid-row:1/3}.dinfo{grid-column:2;grid-row:1}.drest{grid-column:2;grid-row:2}.drest .ddesc{margin-top:4px;font-size:18px}}
+.view.wide{max-width:1080px}
+.thero{display:flex;align-items:center;gap:20px;margin-top:16px;padding:28px 24px;border-radius:20px;background:color-mix(in srgb,var(--gc) 13%,var(--surface));border:1px solid color-mix(in srgb,var(--gc) 30%,var(--line))}
+.thi{flex:none;width:76px;height:76px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:38px;box-shadow:0 0 0 3px color-mix(in srgb,var(--gc) 45%,transparent)}
+.thero h1{font-size:clamp(32px,6vw,54px);line-height:1.05;letter-spacing:-.02em}
+.tgrp{font-size:14px;color:var(--gc);font-weight:700;margin-bottom:2px}.tcount{margin-top:8px;color:var(--muted)}
+.tfeat{display:flex;gap:22px;align-items:flex-start;margin-top:22px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.tfeat .cover{width:120px}.tfi h2{font-size:clamp(22px,3.4vw,32px);line-height:1.15;margin:6px 0 2px}
+.tfeat .tag{background:color-mix(in srgb,var(--gc) 16%,var(--surface));color:var(--gc);font-weight:700}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:24px 18px}
+.tk{text-align:left;display:block}.tk-c{position:relative}.tk .cover{width:100%;transition:transform .15s}.tk:hover .cover{transform:translateY(-4px)}
+.tk b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:15px;line-height:1.25;margin-top:10px}.tk>span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+.rdy{position:absolute;left:6px;bottom:6px;background:var(--gc);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;z-index:2}
+@media(min-width:760px){.tfeat .cover{width:170px}.tgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:30px 24px}.thero{padding:38px 36px;gap:28px}.thi{width:104px;height:104px;font-size:52px}}
+@media(max-width:480px){.tfeat{flex-direction:column}.tfeat .cover{width:110px}}
 /*__CSS__*/
 </style>
 </head>
@@ -1266,22 +1280,42 @@ function drawExplore() {
 }
 
 /* ================= browse one topic ================= */
+const GROUP_COL = { 'Mind & Self': '#6a56b8', 'Money & Business': '#3f7a35', 'Society & World': '#b0552f', 'Science & Tech': '#2d6f93', 'Health & Life': '#b0405a', 'Creative & Culture': '#a07a12' };
 function topicView() {
-  const info = topicInfo(S.topic), list = h('div');
-  const items = (() => { const s = new Set(); return readyFor(S.topic).map(x => ({ t: x.t, a: x.a, r: 1 })).concat(info.s).filter(x => { const k = bookId(x.t, x.a); if (s.has(k)) return false; s.add(k); return true; }); })();
+  const info = topicInfo(S.topic), grid = h('div', { class: 'tgrid' });
+  const items = (() => { const s = new Set(); return readyFor(S.topic).map(x => ({ t: x.t, a: x.a, r: 1, h: x.h })).concat(info.s).filter(x => { const k = bookId(x.t, x.a); if (s.has(k)) return false; s.add(k); return true; }); })();
   if (!items.length) { S.tab = 'home'; return homeView(); }
-  items.forEach(x => {
-    const row = h('div', { class: 'nextrow' });
-    const fill = m => rc(row, coverEl(m, 'sm'), h('div', { class: 'grow' }, h('b', null, m.title), h('div', { class: 'muted small' }, 'by ' + m.author), findReady(m.title, m.author) ? h('div', { class: 'small', style: { color: '#2f6f4f' } }, '✓ Mini book ready') : null), h('button', { class: 'btn ghost sm', onClick: () => openBook(m) }, 'Open'));
+  const ready = items.filter(x => findReady(x.t, x.a)), rest = items.filter(x => !findReady(x.t, x.a));
+  const lead = ready[0] || null, others = lead ? items.filter(x => x !== lead) : items;
+  const mk = (x, cls) => {
+    const isReady = !!findReady(x.t, x.a);
     const base = { id: bookId(x.t, x.a), title: x.t, author: x.a, topic: S.topic, cover: '', cover2: '', desc: '', pages: 0 };
-    fill(base);
-    getMeta({ t: x.t, a: x.a }, S.topic).then(m => { if (S.tab === 'topic' && S.topic === info.k) fill(m); }).catch(() => {});
-    list.append(row);
-  });
-  return h('div', { class: 'view' },
-    h('div', { class: 'rd-head' }, h('button', { class: 'icon-btn', onClick: () => { S.tab = S.topicFrom || 'home'; render(); scrollTop(); } }, '← Back')),
-    h('h1', { class: 'serif', style: { fontSize: '24px' } }, info.e + ' ' + info.k),
-    h('p', { class: 'muted' }, 'Tap a book to read its 6-page mini book.'), list);
+    const cell = h('button', { class: cls || 'tk', onClick: () => openSeed({ t: x.t, a: x.a }, S.topic) });
+    const draw = m => rc(cell, h('div', { class: 'tk-c' }, coverEl(m), isReady ? h('span', { class: 'rdy' }, 'Mini book') : null), h('b', { class: 'serif' }, x.t), h('span', null, x.a));
+    draw(base);
+    getMeta({ t: x.t, a: x.a }, S.topic).then(m => { if (S.tab === 'topic' && S.topic === info.k && m && m.cover) draw(m); }).catch(() => {});
+    return cell;
+  };
+  others.forEach(x => grid.append(mk(x)));
+  let feat = null;
+  if (lead) {
+    const base = { id: bookId(lead.t, lead.a), title: lead.t, author: lead.a, topic: S.topic, cover: '', cover2: '', desc: '', pages: 0 };
+    feat = h('div', { class: 'tfeat' });
+    const draw = m => rc(feat, coverEl(m), h('div', { class: 'tfi' }, h('span', { class: 'tag' }, 'Start here'), h('h2', { class: 'serif' }, lead.t), h('div', { class: 'dby' }, 'by ' + lead.a), lead.h ? h('p', { class: 'ddesc' }, lead.h) : null, h('button', { class: 'btn', style: { marginTop: '14px' }, onClick: () => openSeed({ t: lead.t, a: lead.a }, S.topic) }, '📖 Read the 6-page mini book')));
+    draw(base);
+    getMeta({ t: lead.t, a: lead.a }, S.topic).then(m => { if (S.tab === 'topic' && S.topic === info.k && m && m.cover) draw(m); }).catch(() => {});
+  }
+  const col = GROUP_COL[info.g] || '#4b3ba6';
+  const view = h('div', { class: 'view wide' }); view.style.setProperty('--gc', col);
+  view.append(
+    h('button', { class: 'icon-btn', onClick: () => { S.tab = S.topicFrom || 'home'; render(); scrollTop(); } }, '← Back'),
+    h('section', { class: 'thero' },
+      h('span', { class: 'thi', 'aria-hidden': 'true' }, info.e),
+      h('div', null, h('p', { class: 'tgrp' }, info.g), h('h1', { class: 'serif' }, info.k),
+        h('p', { class: 'tcount' }, items.length + (items.length === 1 ? ' book' : ' books') + (ready.length ? ', ' + ready.length + ' with a ready mini book' : '')))),
+    ...(feat ? [feat] : []),
+    h('h3', { class: 'sh' }, lead ? 'More in ' + info.k : 'Books in ' + info.k), grid);
+  return view;
 }
 /*__SHEETS__*/
 
