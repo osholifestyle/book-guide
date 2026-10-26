@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Book Guide - Understand Any Book Before You Buy It</title>
-<meta name="description" content="Free tool that helps you understand a book's core ideas before buying the physical copy. Decide smarter and avoid books that don't serve you">
-<meta name="theme-color" content="#f1f3ef">
+<title>The Book Guide</title>
+<meta name="description" content="Understand a book before you buy the physical copy. Simple mini books on any non-fiction topic.">
+<meta name="theme-color" content="#f7f2e8">
 <style>
 *{box-sizing:border-box;margin:0}
-:root{--bg:#f1f3ef;--surface:#ffffff;--surface2:#e6eae5;--text:#17202a;--muted:#5d6975;--accent:#4b3ba6;--accent2:#3a2c86;--line:#d3d9d3;--gold:#d99a00;--on-accent:#ffffff;--shadow:0 8px 20px rgba(23,32,42,.2);--r:8px;--fs:18px;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--serif:Charter,"Bitstream Charter","Sitka Text",Cambria,Georgia,serif;color-scheme:light}
-:root[data-theme=dark]{--bg:#11151c;--surface:#1a202a;--surface2:#232b37;--text:#eceef2;--muted:#9aa5b1;--accent:#a99cff;--accent2:#c3b9ff;--line:#2d3644;--gold:#f0b429;--on-accent:#14102e;--shadow:0 8px 20px rgba(0,0,0,.55);color-scheme:dark}
+:root{--bg:#f7f2e8;--surface:#fffdf8;--surface2:#ece5d4;--text:#1c1a15;--muted:#645f52;--accent:#1f4d3a;--accent2:#1f4d3a;--line:#ddd4c0;--gold:#d99a00;--on-accent:#ffffff;--shadow:0 8px 20px rgba(23,32,42,.2);--r:8px;--fs:18px;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,serif;color-scheme:light}
+:root[data-theme=dark]{--bg:#14181a;--surface:#1c2220;--surface2:#262e2a;--text:#eeeadf;--muted:#a3a89c;--accent:#7fc8a0;--accent2:#9bdcb8;--line:#2f3833;--gold:#f0b429;--on-accent:#0e1f17;--shadow:0 8px 20px rgba(0,0,0,.55);color-scheme:dark}
 html{-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--text);font:16px/1.5 var(--sans);min-height:100vh;padding-bottom:88px}
 h1,h2,h3,.serif{font-family:var(--serif)}
@@ -123,6 +123,30 @@ button.mood{background:none;border:0;padding:0}
 .star{font-size:36px;line-height:1;color:var(--muted);opacity:.45;padding:2px 4px}.star.on{color:var(--gold);opacity:1}
 .fb-l{display:block;font-size:13px;color:var(--muted);margin-top:14px}
 .fb-ok{text-align:center;padding:18px 0}
+
+/* redesign */
+.btn{border-radius:999px;padding:11px 22px}
+.btn.ghost{border-color:var(--text)}
+.top-in{max-width:1080px}
+.tlinks{display:none;gap:4px}
+.tlinks button{padding:8px 14px;border-radius:999px;font-size:15px;color:var(--text)}
+.tlinks button.on{background:var(--surface2);font-weight:700}
+.brand{color:var(--text);font-size:21px}
+.icon-btn{border-radius:999px;color:var(--text)}
+.land{max-width:1080px;margin:auto;padding:0 20px 60px}
+.land .top-in{padding:14px 0;max-width:none}
+.hero{display:grid;gap:36px;align-items:center;padding:36px 0 24px}
+.hero h1{font-size:clamp(38px,6.5vw,68px);line-height:1.04;letter-spacing:-.02em;font-weight:700}
+.hero .tag-i{font:italic 21px/1.4 var(--serif);color:var(--muted);margin:18px 0 26px;max-width:30ch}
+.hero .row{gap:12px}
+.cluster{position:relative;height:300px;max-width:420px;width:100%;margin:0 auto}
+.cluster .cv{position:absolute;width:150px;aspect-ratio:2/3;border-radius:6px;overflow:hidden;box-shadow:0 14px 30px rgba(28,26,21,.28);background:var(--accent);color:var(--on-accent)}
+.cluster .cv img{width:100%;height:100%;object-fit:cover;display:block}
+.cluster .cv b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;font:700 15px/1.2 var(--serif)}
+.cv1{left:0;top:40px;transform:rotate(-7deg)}.cv2{left:110px;top:0;z-index:2;width:165px!important}.cv3{right:0;top:52px;transform:rotate(6deg)}
+.pts{display:grid;gap:14px;margin-top:30px}
+.pt{border-top:2px solid var(--text);padding-top:10px}.pt b{font:700 18px var(--serif)}.pt p{color:var(--muted);font-size:15px;margin-top:4px}
+@media(min-width:760px){.tlinks{display:flex}.nav{display:none}body{padding-bottom:24px}.hero{grid-template-columns:1.15fr .85fr;padding:64px 0 40px}.pts{grid-template-columns:repeat(3,1fr)}.cluster{height:380px}.cluster .cv{width:185px}.cv2{left:140px;width:205px!important}.view{max-width:900px}.top-in{padding:14px 20px}}
 /*__CSS__*/
 </style>
 </head>
@@ -286,7 +310,7 @@ function topicPicker(set, onChange) {
 /* ================= sign-up / sign-in ================= */
 const AGES = ['', 'Under 18', '18-24', '25-34', '35-44', '45-54', '55+'];
 const FREQS = [['', 'Prefer not to say'], ['rarely', 'Rarely'], ['sometimes', 'Sometimes'], ['often', 'Often']];
-const A = { mode: 'signup', step: 1, done: false, d: { email: '', name: '', age: '', country: '', freq: '', topics: new Set(), consent: false } };
+const A = { mode: 'landing', step: 1, done: false, d: { email: '', name: '', age: '', country: '', freq: '', topics: new Set(), consent: false } };
 
 function signIn(email) {
   user = accounts[email]; session = email; LS.set('session', email);
@@ -307,7 +331,25 @@ function createAccount() {
   loadUserState(); sendSignup(user);
   A.done = true; render(); scrollTop();
 }
+function landingView() {
+  const go = m => { A.mode = m; A.step = 1; render(); scrollTop(); };
+  const cv = (cls, isbn, t) => h('div', { class: 'cv ' + cls }, h('b', null, t), h('img', { src: 'https://covers.openlibrary.org/b/isbn/' + isbn + '-L.jpg?default=false', alt: t, loading: 'lazy', onerror: ev => ev.target.remove() }));
+  return h('div', { class: 'land' },
+    h('header', { class: 'top', style: { position: 'static' } }, h('div', { class: 'top-in' },
+      h('div', { class: 'brand' }, h('span', null, '📖'), h('span', { class: 'serif' }, 'The Book Guide')),
+      h('div', { class: 'row', style: { gap: '8px', flexWrap: 'nowrap' } }, h('button', { class: 'btn ghost sm', onClick: () => go('signin') }, 'Sign in'), h('button', { class: 'btn sm', onClick: () => go('signup') }, 'Sign up')))),
+    h('section', { class: 'hero' },
+      h('div', null, h('h1', { class: 'serif' }, 'Find Your Next Meaningful Read.'),
+        h('p', { class: 'tag-i' }, 'Understand a book before you buy the physical copy.'),
+        h('div', { class: 'row' }, h('button', { class: 'btn', onClick: () => go('signup') }, 'Explore Books'), h('button', { class: 'btn ghost', onClick: () => go('signup') }, 'Find My Next Book'))),
+      h('div', { class: 'cluster', 'aria-hidden': 'true' }, cv('cv1', '9781455586691', 'Deep Work'), cv('cv3', '9780062316097', 'Sapiens'), cv('cv2', '9780735211292', 'Atomic Habits'))),
+    h('div', { class: 'pts' },
+      h('div', { class: 'pt' }, h('b', null, 'Six short pages'), h('p', null, 'Each mini book takes 5 to 8 minutes to read.')),
+      h('div', { class: 'pt' }, h('b', null, 'Non-fiction only'), h('p', null, '40 topics, from habits to history.')),
+      h('div', { class: 'pt' }, h('b', null, 'Buy with confidence'), h('p', null, 'See who the physical book suits first.'))));
+}
 function authView() {
+  if (A.mode === 'landing' && !A.done) return landingView();
   const wrap = h('div', { class: 'auth' }, h('div', { class: 'brand' }, h('span', null, '📖'), h('span', { class: 'serif' }, 'The Book Guide')));
   const body = h('div'); wrap.append(body);
   const d = A.d;
@@ -340,7 +382,7 @@ function authView() {
   if (A.step === 1) {
     const ck = h('input', { type: 'checkbox', checked: d.consent, id: 'consent' });
     ck.addEventListener('change', () => { d.consent = ck.checked; });
-    rc(body, bar(1), h('h1', { class: 'serif' }, 'Understand a Book First. Then Decide If It's Worth Buying.'), h('p', { class: 'muted' }, 'Understand a book first, then decide if the physical copy is worth buying.'),
+    rc(body, bar(1), h('h1', { class: 'serif' }, 'Create your free account'), h('p', { class: 'muted' }, 'Understand a book first, then decide if the physical copy is worth buying.'),
       input('Email address', 'email', { type: 'email', placeholder: 'you@example.com', autocomplete: 'email' }),
       h('label', { class: 'consent', for: 'consent' }, ck, CFG.SIGNUP_ENDPOINT ? 'I agree that my email and the details I enter next are saved in this browser and shared with The Book Guide to improve book suggestions.' : 'I understand my email and details are saved only in this browser, and I can delete them any time in Profile.'),
       h('div', { class: 'row', style: { marginTop: '18px' } },
@@ -377,6 +419,7 @@ function authView() {
 function topbar() {
   return h('header', { class: 'top' }, h('div', { class: 'top-in' },
     h('div', { class: 'brand' }, h('span', null, '📖'), h('span', { class: 'serif' }, 'The Book Guide')),
+    h('div', { class: 'tlinks' }, NAV.map(([k, i, l]) => h('button', { class: S.tab === k ? 'on' : '', onClick: () => { S.tab = k; render(); scrollTop(); } }, l))),
     h('div', { class: 'row', style: { gap: '8px', flexWrap: 'nowrap' } }, h('button', { class: 'icon-btn', 'aria-label': 'Send feedback', onClick: () => openFeedback() }, '💬 Feedback'), h('button', { class: 'icon-btn', onClick: () => { settings.theme = settings.theme === 'dark' ? 'light' : 'dark'; saveSettings(); render(); }, 'aria-label': 'Switch theme' }, settings.theme === 'dark' ? '☀️' : '🌙'))));
 }
 const NAV = [['home', '🏠', 'Home'], ['explore', '🔍', 'Explore'], ['profile', '👤', 'Profile']];
@@ -385,7 +428,7 @@ function nav() {
 }
 function render() {
   document.documentElement.setAttribute('data-theme', settings.theme === 'dark' ? 'dark' : 'light');
-  const tc = document.querySelector('meta[name=theme-color]'); if (tc) tc.setAttribute('content', settings.theme === 'dark' ? '#11151c' : '#f1f3ef');
+  const tc = document.querySelector('meta[name=theme-color]'); if (tc) tc.setAttribute('content', settings.theme === 'dark' ? '#14181a' : '#f7f2e8');
   document.documentElement.style.setProperty('--fs', (settings.font || 18) + 'px');
   if (!user || A.done) { $('#app').replaceChildren(authView()); return; }
   const views = { home: homeView, explore: exploreView, profile: profileView, reader: readerView, topic: topicView };
