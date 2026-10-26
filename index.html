@@ -152,6 +152,17 @@ button.mood{background:none;border:0;padding:0}
 .tsearch{display:none;flex:1;max-width:300px;margin:0 12px}.tsearch input{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:14px}
 @media(min-width:900px){.tsearch{display:block}}
 .nav-b{font-size:10px}
+.proof{margin-top:18px;font-size:14px;color:var(--muted)}
+.sec2{margin-top:72px}.sec2 h2{font-size:clamp(26px,4vw,38px);line-height:1.15;letter-spacing:-.01em;margin-bottom:22px}
+.steps3{display:grid;gap:18px}.st{border-top:2px solid var(--text);padding-top:14px}.st .num{display:block;font-size:44px;line-height:1;color:var(--accent)}.st b{display:block;font-size:20px;margin:8px 0 4px}.st p{color:var(--muted)}
+.split{display:grid;gap:28px;align-items:start}.lead{font:19px/1.6 var(--serif);max-width:34ch}
+.pgl{list-style:none;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:12px}.pgl li{display:flex;flex-direction:column;padding:14px 18px;border-bottom:1px solid var(--line)}.pgl li:last-child{border:0}.pgl b{font-size:18px}.pgl span{color:var(--muted);font-size:14px}
+.tchips{display:flex;flex-wrap:wrap;gap:8px}
+.motto{margin-top:72px;background:var(--accent);color:var(--on-accent);border-radius:20px;padding:48px 24px;text-align:center}.mq{font-size:clamp(30px,5vw,52px);line-height:1.1}.ms{margin:14px auto 24px;max-width:46ch;opacity:.9}
+.btn.cream{background:#f7f2e8;color:#1f4d3a}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+@media(min-width:760px){.steps3{grid-template-columns:repeat(3,1fr);gap:28px}.split{grid-template-columns:1fr 1fr;gap:56px}.motto{padding:72px 40px}}
+.brand{white-space:nowrap}.land .btn.sm{white-space:nowrap;padding:8px 14px}@media(max-width:420px){.land .brand{font-size:18px}.land .btn.sm{padding:7px 11px;font-size:13px}}
 /*__CSS__*/
 </style>
 </head>
@@ -339,19 +350,32 @@ function createAccount() {
 function landingView() {
   const go = m => { A.mode = m; A.step = 1; render(); scrollTop(); };
   const cv = (cls, isbn, t) => h('div', { class: 'cv ' + cls }, h('b', null, t), h('img', { src: 'https://covers.openlibrary.org/b/isbn/' + isbn + '-L.jpg?default=false', alt: t, loading: 'lazy', onerror: ev => ev.target.remove() }));
+  const cnt = h('span', null, '');
+  loadReadyIndex().then(() => { if (READY.list.length) cnt.textContent = READY.list.length + ' mini books ready'; }).catch(() => {});
+  const steps = [['Pick your topics', 'Choose at least three of 40 non-fiction topics, from habits to history.'], ['Read a 6-page mini book', 'Get the big ideas, the author, the lessons and a practice plan in 5 to 8 minutes.'], ['Decide before you buy', 'The last page tells you who the physical book suits, and who can skip it.']];
+  const pages = [['Overview', 'The whole book in one minute'], ['The author', 'Who wrote it and why it matters'], ['Key lessons', 'Six ideas, each with an everyday example'], ['Recap', 'Six lines to remember and common mistakes'], ['Practice', 'Three short exercises to try today'], ['Buying advice', 'Whether the physical copy is worth it for you']];
   return h('div', { class: 'land' },
     h('header', { class: 'top', style: { position: 'static' } }, h('div', { class: 'top-in' },
       h('div', { class: 'brand' }, h('span', null, '📖'), h('span', { class: 'serif' }, 'The Book Guide')),
-      h('div', { class: 'row', style: { gap: '8px', flexWrap: 'nowrap' } }, h('button', { class: 'btn ghost sm', onClick: () => go('signin') }, 'Sign in'), h('button', { class: 'btn sm', onClick: () => go('signup') }, 'Sign up')))),
+      h('div', { class: 'row', style: { gap: '8px', flexWrap: 'nowrap' } }, h('button', { class: 'btn ghost sm', onClick: () => go('signin') }, 'Sign in'), h('button', { class: 'btn sm', onClick: () => go('signup') }, 'Sign up free')))),
     h('section', { class: 'hero' },
       h('div', null, h('h1', { class: 'serif' }, 'Find Your Next Meaningful Read.'),
         h('p', { class: 'tag-i' }, 'Understand a book before you buy the physical copy.'),
-        h('div', { class: 'row' }, h('button', { class: 'btn', onClick: () => go('signup') }, 'Explore Books'), h('button', { class: 'btn ghost', onClick: () => go('signup') }, 'Find My Next Book'))),
+        h('div', { class: 'row' }, h('button', { class: 'btn', onClick: () => go('signup') }, 'Explore Books'), h('button', { class: 'btn ghost', onClick: () => go('signup') }, 'Find My Next Book')),
+        h('p', { class: 'proof' }, 'Free to use. ', cnt)),
       h('div', { class: 'cluster', 'aria-hidden': 'true' }, cv('cv1', '9781455586691', 'Deep Work'), cv('cv3', '9780062316097', 'Sapiens'), cv('cv2', '9780735211292', 'Atomic Habits'))),
-    h('div', { class: 'pts' },
-      h('div', { class: 'pt' }, h('b', null, 'Six short pages'), h('p', null, 'Each mini book takes 5 to 8 minutes to read.')),
-      h('div', { class: 'pt' }, h('b', null, 'Non-fiction only'), h('p', null, '40 topics, from habits to history.')),
-      h('div', { class: 'pt' }, h('b', null, 'Buy with confidence'), h('p', null, 'See who the physical book suits first.'))));
+    h('section', { class: 'sec2' }, h('h2', { class: 'serif' }, 'How it works'),
+      h('div', { class: 'steps3' }, steps.map(([t, d], i) => h('div', { class: 'st' }, h('span', { class: 'num serif' }, String(i + 1)), h('b', { class: 'serif' }, t), h('p', null, d))))),
+    h('section', { class: 'sec2 split' },
+      h('div', null, h('h2', { class: 'serif' }, 'Inside every mini book'), h('p', { class: 'lead' }, 'Six short pages, written in plain English. Each one is checked against publisher and author sources, so you can trust what you read before you spend money.'),
+        h('button', { class: 'btn', style: { marginTop: '18px' }, onClick: () => go('signup') }, 'Read your first one')),
+      h('ol', { class: 'pgl' }, pages.map(([t, d]) => h('li', null, h('b', { class: 'serif' }, t), h('span', null, d))))),
+    h('section', { class: 'sec2' }, h('h2', { class: 'serif' }, 'Non-fiction on every topic you care about'),
+      h('div', { class: 'tchips' }, TOPICS.map(t => h('span', { class: 'chip' }, t.e + ' ' + t.k)))),
+    h('section', { class: 'motto' }, h('p', { class: 'mq serif' }, 'Read less to choose better.'),
+      h('p', { class: 'ms' }, 'Our promise: honest, simple guides, so you only buy the books you will actually finish.'),
+      h('button', { class: 'btn cream', onClick: () => go('signup') }, 'Create your free account')),
+    h('footer', { class: 'foot' }, h('span', { class: 'serif' }, 'The Book Guide'), h('span', null, 'Your account details stay in your browser.')));
 }
 function authView() {
   if (A.mode === 'landing' && !A.done) return landingView();
