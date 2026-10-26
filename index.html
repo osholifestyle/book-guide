@@ -163,6 +163,13 @@ button.mood{background:none;border:0;padding:0}
 .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
 @media(min-width:760px){.steps3{grid-template-columns:repeat(3,1fr);gap:28px}.split{grid-template-columns:1fr 1fr;gap:56px}.motto{padding:72px 40px}}
 .brand{white-space:nowrap}.land .btn.sm{white-space:nowrap;padding:8px 14px}@media(max-width:420px){.land .brand{font-size:18px}.land .btn.sm{padding:7px 11px;font-size:13px}}
+.shelf{display:flex;gap:18px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x proximity}
+.bk{flex:none;width:128px;text-align:left;scroll-snap-align:start;display:block}
+.bk .cover{width:128px;transition:transform .15s}.bk:hover .cover{transform:translateY(-3px)}
+.bk b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:15px;line-height:1.25;margin-top:10px}
+.bk span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+@media(min-width:760px){.dtop .cover{width:168px}.dinfo h2{font-size:30px}.dtop{gap:24px}.dcard{padding:24px}.bk,.bk .cover{width:150px}.lib-i,.lib-i .cover.sm{width:92px}}
+@media(min-width:760px){.dcard{display:grid;grid-template-columns:168px 1fr;column-gap:28px;align-items:start}.dtop{display:contents}.dtop .cover{grid-row:1/3}.dinfo{grid-column:2;grid-row:1}.drest{grid-column:2;grid-row:2}.drest .ddesc{margin-top:4px;font-size:18px}}
 /*__CSS__*/
 </style>
 </head>
@@ -474,11 +481,31 @@ function homeView() {
     h('h3', { class: 'sh' }, 'Your book for today'),
     dailyBox(),
     libSection(),
-    h('h3', { class: 'sh' }, 'Your topics'),
-    h('div', { class: 'moods' }, userTopics().map(t => {
-      const inner = [h('span', { class: 'mood-i' }, topicInfo(t).e), h('span', { class: 'mood-l' }, t)];
-      return topicInfo(t).s.length ? h('button', { class: 'mood', onClick: () => { S.topic = t; S.topicFrom = 'home'; S.tab = 'topic'; render(); scrollTop(); } }, inner) : h('div', { class: 'mood' }, inner);
+    readyShelf(),
+    h('h3', { class: 'sh' }, 'Browse by topic'),
+    h('div', { class: 'chips wrap' }, userTopics().map(t => {
+      const lbl = topicInfo(t).e + ' ' + t;
+      return topicInfo(t).s.length ? h('button', { class: 'chip', onClick: () => { S.topic = t; S.topicFrom = 'home'; S.tab = 'topic'; render(); scrollTop(); } }, lbl) : h('span', { class: 'chip' }, lbl);
     })));
+}
+function readyShelf() {
+  const wrap = h('div');
+  loadReadyIndex().then(() => {
+    const mine = new Set(userTopics());
+    let l = READY.list.filter(x => mine.has(x.topic));
+    if (l.length < 4) l = READY.list.slice();
+    l = l.map(x => [hashStr(dateKey() + x.t), x]).sort((p, q) => p[0] - q[0]).map(x => x[1]).slice(0, 12);
+    if (!l.length) return;
+    const row = h('div', { class: 'shelf' });
+    l.forEach(x => {
+      let box = coverEl({ title: x.t, author: x.a });
+      const cell = h('button', { class: 'bk', onClick: () => openSeed({ t: x.t, a: x.a }, x.topic) }, box, h('b', { class: 'serif' }, x.t), h('span', null, x.a));
+      row.append(cell);
+      getMeta({ t: x.t, a: x.a }, x.topic).then(m => { if (m && m.cover) { const nb = coverEl(m); box.replaceWith(nb); box = nb; } }).catch(() => {});
+    });
+    rc(wrap, h('h3', { class: 'sh' }, 'Mini books ready to read'), row);
+  }).catch(() => {});
+  return wrap;
 }
 function listView() {
   const v = h('div', { class: 'view' }, h('h1', { class: 'serif', style: { fontSize: '26px' } }, 'My Reading List'));
@@ -722,6 +749,7 @@ function drawDaily(box, m) {
   rc(box, h('div', { class: 'dcard' },
     h('div', { class: 'dtop' }, coverEl(m),
       h('div', { class: 'dinfo' }, h('span', { class: 'tag' }, topicInfo(m.topic).e + ' ' + m.topic), h('h2', { class: 'serif' }, m.title), h('div', { class: 'dby' }, 'by ' + m.author), meta ? h('div', { class: 'dmeta' }, meta) : null)),
+    h('div', { class: 'drest' },
     m.desc ? h('p', { class: 'ddesc' }, shortDesc(m.desc)) : null,
     m.partial ? h('p', { class: 'why' }, "We couldn't load the cover and details just now. ", h('button', { class: 'link', onClick: () => { delete metaCache[m.id]; fillDaily(box); } }, 'Try again')) : null,
     h('p', { class: 'why' }, 'Picked for you because you chose ' + m.topic + '.'),
@@ -729,7 +757,7 @@ function drawDaily(box, m) {
       h('button', { class: 'btn', onClick: () => openBook(m) }, '📖 Read the 6-page mini book'),
       h('button', { class: 'btn ghost', onClick: () => { setStatus(m, 'saved'); refresh(); renderLib(); } }, e && e.status === 'saved' ? '★ Saved' : '☆ Save'),
       h('button', { class: 'btn ghost', onClick: () => { setStatus(m, 'read'); refresh(); renderLib(); } }, e && e.status === 'read' ? '✓ Read' : 'Mark as read'),
-      h('button', { class: 'btn ghost', onClick: () => { addSeen(m.id); daily = { date: dateKey(), n: (daily ? daily.n : 0) + 1 }; U.set('daily', daily); fillDaily(box); } }, '🔄 Show me another'))));
+      h('button', { class: 'btn ghost', onClick: () => { addSeen(m.id); daily = { date: dateKey(), n: (daily ? daily.n : 0) + 1 }; U.set('daily', daily); fillDaily(box); } }, '🔄 Show me another')))));
 }
 function libSection() { const s = h('div', { id: 'libsec' }); renderLib(s); return s; }
 function renderLib(el) {
