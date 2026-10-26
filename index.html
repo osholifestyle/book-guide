@@ -184,6 +184,7 @@ button.mood{background:none;border:0;padding:0}
 .rdy{position:absolute;left:6px;bottom:6px;background:var(--gc);color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;z-index:2}
 @media(min-width:760px){.tfeat .cover{width:170px}.tgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:30px 24px}.thero{padding:38px 36px;gap:28px}.thi{width:104px;height:104px;font-size:52px}}
 @media(max-width:480px){.tfeat{flex-direction:column}.tfeat .cover{width:110px}}
+.fl a,.afoot a{color:var(--muted);margin-left:16px;font-size:14px;text-decoration:none}.fl a:hover,.afoot a:hover{text-decoration:underline}.afoot{max-width:900px;margin:30px auto 0;padding:18px 16px;border-top:1px solid var(--line);text-align:center}.afoot a{margin:0 8px}
 /*__CSS__*/
 </style>
 </head>
@@ -396,7 +397,7 @@ function landingView() {
     h('section', { class: 'motto' }, h('p', { class: 'mq serif' }, 'Read less to choose better.'),
       h('p', { class: 'ms' }, 'Our promise: honest, simple guides, so you only buy the books you will actually finish.'),
       h('button', { class: 'btn cream', onClick: () => go('signup') }, 'Create your free account')),
-    h('footer', { class: 'foot' }, h('span', { class: 'serif' }, 'The Book Guide'), h('span', null, 'Your account details stay in your browser.')));
+    h('footer', { class: 'foot' }, h('span', { class: 'serif' }, 'The Book Guide'), h('span', { class: 'fl' }, h('a', { href: 'privacy.html' }, 'Privacy'), h('a', { href: 'terms.html' }, 'Terms'), h('a', { href: 'affiliate-disclosure.html' }, 'Affiliate disclosure'))));
 }
 function authView() {
   if (A.mode === 'landing' && !A.done) return landingView();
@@ -483,7 +484,7 @@ function render() {
   document.documentElement.style.setProperty('--fs', (settings.font || 18) + 'px');
   if (!user || A.done) { $('#app').replaceChildren(authView()); return; }
   const views = { list: listView, home: homeView, explore: exploreView, profile: profileView, reader: readerView, topic: topicView };
-  $('#app').replaceChildren(topbar(), (views[S.tab] || homeView)(), nav());
+  $('#app').replaceChildren(topbar(), (views[S.tab] || homeView)(), h('footer', { class: 'afoot' }, h('a', { href: 'privacy.html' }, 'Privacy'), h('a', { href: 'terms.html' }, 'Terms'), h('a', { href: 'affiliate-disclosure.html' }, 'Affiliate disclosure')), nav());
 }
 
 /* ================= views ================= */
