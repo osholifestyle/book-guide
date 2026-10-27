@@ -212,7 +212,7 @@ const CFG = {
   // WHERE FEEDBACK GOES. Fill in ONE of these:
   // 1) FEEDBACK_ENDPOINT: your free Formspree form address, e.g. "https://formspree.io/f/abcdwxyz". Feedback arrives in your inbox.
   //    (If you use Web3Forms instead, put "https://api.web3forms.com/submit" here and your access key in FEEDBACK_KEY.)
-  FEEDBACK_ENDPOINT: "",
+  FEEDBACK_ENDPOINT: "https://formspree.io/f/mqpppnwb",
   FEEDBACK_KEY: "",
   // 2) FEEDBACK_EMAIL: a public email address. The reader's email app opens with the feedback already written.
   //    Anyone can see this address in the page, so use one you are happy to make public.
@@ -222,7 +222,7 @@ const CFG = {
   // VIEW_URL + FIELDS filled in: readers send feedback without leaving the page, straight into your form's Responses tab.
   // FIELDS are the "entry.NNNNNNNN" names of your questions (get them with "Get pre-filled link" in Google Forms).
   GOOGLE_FORM: {
-    VIEW_URL: "https://docs.google.com/forms/d/e/1FAIpQLScpeVjJrk2nQGWtFHVuMbm3KTr8U52q9H9wxmiav7jNINVimw/viewform",
+    VIEW_URL: "", // Google Form switched off so feedback goes to email through Formspree
     FIELDS: { book: "entry.839211931", author: "entry.1375036599", rating: "entry.264986191", wouldBuy: "entry.153324006", review: "entry.956281672" }
   }
 };
